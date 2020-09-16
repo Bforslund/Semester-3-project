@@ -59,6 +59,9 @@ public class FakeDataStore {
         old.setStatus(order.getStatus());
         return true;
     }
+    public void deleteAllOrder() {
 
+        orderList.clear();
+    }
 
 }

@@ -34,10 +34,10 @@ public class OrderResources {
         }
     }
 
-    @DELETE //DELETE at http://localhost:XXXX/students/3
-    @Path("{id}")
-    public Response deleteStudent(Item item) {
-        fakeDataStore.deleteItem(item);
+    @DELETE //DELETE at http://localhost:XXXX/orders/3
+    @Path("deleteAll")
+    public Response deleteAllOrders() {
+        fakeDataStore.deleteAllOrder();
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return Response.noContent().build();
     }
