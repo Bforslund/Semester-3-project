@@ -1,7 +1,7 @@
 build:
   script:
-    - "./gradlew build"
+    - "./Online-workshop-beatrice/gradlew build"
 test:
   script:
-    - "./gradlew test"
+    - "./Online-workshop-beatrice/gradlew test"
   stage: test
