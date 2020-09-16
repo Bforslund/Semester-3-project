@@ -51,6 +51,14 @@ public class FakeDataStore {
         }
         return itemsList.remove(item);
     }
+    public boolean updateOrder(Order order) {
+        Order old = this.GetOrders().get(order.getOrderNumber());
+        if (old == null) {
+            return false;
+        }
+        old.setStatus(order.getStatus());
+        return true;
+    }
 
 
 }

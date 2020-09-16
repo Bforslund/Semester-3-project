@@ -1,12 +1,10 @@
 package individual.project.resources;
 
+import individual.project.model.Item;
 import individual.project.model.Order;
 import individual.project.repository.*;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
 
@@ -23,6 +21,25 @@ public class OrderResources {
 
         GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
         return Response.ok(entity).build();
+    }
+    @PUT //PUT at http://localhost:XXXX/orders/id
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    public Response updateStudent(Order order) {
+        // Idempotent method. Always update (even if the resource has already been updated before).
+        if (fakeDataStore.updateOrder(order)) {
+            return Response.noContent().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
+        }
+    }
+
+    @DELETE //DELETE at http://localhost:XXXX/students/3
+    @Path("{id}")
+    public Response deleteStudent(Item item) {
+        fakeDataStore.deleteItem(item);
+        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
+        return Response.noContent().build();
     }
 }
 
