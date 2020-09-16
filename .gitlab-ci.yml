@@ -8,6 +8,6 @@ build:
 test:
   stage: test
   script:
-    - ./gradlew test
+    - ./Online-workshop-beatrice/gradlew test
   dependencies:
     - build
