@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="individual.project.BlaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-16T14:54:29" hostname="DESKTOP-Q1LPFSA" time="0.024">
+<testsuite name="individual.project.BlaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-16T15:01:11" hostname="DESKTOP-Q1LPFSA" time="0.047">
   <properties/>
-  <testcase name="testDep()" classname="individual.project.BlaTest" time="0.024"/>
+  <testcase name="testDep()" classname="individual.project.BlaTest" time="0.047"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

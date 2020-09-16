@@ -4,10 +4,12 @@ stages:
 build:
   stage: build
   script:
-    - ./Online-workshop-beatrice/gradlew build
+    - cd Online-workshop-beatrice/
+    - ./gradlew build
 test:
   stage: test
   script:
-    - ./Online-workshop-beatrice/gradlew test
+    - cd Online-workshop-beatrice/
+    - ./gradlew test
   dependencies:
     - build
