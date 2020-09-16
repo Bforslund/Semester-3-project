@@ -4,6 +4,7 @@ import individual.project.model.Item;
 import individual.project.model.Order;
 import individual.project.model.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,14 @@ public class FakeDataStore {
         // work this out better, add few more countries and students
 
         itemsList.add((new Item(1, "Cake", 50, "Flour", "Cakeycake")));
+        itemsList.add((new Item(2, "sadsda", 50, "Flour", "Cakeycake")));
+        itemsList.add((new Item(3, "bfdgd", 50, "Flour", "Cakeycake")));
+
+        orderList.add((new Order(1, 100, 1, "kuk")));
+        orderList.add((new Order(2, 100, 1, "kuk")));
+
+        userList.add((new User(1, "Bea", "Meijhorst", 400, LocalDate.of(1999, 10, 21), "nothing")));
+        userList.add((new User(2, "Bssfdfsdfea", "Meijhorst", 400, LocalDate.of(1999, 10, 21), "nothing")));
     }
 
 

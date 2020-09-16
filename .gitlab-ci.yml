@@ -1,7 +1,13 @@
+stages:
+  - build
+  - test
 build:
+  stage: build
   script:
-    - "./Online-workshop-beatrice/gradlew build"
+    - ./Online-workshop-beatrice/gradlew build
 test:
-  script:
-    - "./Online-workshop-beatrice/gradlew test"
   stage: test
+  script:
+    - ./Online-workshop-beatrice/gradlew test
+  dependencies:
+    - build

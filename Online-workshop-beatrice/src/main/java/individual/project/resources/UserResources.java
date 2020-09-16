@@ -16,11 +16,11 @@ public class UserResources {
     public static final FakeDataStore fakeDataStore = new FakeDataStore();
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders(@QueryParam("orders") String orders) {
-        List<Order> OrderList;
-        OrderList = fakeDataStore.GetOrders();
+    public Response getAllUsers(@QueryParam("users") String users) {
+        List<User> UserList;
+        UserList = fakeDataStore.getUserList();
 
-        GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
+        GenericEntity<List<User>> entity = new GenericEntity<>(UserList) {  };
         return Response.ok(entity).build();
     }
     @PUT //PUT at http://localhost:XXXX/items/
