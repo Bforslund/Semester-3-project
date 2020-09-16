@@ -2,6 +2,7 @@ package individual.project.repository;
 
 import individual.project.model.Item;
 import individual.project.model.Order;
+import individual.project.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,12 @@ public class FakeDataStore {
 
     private final List<Item> itemsList = new ArrayList<>();
     private final List<Order> orderList = new ArrayList<>();
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    private final List<User> userList = new ArrayList<>();
 
     public FakeDataStore() {
         // work this out better, add few more countries and students
@@ -62,6 +69,25 @@ public class FakeDataStore {
     public void deleteAllOrder() {
 
         orderList.clear();
+    }
+    public boolean deleteUser(User user) {
+        if (user == null){
+            return false;
+        }
+        return userList.remove(user);
+    }
+    public boolean updateUser(User user) {
+        User old = this.getUserList().get(user.getId());
+        if (old == null) {
+            return false;
+        }
+        old.setAddress(user.getAddress());
+        old.setBirthday(user.getBirthday());
+        old.setName(user.getName());
+        old.setOrderHistory(user.getOrderHistory());
+        old.setPoints(user.getPoints());
+
+        return true;
     }
 
 }

@@ -2,6 +2,7 @@ package individual.project.resources;
 
 import individual.project.model.Item;
 import individual.project.model.Order;
+import individual.project.model.User;
 import individual.project.repository.*;
 
 import javax.ws.rs.*;
@@ -25,9 +26,9 @@ public class UserResources {
     @PUT //PUT at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public Response updateStudent(Item item) {
+    public Response updateUser(User user) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (fakeDataStore.updateItem(item)) {
+        if (fakeDataStore.updateUser(user)) {
             return Response.noContent().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
@@ -36,8 +37,8 @@ public class UserResources {
 
     @DELETE //DELETE at http://localhost:XXXX/students/3
     @Path("{id}")
-    public Response deleteStudent(Item item) {
-        fakeDataStore.deleteItem(item);
+    public Response deleteUser(User user) {
+        fakeDataStore.deleteUser(user);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return Response.noContent().build();
     }

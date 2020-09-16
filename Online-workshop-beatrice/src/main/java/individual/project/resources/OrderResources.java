@@ -25,7 +25,7 @@ public class OrderResources {
     @PUT //PUT at http://localhost:XXXX/orders/id
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public Response updateStudent(Order order) {
+    public Response updateOrder(Order order) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (fakeDataStore.updateOrder(order)) {
             return Response.noContent().build();
