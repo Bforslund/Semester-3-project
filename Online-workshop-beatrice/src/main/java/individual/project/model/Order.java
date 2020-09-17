@@ -16,7 +16,8 @@ SHIPPED, PENDING
         this.status = orderStatus.PENDING;
         this.address = address;
     }
-
+    public Order() {
+    }
     private int orderNumber;
     private double totalPrice;
     private int userId;

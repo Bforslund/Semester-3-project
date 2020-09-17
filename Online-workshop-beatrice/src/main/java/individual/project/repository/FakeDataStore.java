@@ -48,8 +48,29 @@ public class FakeDataStore {
             itemsList.add(item);
         return true;
     }
+    public Item getItem(int nr) {
+        for (Item i : itemsList) {
+            if (i.getId() == nr)
+                return i;
+        }
+        return null;
+    }
+    public User getUser(int nr) {
+        for (User u : userList) {
+            if (u.getId() == nr)
+                return u;
+        }
+        return null;
+    }
+    public Order getOrder(int nr) {
+        for (Order o : orderList) {
+            if (o.getOrderNumber() == nr)
+                return o;
+        }
+        return null;
+    }
     public boolean updateItem(Item item) {
-        Item old = this.GetItems().get(item.getId());
+        Item old = this.getItem(item.getId());
         if (old == null) {
             return false;
         }
@@ -60,33 +81,18 @@ public class FakeDataStore {
         return true;
     }
 
-
-    public boolean deleteItem(Item item) {
-        if (item == null){
-            return false;
-        }
-        return itemsList.remove(item);
-    }
     public boolean updateOrder(Order order) {
-        Order old = this.GetOrders().get(order.getOrderNumber());
+        Order old = this.getOrder(order.getOrderNumber());
         if (old == null) {
             return false;
         }
         old.setStatus(order.getStatus());
+        old.setAddress(order.getAddress());
         return true;
     }
-    public void deleteAllOrder() {
 
-        orderList.clear();
-    }
-    public boolean deleteUser(User user) {
-        if (user == null){
-            return false;
-        }
-        return userList.remove(user);
-    }
     public boolean updateUser(User user) {
-        User old = this.getUserList().get(user.getId());
+        User old = this.getUser(user.getId());
         if (old == null) {
             return false;
         }
@@ -98,5 +104,26 @@ public class FakeDataStore {
 
         return true;
     }
+
+    public boolean deleteItem(int id) {
+        Item i = getItem(id);
+        if (i == null){
+            return false;
+        }
+        return itemsList.remove(i);
+    }
+
+    public void deleteAllOrder() {
+        orderList.clear();
+    }
+
+    public boolean deleteUser(int id) {
+    User u = getUser(id);
+        if (u == null){
+            return false;
+        }
+        return userList.remove(u);
+    }
+
 
 }

@@ -14,7 +14,8 @@ public class User {
         this.birthday = birthday;
         this.orderHistory = orderHistory;
     }
-
+    public User() {
+    }
     private int id;
     private String name;
     private String address;

@@ -34,7 +34,7 @@ public class OrderResources {
         }
     }
 
-    @DELETE //DELETE at http://localhost:XXXX/orders/3
+    @DELETE //DELETE at http://localhost:XXXX/orders/3 works
     @Path("deleteAll")
     public Response deleteAllOrders() {
         fakeDataStore.deleteAllOrder();

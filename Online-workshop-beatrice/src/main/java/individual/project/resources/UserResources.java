@@ -35,10 +35,10 @@ public class UserResources {
         }
     }
 
-    @DELETE //DELETE at http://localhost:XXXX/students/3
+    @DELETE //DELETE at http://localhost:XXXX/students/3 works
     @Path("{id}")
-    public Response deleteUser(User user) {
-        fakeDataStore.deleteUser(user);
+    public Response deleteUser(@PathParam("id") int id) {
+        fakeDataStore.deleteUser(id);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return Response.noContent().build();
     }

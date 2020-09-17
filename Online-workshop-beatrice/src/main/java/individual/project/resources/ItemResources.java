@@ -38,7 +38,7 @@ public class ItemResources {
     @PUT //PUT at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public Response updateStudent(Item item) {
+    public Response updateItem(Item item) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (fakeDataStore.updateItem(item)) {
             return Response.noContent().build();
@@ -49,8 +49,8 @@ public class ItemResources {
 
     @DELETE //DELETE at http://localhost:XXXX/students/3
     @Path("{id}")
-    public Response deleteStudent(Item item) {
-        fakeDataStore.deleteItem(item);
+    public Response deleteStudent(@PathParam("id") int id) {
+        fakeDataStore.deleteItem(id);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return Response.noContent().build();
     }
