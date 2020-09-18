@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FakeDataStore {
 
-
+// Maybe I should use inheritance to make it one list?
     private final List<Item> itemsList = new ArrayList<>();
     private final List<Order> orderList = new ArrayList<>();
 
@@ -30,8 +30,8 @@ public class FakeDataStore {
         orderList.add((new Order(1, 100, 1, "kuk")));
         orderList.add((new Order(2, 100, 1, "kuk")));
 
-        userList.add((new User(1, "Bea", "Meijhorst", 400, LocalDate.of(1999, 10, 21), "nothing")));
-        userList.add((new User(2, "Bssfdfsdfea", "Meijhorst", 400, LocalDate.of(1999, 10, 21), "nothing")));
+        userList.add((new User(1, "Bea", "Meijhorst", 400, LocalDate.of(1999, 10, 21), "nothing", "kkkk@live.se", "121221")));
+        userList.add((new User(2, "Bssfdfsdfea", "Meijhorst", 400, LocalDate.of(1999, 10, 21), "nothing", "kkkk@live.se", "121221")));
     }
 
 
@@ -39,19 +39,37 @@ public class FakeDataStore {
     public List<Order> GetOrders() { return orderList;}
 
     public boolean addItem(Item item) {
-//        for (Item i : itemsList)
-//        {
-//            if(i.getName() == item.getName()){
-//                return false;
-//            }
-//        }
             itemsList.add(item);
         return true;
     }
+    public boolean addOrder(Order order) {
+//
+//         if (this.getStudent(student.getStudentNumber()) != null){
+//                       return false;
+//               }
+        orderList.add(order);
+        return true;
+    }
+    public boolean addUser(User user) {
+        if (this.getUserEmail(user.getEmail()) != null){
+                       return false;
+                }
+        userList.add(user);
+        return true;
+    }
+
+
     public Item getItem(int nr) {
         for (Item i : itemsList) {
             if (i.getId() == nr)
                 return i;
+        }
+        return null;
+    }
+    public User getUserEmail(String email) {
+        for (User u : userList) {
+            if (u.getEmail() == email)
+                return u;
         }
         return null;
     }
@@ -101,6 +119,8 @@ public class FakeDataStore {
         old.setName(user.getName());
         old.setOrderHistory(user.getOrderHistory());
         old.setPoints(user.getPoints());
+        old.setEmail(user.getEmail());
+        old.setPassword(user.getPassword());
 
         return true;
     }

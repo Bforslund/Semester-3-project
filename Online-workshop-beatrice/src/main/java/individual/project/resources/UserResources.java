@@ -7,6 +7,7 @@ import individual.project.repository.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 @Path("/users")
@@ -22,6 +23,18 @@ public class UserResources {
 
         GenericEntity<List<User>> entity = new GenericEntity<>(UserList) {  };
         return Response.ok(entity).build();
+    }
+    @POST //POST at http://localhost:XXXX/users/
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(User user) {
+        if (!fakeDataStore.addUser(user)){
+            String entity =  "user with email " + user.getEmail() + " already exists.";
+            return Response.status(Response.Status.CONFLICT).entity(entity).build();
+        } else {
+            String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the created item
+            URI uri = URI.create(url);
+            return Response.created(uri).build();
+        }
     }
     @PUT //PUT at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)

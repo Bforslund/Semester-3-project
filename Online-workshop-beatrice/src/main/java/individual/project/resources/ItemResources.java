@@ -22,6 +22,25 @@ public class ItemResources {
         GenericEntity<List<Item>> entity = new GenericEntity<>(itemList) {  };
         return Response.ok(entity).build();
     }
+    // Rebuild method below under later to filter items by type?
+//    @GET //GET at http://localhost:XXXX/students?
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getAllItems(@QueryParam("type") String type) {
+//        List<Item> items;
+//        //If query parameter is missing return all students. Otherwise filter students by given countryCode
+//        if (uriInfo.getQueryParameters().containsKey("type")){
+//            Country country = fakeDataStore.getCountry(countryCode);
+//            if (country == null){ // if country code invalid, return BAD_REQUEST
+//                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid country code.").build();
+//            } else {
+//                students = fakeDataStore.getStudents(country);
+//            }
+//        } else {
+//            students = fakeDataStore.getStudents();
+//        }
+//        GenericEntity<List<Student>> entity = new GenericEntity<>(students) {  };
+//        return Response.ok(entity).build();
+//    }
 
     @POST //POST at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)

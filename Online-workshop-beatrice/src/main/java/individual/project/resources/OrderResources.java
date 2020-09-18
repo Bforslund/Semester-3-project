@@ -6,6 +6,7 @@ import individual.project.repository.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 @Path("/orders")
@@ -21,6 +22,18 @@ public class OrderResources {
 
         GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
         return Response.ok(entity).build();
+    }
+    @POST //POST at http://localhost:XXXX/items/
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createOrder(Order order) {
+        if (!fakeDataStore.addOrder(order)){
+            String entity =  "Order with ordernumber " + order.getOrderNumber() + " already exists.";
+            return Response.status(Response.Status.CONFLICT).entity(entity).build();
+        } else {
+            String url = uriInfo.getAbsolutePath() + "/" + order.getOrderNumber(); // url of the created order
+            URI uri = URI.create(url);
+            return Response.created(uri).build();
+        }
     }
     @PUT //PUT at http://localhost:XXXX/orders/id
     @Consumes(MediaType.APPLICATION_JSON)
