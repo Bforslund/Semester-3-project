@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     ItemsComponent,
     AdminComponent,
     AdminOrdersComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    EditProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
