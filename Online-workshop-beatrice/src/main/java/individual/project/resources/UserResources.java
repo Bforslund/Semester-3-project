@@ -38,7 +38,6 @@ public class UserResources {
     }
     @PUT //PUT at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("{id}")
     public Response updateUser(User user) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (fakeDataStore.updateUser(user)) {

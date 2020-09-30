@@ -56,6 +56,14 @@ public class Item {
         this.price = price;
         this.ingredients = ingredients;
         this.type = type;
+
+    }
+    public Item(String name, int price, String ingredients,String type) {
+        this.name = name;
+        this.price = price;
+        this.ingredients = ingredients;
+        this.type = type;
+
     }
 
     public Item() {
