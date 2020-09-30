@@ -1,0 +1,12 @@
+<h2>Items</h2>
+<mat-selection-list #items>
+    <mat-list-option *ngFor="let item of itemsList">
+      {{item.name}}
+    </mat-list-option>
+  </mat-selection-list>
+  
+  <p>
+    Options selected: {{items.selectedOptions.selected.length}}
+  </p>
+
+  <a class="button fancy-button" href="#"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a>
