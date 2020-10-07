@@ -24,7 +24,8 @@ export class AdminUsersComponent implements OnInit {
           (res as []).forEach((user: any) => {
             this.usersForms.push(this.fb.group({
               id: [user.id],
-              name: [user.name, Validators.required],
+              firstName: [user.firstName, Validators.required],
+              lastName: [user.lastName, Validators.required],
               address: [user.address, Validators.required],
               points: [user.points,  Validators.min(1)],
               birthday: [user.birthday,Validators.required],
@@ -39,7 +40,8 @@ export class AdminUsersComponent implements OnInit {
   addUserForm(){
     this.usersForms.push(this.fb.group({
       id: [0],
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       address: ['', Validators.required],
       points: ['',  Validators.min(1)],
       birthday: ['',Validators.required],

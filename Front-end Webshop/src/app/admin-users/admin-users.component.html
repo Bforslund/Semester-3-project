@@ -5,7 +5,8 @@
     <div class="thead">
         <div class="tr">
             
-            <div class="td">Name</div>
+            <div class="td">First Name</div>
+            <div class="td">Last Name</div>
                 <div class="td">address</div>
                     <div class="td">points</div>
                         <div class="td">birthday</div>
@@ -25,7 +26,10 @@
     <form class="tr" [formGroup]="fg" *ngFor="let fg of usersForms.controls; let i=index;" (submit)="recordSubmit(fg)">
                 
                     <div class="td">
-                        <input class="form-control" formControlName="name">
+                        <input class="form-control" formControlName="firstName">
+                    </div>
+                    <div class="td">
+                        <input class="form-control" formControlName="lastName">
                     </div>
                     <div class="td">
                         <input class="form-control" formControlName="address">

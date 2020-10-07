@@ -24,6 +24,18 @@ public class UserResources {
         GenericEntity<List<User>> entity = new GenericEntity<>(UserList) {  };
         return Response.ok(entity).build();
     }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserById(@PathParam("id") int id) {
+        User user = fakeDataStore.getUser(id);//studentsRepository.get(stNr);
+        if (user == null) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
+        } else {
+            return Response.ok(user).build();
+        }
+    }
     @POST //POST at http://localhost:XXXX/users/
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(User user) {

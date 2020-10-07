@@ -20,4 +20,7 @@ export class UsersService {
   deleteUser(id) {
     return this.httpClient.delete('http://localhost:9090/users/' + id);
   }
+  getUserById(id){
+    return this.httpClient.get('http://localhost:9090/users/' + id);
+}
 }

@@ -6,9 +6,10 @@ import java.time.LocalDate;
 @SuppressWarnings("WeakerAccess")
 @XmlRootElement
 public class User {
-    public User(int id, String name, String address, int points, String birthday, String orderHistory, String email, String password) {
+    public User(int id, String firstname, String lastname, String address, int points, String birthday, String orderHistory, String email, String password) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.address = address;
         this.points = points;
         this.birthday = birthday;
@@ -19,13 +20,30 @@ public class User {
     public User() {
     }
     private int id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String address;
     private int points;
     private String birthday;
     private String orderHistory;
     private String email;
     private String password;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getEmail() {
         return email;
@@ -51,13 +69,7 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAddress() {
         return address;

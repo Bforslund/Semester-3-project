@@ -33,8 +33,8 @@ public class FakeDataStore {
         orderList.add((new Order(1, 100, 1, "kuk")));
         orderList.add((new Order(2, 100, 1, "kuk")));
 
-        userList.add((new User(1, "Bea", "Meijhorst", 400, "1999, 10, 21", "nothing", "kkkk@live.se", "121221")));
-        userList.add((new User(2, "Bssfdfsdfea", "Meijhorst", 400, "1999, 10, 21", "nothing", "kkkk@live.se", "121221")));
+        userList.add((new User(1, "Bea", "forslund", "Meijhorst", 400, "1999, 10, 21", "nothing", "kkkk@live.se", "121221")));
+        userList.add((new User(2, "Bssfdfsdfea", "test","Meijhorst", 400, "1999, 10, 21", "nothing", "kkkk@live.se", "121221")));
     }
 
 
@@ -121,7 +121,8 @@ public class FakeDataStore {
         }
         old.setAddress(user.getAddress());
         old.setBirthday(user.getBirthday());
-        old.setName(user.getName());
+        old.setLastName(user.getLastName());
+        old.setFirstName(user.getFirstName());
         old.setOrderHistory(user.getOrderHistory());
         old.setPoints(user.getPoints());
         old.setEmail(user.getEmail());
