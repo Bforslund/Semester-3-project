@@ -1,7 +1,5 @@
 package individual.project.resources;
 
-import individual.project.model.Item;
-import individual.project.model.Order;
 import individual.project.model.User;
 import individual.project.repository.*;
 

@@ -1,7 +1,7 @@
 package individual.project.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDate;
+
 
 @SuppressWarnings("WeakerAccess")
 @XmlRootElement

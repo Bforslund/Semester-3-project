@@ -20,7 +20,7 @@ public class FakeDataStore {
 
     private final List<User> userList = new ArrayList<>();
 
-    public static int idSeeder = 5;
+    private static int idSeeder = 5;
 
 
     public FakeDataStore() {
