@@ -23,4 +23,10 @@ export class UsersService {
   getUserById(id){
     return this.httpClient.get('http://localhost:9090/users/' + id);
 }
+updateUserById(model, id) {
+  const url = 'http://localhost:9090/users/user/' + id
+  return this.httpClient.put(url, model);
+}
+
+
 }

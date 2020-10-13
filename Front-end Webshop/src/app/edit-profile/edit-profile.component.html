@@ -1,25 +1,64 @@
 <div class="card">
     <div class="card-body">
-        <form >
-<div class="col-md-5 border-right">
+        <form (ngSubmit)="update()" #ProfileForm="ngForm">
+<div class="container h-100 d-flex justify-content-center">
     <div class="p-3 py-5">
-       
+ 
+
+
+
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="text-right">Edit your profile</h6>
         </div>
         <div class="row mt-2">
-            <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value="{{user.firstName}}"></div>
-            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="{{user.lastName}}" placeholder="last name"></div>
+            <div class="col-md-6"><label class="labels">First name</label>
+                <input type="text" class="form-control" id="firstName"
+                    required
+                    [(ngModel)]="user.firstName" name="firstName"
+                    #firstName="ngModel">
+
+            </div>
+            <div class="col-md-6"><label class="labels">Surname</label>
+                <input type="text" class="form-control" id="lastName"
+                    required
+                    [(ngModel)]="user.lastName" name="lastName"
+                    #lastName="ngModel">
+
+            </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="email" value="{{user.email}}"></div>
-            <div class="col-md-12"><label class="labels">Birthday</label><input type="text" class="form-control" placeholder="birthday" value="{{user.birthday}}"></div>
-            <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="address" value="{{user.address}}"></div>
+            <div class="col-md-12"><label class="labels">Email</label>
+                <input type="text" class="form-control" id="email"
+                    required
+                    [(ngModel)]="user.email" name="email"
+                    #email="ngModel">
+
+            </div>
+           
+            <div class="col-md-12"><label class="labels">Address</label>
+                <input type="text" class="form-control" id="address"
+                    required
+                    [(ngModel)]="user.address" name="address"
+                    #address="ngModel">
+
+            </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-md-6"><label class="labels">Password</label><input type="text" class="form-control" placeholder="password" value="123"></div>
-            <div class="col-md-6"><label class="labels">verify password</label><input type="text" class="form-control" value="123" placeholder="verify password"></div>
-        </div>
+        <!-- <div class="row mt-3">
+            <div class="col-md-6"><label class="labels">Password</label>
+                <input type="text" class="form-control" id="school"
+                required
+                [(ngModel)]="user.school" name="school"
+                #school="ngModel">
+
+            </div>
+            <div class="col-md-6"><label class="labels">verify password</label>
+                <input type="text" class="form-control" id="school"
+                    required
+                    [(ngModel)]="education.school" name="school"
+                    #school="ngModel">
+
+            </div>
+        </div> -->
         <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
     </div>
 

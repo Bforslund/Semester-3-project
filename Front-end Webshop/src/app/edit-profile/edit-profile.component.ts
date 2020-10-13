@@ -1,23 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/users.service';
-export interface User{
-  id:number;
-  firstName:string;
-  lastName:string;
-  email:string;
-  points:number;
-  birthday:string;
-  address:string;
-  }
+import {User} from '../model/User';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  user: User;
+  
   constructor(private service: UsersService) { }
-
+user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123")
   ngOnInit(): void {
 
     this.service.getUserById(1)
@@ -25,9 +18,10 @@ export class EditProfileComponent implements OnInit {
       console.log(data);
      this.user = <User>data;
     });
+  
   }
-  recordSubmit(fg) {
-    this.service.updateUser(fg.value).subscribe(
+  update() {
+    this.service.updateUserById(this.user, 1).subscribe(
       (res: any) => {
         console.log("update");
       });

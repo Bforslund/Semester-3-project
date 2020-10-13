@@ -13,3 +13,10 @@ test:
     - ./gradlew test
   dependencies:
     - build
+sonarqube:
+  stage: sonarqube
+  script:
+    - cd Online-workshop-beatrice/
+    - ./gradlew sonarqube
+  dependencies:
+    - test

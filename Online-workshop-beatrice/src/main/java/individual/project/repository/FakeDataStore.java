@@ -26,9 +26,9 @@ public class FakeDataStore {
     public FakeDataStore() {
         // work this out better, add few more countries and students
 
-        itemsList.add((new Item(1, "Cake", 50, "Flour", "Cakeycake")));
-        itemsList.add((new Item(2,"sadsda", 50, "Flour", "Cakeycake")));
-        itemsList.add((new Item(3, "bfdgd", 50, "Flour", "Cakeycake")));
+        itemsList.add((new Item(1, "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE)));
+        itemsList.add((new Item(2,"sadsda", 50, 100,"Flour", Item.TypeOfItem.COOKIE)));
+        itemsList.add((new Item(3, "bfdgd", 50, 100,"Flour", Item.TypeOfItem.OTHER)));
 
         orderList.add((new Order(1, 100, 1, "kuk")));
         orderList.add((new Order(2, 100, 1, "kuk")));
@@ -73,7 +73,7 @@ public class FakeDataStore {
     }
     public User getUserEmail(String email) {
         for (User u : userList) {
-            if (u.getEmail() == email)
+            if (u.getEmail().equals(email))
                 return u;
         }
         return null;
@@ -99,7 +99,8 @@ public class FakeDataStore {
         }
         old.setName(item.getName());
         old.setIngredients(item.getIngredients());
-        old.setPrice(item.getPrice());
+        old.setBuyingPrice(item.getBuyingPrice());
+        old.setSellingPrice(item.getSellingPrice());
         old.setType(item.getType());
         return true;
     }
@@ -116,6 +117,22 @@ public class FakeDataStore {
 
     public boolean updateUser(User user) {
         User old = this.getUser(user.getId());
+        if (old == null) {
+            return false;
+        }
+        old.setAddress(user.getAddress());
+        old.setBirthday(user.getBirthday());
+        old.setLastName(user.getLastName());
+        old.setFirstName(user.getFirstName());
+        old.setOrderHistory(user.getOrderHistory());
+        old.setPoints(user.getPoints());
+        old.setEmail(user.getEmail());
+        old.setPassword(user.getPassword());
+
+        return true;
+    }
+    public boolean updateUser(User user, int id) {
+        User old = this.getUser(id);
         if (old == null) {
             return false;
         }

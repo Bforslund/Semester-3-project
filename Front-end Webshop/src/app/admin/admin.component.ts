@@ -29,7 +29,8 @@ notification = null;
             name: [item.name, Validators.required],
             ingredients: [item.ingredients, Validators.required],
             type: [item.type, Validators.required],
-            price: [item.price, Validators.min(1)]
+            sellingPrice: [item.sellingPrice, Validators.min(1)],
+            buyingPrice: [item.buyingPrice, Validators.min(1)]
           }));
         });
       }
@@ -43,7 +44,8 @@ addItemForm(){
     name: ['', Validators.required],
     ingredients: ['', Validators.required],
     type: ['', Validators.required],
-    price: ['', Validators.min(1)]
+    sellingPrice: ['', Validators.min(1)],
+    buyingPrice: ['', Validators.min(1)],
   }));
 }
 

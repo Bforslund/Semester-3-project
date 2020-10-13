@@ -48,7 +48,7 @@ public class UserResources {
             return Response.created(uri).build();
         }
     }
-    @PUT //PUT at http://localhost:XXXX/items/
+    @PUT //Update user from admin
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         // Idempotent method. Always update (even if the resource has already been updated before).
@@ -58,6 +58,19 @@ public class UserResources {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
         }
     }
+
+    @PUT //PUT at http://localhost:XXXX/items/
+    @Path("user/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(@PathParam("id") int id, User user) {
+        // Idempotent method. Always update (even if the resource has already been updated before).
+        if (fakeDataStore.updateUser(user, id)) {
+            return Response.noContent().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
+        }
+    }
+
 
     @DELETE //DELETE at http://localhost:XXXX/students/3 works
     @Path("{id}")
