@@ -1,0 +1,112 @@
+                        
+<div class="receipt-content">
+    <div class="container bootstrap snippets bootdey">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="invoice-wrapper">
+					<div class="intro">
+						Hi <strong>{{user.firstName}}</strong>, 
+						<br>
+						This is the receipt for a payment of <strong>{{order.totalPrice}}</strong> (Euros) for your sweets.
+					</div>
+
+					<div class="payment-info">
+						<div class="row">
+							<div class="col-sm-6">
+								<span>Payment No.</span>
+								<strong>{{order.orderNumber}}</strong>
+							</div>
+							<div class="col-sm-6 text-right">
+								<span>Payment Date</span>
+								<strong>{{order.time}}</strong>
+							</div>
+						</div>
+					</div>
+
+					<div class="payment-details">
+						<div class="row">
+							<div class="col-sm-6">
+								<span>Client</span>
+								<strong>
+									{{user.firstName}} {{user.lastName}}
+								</strong>
+								<p>
+									{{user.address}} <br>
+									
+									<a href="#">
+										{{user.email}}
+									</a>
+								</p>
+							</div>
+							<div class="col-sm-6 text-right">
+								<span>Payment To</span>
+								<strong>
+									{{order.customerName}}
+								</strong>
+								<p>
+									{{order.address}} <br>
+									
+								
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="line-items">
+						<div class="headers clearfix">
+							
+						</div>
+						
+                            <table mat-table [dataSource]="dataSource" >
+
+                                <!--- Note that these columns can be defined in any order.
+                                      The actual rendered columns are set as a property on the row definition" -->
+									  <ng-container matColumnDef="item">
+										<th mat-header-cell *matHeaderCellDef>Order item  </th>
+										<td mat-cell *matCellDef="let row"> {{row.item.name}} </td>
+									  </ng-container>
+									  
+                                
+                                <ng-container matColumnDef="quantity">
+                                  <th mat-header-cell *matHeaderCellDef> Quantity</th>
+                                  <td mat-cell *matCellDef="let row"> {{row.quantity}} </td>
+                                </ng-container>
+                              
+                                
+                               
+								
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>
+
+							
+						
+							  <div class="total text-right">
+						
+								<div class="field">
+									Subtotal <span>{{order.totalPrice}}</span>
+								</div>
+								<div class="field">
+									Shipping <span>$0.00</span>
+								</div>
+								
+								<div class="field grand-total">
+									Total <span>{{order.totalPrice}}</span>
+								</div>
+							</div>
+
+						<!-- <div class="print">
+							<a href="#">
+								<i class="fa fa-print"></i>
+								Print this receipt
+							</a>
+						</div> -->
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+	</div>
+</div>                    

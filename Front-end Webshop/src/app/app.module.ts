@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {MatTableModule} from '@angular/material/table';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -16,6 +16,7 @@ import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { LoginComponent } from './login/login.component';
+import { ReceiptComponent } from './receipt/receipt.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LoginComponent } from './login/login.component';
     AdminOrdersComponent,
     AdminUsersComponent,
     EditProfileComponent,
-    LoginComponent
+    LoginComponent,
+    ReceiptComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { LoginComponent } from './login/login.component';
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     MatListModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

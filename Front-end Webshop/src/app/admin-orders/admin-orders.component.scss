@@ -4,3 +4,14 @@
     margin-bottom: 10px; /* Added */
     background-color: #e8eaf6;
 }
+
+.button {
+   
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+  }
+  span + span {
+    margin-left: 10px;
+}

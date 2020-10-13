@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '../shared/users.service';
-
-export interface User{
-  id:number;
-  firstName:string;
-  lastName:string;
-  email:string;
-  points:number;
-  birthday:string;
-  address:string;
-  }
+import {User} from '../model/User';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +9,8 @@ export interface User{
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-user: User;
+user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj");
+
   constructor(private service: UsersService) { }
 
   ngOnInit(): void {

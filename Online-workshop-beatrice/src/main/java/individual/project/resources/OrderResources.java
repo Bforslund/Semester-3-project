@@ -2,11 +2,14 @@ package individual.project.resources;
 
 import individual.project.model.Item;
 import individual.project.model.Order;
+import individual.project.model.OrderItem;
+import individual.project.model.User;
 import individual.project.repository.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/orders")
@@ -22,6 +25,40 @@ public class OrderResources {
 
         GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
         return Response.ok(entity).build();
+    }
+    @GET
+    @Path("order/{orderNumber}/orderitems") // Get orderItems from an order
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllOrderItems(@PathParam("orderNumber") int orderNr) {
+        List<OrderItem> OrderItemList;
+        OrderItemList = fakeDataStore.getAllOrderItems(orderNr);
+
+        GenericEntity<List<OrderItem>> entity = new GenericEntity<>(OrderItemList) {  };
+        return Response.ok(entity).build();
+    }
+    @GET
+    @Path("order/{id}") // Get one order
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrderById(@PathParam("id") int id) {
+        Order o = fakeDataStore.getOrder(id);//studentsRepository.get(stNr);
+        User u = fakeDataStore.getUserFromOrderId(id);
+        if (o == null) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
+        } else {
+            return Response.ok(o).build();
+        }
+    }
+    @GET
+    @Path("order/{id}/user") // Get one order
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserByOrderId(@PathParam("id") int id) {
+
+        User u = fakeDataStore.getUserFromOrderId(id);
+        if (u == null) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
+        } else {
+            return Response.ok(u).build();
+        }
     }
     @POST //POST at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)

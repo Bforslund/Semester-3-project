@@ -2,6 +2,7 @@ package individual.project.repository;
 
 import individual.project.model.Item;
 import individual.project.model.Order;
+import individual.project.model.OrderItem;
 import individual.project.model.User;
 
 import java.time.LocalDate;
@@ -24,14 +25,24 @@ public class FakeDataStore {
 
 
     public FakeDataStore() {
-        // work this out better, add few more countries and students
 
-        itemsList.add((new Item(1, "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE)));
-        itemsList.add((new Item(2,"sadsda", 50, 100,"Flour", Item.TypeOfItem.COOKIE)));
+        // work this out better, add few more countries and students
+        Item i1 = new Item(1, "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE);
+        Item i2 = new Item(2,"sadsda", 50, 100,"Flour", Item.TypeOfItem.COOKIE);
+        itemsList.add(i1);
+        itemsList.add(i2);
         itemsList.add((new Item(3, "bfdgd", 50, 100,"Flour", Item.TypeOfItem.OTHER)));
 
-        orderList.add((new Order(1, 100, 1, "kuk")));
-        orderList.add((new Order(2, 100, 1, "kuk")));
+        Order o1 = new Order(1, 100, 1,"kuk", "Frida framstedt");
+        orderList.add(o1);
+
+        OrderItem oi1 = new OrderItem(1, i2, 2);
+
+        o1.AddItemToList(oi1);
+
+        orderList.add((new Order(2, 100, 1, "kuk", "Linda framstedt")));
+
+
 
         userList.add((new User(1, "Bea", "forslund", "Meijhorst", 400, "1999, 10, 21", "nothing", "kkkk@live.se", "121221")));
         userList.add((new User(2, "Bssfdfsdfea", "test","Meijhorst", 400, "1999, 10, 21", "nothing", "kkkk@live.se", "121221")));
@@ -92,6 +103,18 @@ public class FakeDataStore {
         }
         return null;
     }
+    public User getUserFromOrderId(int nr) {
+        Order order = getOrder(nr);
+        User u = getUser(order.getUserId());
+        return u;
+    }
+
+    public List<OrderItem> getAllOrderItems(int orderNumber) {
+        Order order = getOrder(orderNumber);
+
+      return order.getOrderedItemsList();
+    }
+
     public boolean updateItem(Item item) {
         Item old = this.getItem(item.getId());
         if (old == null) {

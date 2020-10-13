@@ -18,4 +18,15 @@ export class OrdersService {
   deleteAllOrders() {
     return this.httpClient.delete('http://localhost:9090/deleteAll/');
   }
+  getUserByOrderId(id){
+    return this.httpClient.get('http://localhost:9090/orders/order/' + id + '/user');
+}
+getOrderById(id){
+  return this.httpClient.get('http://localhost:9090/orders/order/' + id);
+}
+
+public getOrderItems(id){
+  return this.httpClient.get('http://localhost:9090/orders/order/' + id + '/orderitems');
+}
+
 }

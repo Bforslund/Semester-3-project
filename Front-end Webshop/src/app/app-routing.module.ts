@@ -8,6 +8,7 @@ import {AdminUsersComponent} from './admin-users/admin-users.component';
 import {ProfileComponent} from './profile/profile.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {LoginComponent} from './login/login.component';
+import {ReceiptComponent} from './receipt/receipt.component';
 
 const routes: Routes = [ {
   path: '',
@@ -40,7 +41,12 @@ const routes: Routes = [ {
 {
   path: 'login',
   component: LoginComponent
-}];
+},
+{
+  path: 'receipt',
+  component: ReceiptComponent
+},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
