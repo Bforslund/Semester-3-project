@@ -5,10 +5,10 @@ import {AdminComponent} from './admin/admin.component';
 import {ItemsComponent} from './items/items.component';
 import {AdminOrdersComponent} from './admin-orders/admin-orders.component';
 import {AdminUsersComponent} from './admin-users/admin-users.component';
-import {ProfileComponent} from './profile/profile.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {LoginComponent} from './login/login.component';
 import {ReceiptComponent} from './receipt/receipt.component';
+import {CheckOutComponent} from './check-out/check-out.component';
 
 const routes: Routes = [ {
   path: '',
@@ -32,10 +32,6 @@ const routes: Routes = [ {
 },
 {
   path: 'profile',
-  component: ProfileComponent
-},
-{
-  path: 'edit',
   component: EditProfileComponent
 },
 {
@@ -43,8 +39,12 @@ const routes: Routes = [ {
   component: LoginComponent
 },
 {
-  path: 'receipt',
+  path: 'receipt/:id',
   component: ReceiptComponent
+},
+{
+  path: 'checkout',
+  component: CheckOutComponent
 },
 ];
 

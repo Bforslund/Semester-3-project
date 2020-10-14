@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators, FormGroup  } from '@angular/forms';
 import { OrdersService } from '../shared/orders.service';
+import {Order} from '../model/Order';
 
 @Component({
   selector: 'app-admin-orders',
@@ -11,7 +12,6 @@ export class AdminOrdersComponent implements OnInit {
   ordersForms : FormArray = this.fb.array([]);
   ordersList = [];
   notification = null;
-
   constructor(public fb: FormBuilder, private service: OrdersService) { }
 
   ngOnInit(): void {
@@ -23,22 +23,24 @@ export class AdminOrdersComponent implements OnInit {
           //generate formarray as per the data received from BankAccont table
           (res as []).forEach((order: any) => {
             this.ordersForms.push(this.fb.group({
-              orderNumber: [order.orderNumber],
-              userId: [order.userId,  Validators.min(1)],
+              orderNumber: [{value: order.orderNumber, disabled: true}],
               address: [order.address, Validators.required],
               status: [order.status,  Validators.required],
               totalPrice: [order.totalPrice, Validators.min(1)],
+           
             }));
           });
+          
         }
       }
     );
+   
+
   }
   
   addOrdersForm(){
     this.ordersForms.push(this.fb.group({
-      orderNumber: [0],
-      userId: ['',  Validators.min(1)],
+      orderNumber: [{value: 0, disabled: true}] ,
       address: ['', Validators.required],
       status: ['',  Validators.required],
       totalPrice: ['', Validators.min(1)],
@@ -70,12 +72,16 @@ export class AdminOrdersComponent implements OnInit {
   }
   
   onDelete() {
-    
-      this.service.deleteAllOrders().subscribe(
-        res => {
-          this.ordersForms.reset;
-          this.showNotification('delete');
-        });
+   if (confirm('Are you sure to delete all orders ?'))
+   this.service.deleteAllOrders().subscribe(() => console.log("Everything deleted"));
+       this.TheWhileLoop();
+       this.showNotification('delete');
+   
   }
+  TheWhileLoop(){
+    while ( this.ordersForms.length !== 0) {
+      this.ordersForms.removeAt(0)
+  }
+}
 
 }

@@ -1,5 +1,6 @@
 <div class="card">
     <div class="card-body">
+        
         <form (ngSubmit)="update()" #ProfileForm="ngForm">
 <div class="container h-100 d-flex justify-content-center">
     <div class="p-3 py-5">
@@ -10,6 +11,10 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="text-right">Edit your profile</h6>
         </div>
+        <span *ngIf="notification" class="elementToFadeInAndOut">
+            <i class="fas fa-check-circle {{notification.class}}"></i>
+            {{notification.message}}
+        </span>
         <div class="row mt-2">
             <div class="col-md-6"><label class="labels">First name</label>
                 <input type="text" class="form-control" id="firstName"
@@ -43,6 +48,16 @@
 
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col-md-6"><label class="labels">Points</label>
+                <p>{{user.points}}</p>
+            </div>
+           
+            <div class="col-md-6"><label class="labels">Birthday</label>
+                <p>{{user.birthday}}</p>
+
+            </div>
+        </div>
         <!-- <div class="row mt-3">
             <div class="col-md-6"><label class="labels">Password</label>
                 <input type="text" class="form-control" id="school"
@@ -59,7 +74,9 @@
 
             </div>
         </div> -->
-        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+        <div class="row mt-3">
+        <div class="col-md-4 text-center"><button class="btn btn-primary profile-button" [disabled]="!ProfileForm.dirty" type="submit">Save Profile</button></div>
+    </div>
     </div>
 
 </div>

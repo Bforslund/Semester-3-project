@@ -139,18 +139,7 @@ public class FakeDataStore {
     }
 
     public boolean updateUser(User user) {
-        User old = this.getUser(user.getId());
-        if (old == null) {
-            return false;
-        }
-        old.setAddress(user.getAddress());
-        old.setBirthday(user.getBirthday());
-        old.setLastName(user.getLastName());
-        old.setFirstName(user.getFirstName());
-        old.setOrderHistory(user.getOrderHistory());
-        old.setPoints(user.getPoints());
-        old.setEmail(user.getEmail());
-        old.setPassword(user.getPassword());
+        updateUser(user, user.getId());
 
         return true;
     }

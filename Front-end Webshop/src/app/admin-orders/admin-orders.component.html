@@ -6,7 +6,7 @@
         <div class="tr">
             
             <div class="td">Order number</div>
-                <div class="td">User id</div>
+               
                     <div class="td">Address</div>
                         <div class="td">Order status</div>
                         <div class="td">Total price</div>
@@ -28,11 +28,9 @@
     <form class="tr" [formGroup]="fg" *ngFor="let fg of ordersForms.controls; let i=index;" (submit)="recordSubmit(fg)">
         
                     <div class="td">
-                        <input class="form-control" formControlName="orderNumber">
+                        <input class="form-control" formControlName="orderNumber" [attr.disabled]="true">
                     </div>
-                    <div class="td">
-                        <input class="form-control" formControlName="userId">
-                    </div>
+                    
                     
                     <div class="td">
                         <input class="form-control" formControlName="address">
@@ -50,8 +48,8 @@
                     <div class="td">
                         <span><button type="submit" class="btn" [disabled]="fg.invalid" [ngClass]="(fg.get('orderNumber').value==0)?'btn-success':'btn-outline-dark'">
                             <i class="fas fa-save fa-lg"></i>{{fg.get('orderNumber').value==0?'Submit':'Update'}}</button></span>
-
-                            <span><a  href="/receipt" class="btn btn-secondary" >Receipt</a></span>
+                                
+                            <span><a  href="/receipt/{{fg.get('orderNumber').value}}" class="btn btn-secondary" >Receipt</a></span>
                 
                     </div>
     </form>

@@ -16,7 +16,7 @@ export class OrdersService {
   }
 
   deleteAllOrders() {
-    return this.httpClient.delete('http://localhost:9090/deleteAll/');
+    return this.httpClient.delete('http://localhost:9090/orders/deleteAll/');
   }
   getUserByOrderId(id){
     return this.httpClient.get('http://localhost:9090/orders/order/' + id + '/user');
