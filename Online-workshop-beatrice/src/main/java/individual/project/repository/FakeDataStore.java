@@ -33,14 +33,14 @@ public class FakeDataStore {
         itemsList.add(i2);
         itemsList.add((new Item(3, "bfdgd", 50, 100,"Flour", Item.TypeOfItem.OTHER)));
 
-        Order o1 = new Order(1, 100, 1,"kuk", "Frida framstedt");
+        Order o1 = new Order(1,  1,"kuk", "Frida framstedt");
         orderList.add(o1);
 
         OrderItem oi1 = new OrderItem(1, i2, 2);
 
         o1.AddItemToList(oi1);
 
-        orderList.add((new Order(2, 100, 1, "kuk", "Linda framstedt")));
+        orderList.add((new Order(2, 1, "kuk", "Linda framstedt")));
 
 
 

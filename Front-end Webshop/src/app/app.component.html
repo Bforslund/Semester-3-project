@@ -2,29 +2,29 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar navbar-light blue-grey lighten-5" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Webshop</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand"  routerLink="/">Webshop</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" href="/" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+      <li class="nav-item"  routerLinkActive="active">
+        <a class="nav-link waves-light"  routerLink="/home" mdbWavesEffect>Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" href="/items" mdbWavesEffect>Products</a>
+      <li class="nav-item"  routerLinkActive="active">
+        <a class="nav-link waves-light" routerLink="/items" mdbWavesEffect>Products</a>
       </li>
       
 
       <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
+      <li class="nav-item dropdown"  routerLinkActive="active" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"  mdbWavesEffect>
           Admin<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/admin">Manage items</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/orders">Manage orders</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/users">Manage users</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/admin">Manage items</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/orders">Manage orders</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/users">Manage users</a>
         </div>
       </li>
 
@@ -32,19 +32,19 @@
     <!-- Links -->
 
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
+      <li class="nav-item"  routerLinkActive="active">
         <a class="nav-link">
           
           <div class="btn-group" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" href="/profile">View profile</a>
-              <a class="dropdown-item" href="#">Order history</a> 
+              <a class="dropdown-item"  routerLink="/profile">View profile</a>
+              <a class="dropdown-item" routerLink="#">Order history</a> 
               <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Log out</a>
+              <a class="dropdown-item" routerLink="#">Log out</a>
             </div>
           </div>
-          <a class="button fancy-button" href="/checkout"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a>
+          <a class="button fancy-button"  routerLink="/checkout"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a>
         </a>
       </li>
     </ul>

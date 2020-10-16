@@ -43,7 +43,7 @@
                     </div>
                     
                     <div class="td">
-                        <input class="form-control" formControlName="totalPrice">
+                        <input class="form-control" formControlName="totalPrice" [attr.disabled]="true">
                     </div>
                     <div class="td">
                         <span><button type="submit" class="btn" [disabled]="fg.invalid" [ngClass]="(fg.get('orderNumber').value==0)?'btn-success':'btn-outline-dark'">

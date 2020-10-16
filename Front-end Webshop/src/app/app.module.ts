@@ -19,6 +19,7 @@ import { ReceiptComponent } from './receipt/receipt.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { ItemsService } from './shared/items.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

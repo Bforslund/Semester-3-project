@@ -23,10 +23,10 @@ export class AdminOrdersComponent implements OnInit {
           //generate formarray as per the data received from BankAccont table
           (res as []).forEach((order: any) => {
             this.ordersForms.push(this.fb.group({
-              orderNumber: [{value: order.orderNumber, disabled: true}],
+              orderNumber: [order.orderNumber],
               address: [order.address, Validators.required],
               status: [order.status,  Validators.required],
-              totalPrice: [order.totalPrice, Validators.min(1)],
+              totalPrice: [order.totalPrice,],
            
             }));
           });
@@ -40,10 +40,10 @@ export class AdminOrdersComponent implements OnInit {
   
   addOrdersForm(){
     this.ordersForms.push(this.fb.group({
-      orderNumber: [{value: 0, disabled: true}] ,
+      orderNumber: [0] ,
       address: ['', Validators.required],
       status: ['',  Validators.required],
-      totalPrice: ['', Validators.min(1)],
+      totalPrice: [0],
     }));
   }
 

@@ -13,9 +13,8 @@ public class Order {
 SHIPPED, PENDING
     }
 
-    public Order(int orderNumber, double totalPrice, int userId, String address, String CustomerName) {
+    public Order(int orderNumber, int userId, String address, String CustomerName) {
         this.orderNumber = orderNumber;
-        this.totalPrice = totalPrice;
         this.userId = userId;
         this.status = orderStatus.PENDING;
         this.customerName = CustomerName;
@@ -68,11 +67,16 @@ SHIPPED, PENDING
     }
 
     public double getTotalPrice() {
+        CalculateTotalPrice();
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void CalculateTotalPrice() {
+        double price = 0;
+        for (OrderItem order:orderedItemsList) {
+            price += order.getItem().getSellingPrice();
+        }
+        this.totalPrice = price;
     }
 
     public int getUserId() {

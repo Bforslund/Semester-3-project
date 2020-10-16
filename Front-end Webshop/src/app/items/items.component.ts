@@ -14,7 +14,6 @@ type:string;
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-
   itemsList: Item[];
 
   constructor(private itemsService: ItemsService) { }
@@ -25,7 +24,8 @@ export class ItemsComponent implements OnInit {
       console.log(data);
       this.itemsList = <Item[]>data;
   });
-  
 }
+
+
 
 }

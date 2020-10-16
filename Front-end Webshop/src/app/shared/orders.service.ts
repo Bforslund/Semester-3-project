@@ -12,6 +12,7 @@ export class OrdersService {
 
   
   updateOrder(formData) {
+    console.log(formData);
     return this.httpClient.put('http://localhost:9090/orders/', formData);
   }
 

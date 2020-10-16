@@ -11,7 +11,7 @@ import {ReceiptComponent} from './receipt/receipt.component';
 import {CheckOutComponent} from './check-out/check-out.component';
 
 const routes: Routes = [ {
-  path: '',
+  path: 'home',
   component: HomeComponent
 },
 {
