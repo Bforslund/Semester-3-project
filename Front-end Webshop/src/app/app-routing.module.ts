@@ -9,6 +9,8 @@ import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {LoginComponent} from './login/login.component';
 import {ReceiptComponent} from './receipt/receipt.component';
 import {CheckOutComponent} from './check-out/check-out.component';
+import {StatisticsComponent} from './statistics/statistics.component';
+import { state } from '@angular/animations';
 
 const routes: Routes = [ {
   path: 'home',
@@ -45,6 +47,10 @@ const routes: Routes = [ {
 {
   path: 'checkout',
   component: CheckOutComponent
+},
+{
+  path: 'statistics',
+  component: StatisticsComponent
 },
 ];
 

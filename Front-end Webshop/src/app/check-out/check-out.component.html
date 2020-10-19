@@ -1,108 +1,200 @@
+  <!--Main layout-->
+  <main class="mt-5">
+    <div class="container wow fadeIn">
 
-<div class="container">
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <span class="pull-right">(<strong>{{nrOfItems}}</strong>) Products</span>
-                    <h5>Products in your cart</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="table-responsive">
-                        <table class="table shoping-cart-table">
-                            <tbody>
-                            <tr *ngFor="let product of shoppingCart">
-                                <td width="90">
-                                    <div class="cart-product-imitation">
-                                    </div>
-                                </td>
-                                <td class="desc">
-                                    <h3>
-                                    <a href="#" class="text-navy">
-                                        {{product.item.name}}
-                                    </a>
-                                    </h3>
-                                    <p class="small">
-                                       {{product.item.ingredients}}
-                                    </p>
-                                    <dl class="small m-b-none">
-                                        <dt>Description lists</dt>
-                                        <dd>A description list is perfect for defining terms.{{product.item.TypeOfItem}}</dd>
-                                    </dl>
+      <!-- Heading -->
+      <h2 class="my-5 h2 text-center">Checkout form</h2>
 
-                                    <div class="m-t-sm">
-                                       
-                                        <a href="#" class="text-muted"><i class="fa fa-trash"></i> Remove product</a>
-                                    </div>
-                                </td>
+      <!--Grid row-->
+      <div class="row">
 
-                               
-                                <td width="65">
-                                    <input type="text" class="form-control" placeholder="{{product.quantity}}" disabled>
-                                </td>
-                                <td>
-                                    <h4>
-                                        {{product.item.sellingPrice}}
-                                    </h4>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        <!--Grid column-->
+        <div class="col-md-8 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!--Card content-->
+          
+                <form class="card-body" (ngSubmit)="submit()" #ShippingForm="ngForm">
+
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                  <!--firstName-->
+                  <div class="md-form ">
+                      <p>First name</p>
+                    <input type="text" class="form-control" id="firstName"  placeholder="First name"
+                    required
+                    [(ngModel)]="user.firstName" name="firstName"
+                    #firstName="ngModel">
+                   
+                  </div>
 
                 </div>
-                
-             
-               
-                <div class="ibox-content">
-                    <button class="btn btn-primary pull-right"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
-                    <button class="btn btn-white"><i class="fa fa-arrow-left"></i> Continue shopping</button>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                  <!--lastName-->
+                  <div class="md-form">
+                    <p>Last name</p>
+                    <input type="text" class="form-control" id="lastName"  placeholder="Last name"
+                    required
+                    [(ngModel)]="user.lastName" name="lastName"
+                    #lastName="ngModel">
+                  </div>
 
                 </div>
-            </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+              <!--Username-->
+              <!-- <div class="md-form input-group pl-0 mb-5">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control py-0" placeholder="Username" aria-describedby="basic-addon1">
+              </div> -->
+
+              <!--email-->
+              <div class="md-form mb-5">
+                <p>Email</p>
+                <input type="text" class="form-control" id="email"  placeholder="Email"
+                required
+                [(ngModel)]="user.email" name="email"
+                #email="ngModel">
+              </div>
+
+              <!--address-->
+              <div class="md-form mb-5">
+                <p>Address</p>
+                <input type="text" class="form-control" id="address" placeholder="Address"
+                required
+                [(ngModel)]="user.address" name="address"
+                #address="ngModel">
+
+              </div>
+
+              
+              
+
+              <hr>
+
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="same-address">
+                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="save-info">
+                <label class="custom-control-label" for="save-info">Save this information for next time</label>
+              </div>
+
+              <hr>
+
+              <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                  <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                  <label class="custom-control-label" for="credit">Credit card</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label" for="debit">Debit card</label>
+                </div>
+            
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="cc-name">Name on card</label>
+                  <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                  <small class="text-muted">Full name as displayed on card</small>
+                  <div class="invalid-feedback">
+                    Name on card is required
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="cc-number">Credit card number</label>
+                  <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Credit card number is required
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 mb-3">
+                  <label for="cc-expiration">Expiration</label>
+                  <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Expiration date required
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="cc-expiration">CVV</label>
+                  <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Security code required
+                  </div>
+                </div>
+              </div>
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
+            </form>
+
+          </div>
+          <!--/.Card-->
 
         </div>
-        <div class="col-md-3">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5>Cart Summary</h5>
-                </div>
-                <div class="ibox-content">
-                    <span>
-                        Total
-                    </span>
-                    <h2 class="font-bold">
-                        {{totalPrice}}
-                    </h2>
+        <!--Grid column-->
 
-                    <hr>
-                    <span class="text-muted small">
-                        *For United States, France and Germany applicable sales tax will be applied
-                    </span>
-                    <div class="m-t-sm">
-                        <div class="btn-group">
-                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
-                        <a href="#" class="btn btn-white btn-sm"> Cancel</a>
-                        </div>
-                    </div>
-                </div>
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{nrOfItems}}</span>
+          </h4>
+
+          <!-- Cart -->
+          <ul class="list-group mb-3 z-depth-1">
+            <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of shoppingCart"> 
+              <div>
+                <h6 class="my-0">{{product.item.name}}</h6>
+                <small class="text-muted">{{product.item.ingredients}}</small>
+              </div>
+              <span class="text-muted">${{product.item.sellingPrice}}</span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (EURO)</span>
+              <strong>${{totalPrice}}</strong>
+            </li>
+          </ul>
+          <!-- Cart -->
+
+          <!-- Promo code -->
+          <!-- <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
+              </div>
             </div>
+          </form> -->
+          <!-- Promo code -->
 
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5>Support</h5>
-                </div>
-                <div class="ibox-content text-center">
-                    <h3><i class="fa fa-phone"></i> +43 100 783 001</h3>
-                    <span class="small">
-                        Please contact with us if you have any questions. We are avalible 24h.
-                    </span>
-                </div>
-            </div>
-
-           
         </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
     </div>
-</div>
-</div>
+  </main>

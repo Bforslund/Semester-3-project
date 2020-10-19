@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="individual.project.BlaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-16T14:14:52" hostname="DESKTOP-Q1LPFSA" time="0.037">
+<testsuite name="individual.project.BlaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-19T14:16:31" hostname="DESKTOP-Q1LPFSA" time="0.053">
   <properties/>
-  <testcase name="TestYear()" classname="individual.project.BlaTest" time="0.037"/>
+  <testcase name="testAmountOfCakes()" classname="individual.project.BlaTest" time="0.053"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

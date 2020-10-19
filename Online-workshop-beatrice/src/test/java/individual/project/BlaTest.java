@@ -3,6 +3,7 @@ package individual.project;
 import individual.project.model.Item;
 import individual.project.model.Order;
 import individual.project.model.OrderItem;
+import individual.project.repository.FakeDataStatistics;
 import individual.project.repository.FakeDataStore;
 import org.junit.jupiter.api.Test;
 
@@ -46,6 +47,14 @@ public class BlaTest
 
         int count = o.getOrderedItemsList().size();
         assertEquals(count, 2);
+    }
+    @Test
+    public void testAmountOfCakes()
+    {
+        FakeDataStatistics fk = new FakeDataStatistics();
+       int total = fk.GetTotalAmountOfCakesSold();
+
+        assertEquals(total, 2);
     }
 
 

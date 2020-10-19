@@ -33,7 +33,7 @@ public class FakeDataStatistics {
         orderList.add(o3);
         orderList.add(o4);
 
-        OrderItem oi1 = new OrderItem(1, i2, 2);
+        OrderItem oi1 = new OrderItem(1, i1, 2);
 
         o1.AddItemToList(oi1);
 
@@ -53,16 +53,56 @@ public class FakeDataStatistics {
         return total;
     }
     public int GetTotalAmountOfCakesSold(){
-        return 0;
+        int total = 0;
+        for (Order o:orderList) {
+            for(OrderItem oi:o.getOrderedItemsList()){
+                Item i = oi.getItem();
+                if(i.getType().equals(Item.TypeOfItem.CAKE)){
+                    total += oi.getQuantity();
+                }
+            }
+
+        }
+        return total;
     }
     public int GetTotalAmountOfCupcakesSold(){
-        return 0;
+        int total = 0;
+        for (Order o:orderList) {
+            for(OrderItem oi:o.getOrderedItemsList()){
+                Item i = oi.getItem();
+                if(i.getType().equals(Item.TypeOfItem.CUPCAKE)){
+                    total += oi.getQuantity();
+                }
+            }
+
+        }
+        return total;
     }
     public int GetTotalAmountOfCookiesSold(){
-        return 0;
+        int total = 0;
+        for (Order o:orderList) {
+            for(OrderItem oi:o.getOrderedItemsList()){
+                Item i = oi.getItem();
+                if(i.getType().equals(Item.TypeOfItem.COOKIE)){
+                    total += oi.getQuantity();
+                }
+            }
+
+        }
+        return total;
     }
     public int GetTotalAmountOfOtherSold(){
-        return 0;
+        int total = 0;
+        for (Order o:orderList) {
+            for(OrderItem oi:o.getOrderedItemsList()){
+                Item i = oi.getItem();
+                if(i.getType().equals(Item.TypeOfItem.OTHER)){
+                    total += oi.getQuantity();
+                }
+            }
+
+        }
+        return total;
     }
     //int month = localDate.getMonthValue();
     public int SalesPerMonth(){ // how much u sold, users
