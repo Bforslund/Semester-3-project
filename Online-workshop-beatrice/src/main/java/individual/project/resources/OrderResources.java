@@ -90,5 +90,15 @@ public class OrderResources {
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return Response.noContent().build();
     }
+    @GET
+    @Path("user/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllOrdersOfUser(@PathParam("id") int id) {
+        List<Order> OrderList;
+        OrderList = fakeDataStore.GetAllOrdersOfUser(id);
+
+        GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
+        return Response.ok(entity).build();
+    }
 }
 

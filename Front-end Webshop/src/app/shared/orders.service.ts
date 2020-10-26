@@ -29,5 +29,9 @@ getOrderById(id){
 public getOrderItems(id){
   return this.httpClient.get('http://localhost:9090/orders/order/' + id + '/orderitems');
 }
+public getOrderItemsOfOneUser(id){
+  return this.httpClient.get('http://localhost:9090/orders/user/' + id);
+}
+
 
 }

@@ -180,5 +180,16 @@ public class FakeDataStore {
         return userList.remove(u);
     }
 
+    public List<Order> GetAllOrdersOfUser(int Userid){
+      List<Order> AllOrders = new ArrayList<>();
+
+        for (Order o:orderList) {
+            if(o.getUserId() == Userid){
+                AllOrders.add(o);
+            }
+        }
+        return AllOrders;
+    }
+
 
 }

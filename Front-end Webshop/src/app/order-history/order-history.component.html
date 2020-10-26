@@ -1,1 +1,46 @@
-<p>order-history works!</p>
+<body>
+<div class="card">
+    <div class="card-body">
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="orderNumber">
+      <th mat-header-cell *matHeaderCellDef> Order number </th>
+      <td mat-cell *matCellDef="let row"> {{row.orderNumber}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Time stamp </th>
+      <td mat-cell *matCellDef="let row"> {{row.time}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef> Total price </th>
+      <td mat-cell *matCellDef="let row"> {{row.totalPrice}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="actions">
+        <mat-header-cell  *matHeaderCellDef ></mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+            <a  href="/receipt/{{row.orderNumber}}" class="btn btn-secondary" >Receipt</a>
+        </mat-cell>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+    </div>
+</div>
+</body>
