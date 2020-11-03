@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="individual.project.BlaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-19T14:16:31" hostname="DESKTOP-Q1LPFSA" time="0.053">
+<testsuite name="individual.project.BlaTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-11-03T15:54:35" hostname="DESKTOP-Q1LPFSA" time="0.027">
   <properties/>
-  <testcase name="testAmountOfCakes()" classname="individual.project.BlaTest" time="0.053"/>
+  <testcase name="testDep()" classname="individual.project.BlaTest" time="0.022"/>
+  <testcase name="test2()" classname="individual.project.BlaTest" time="0.001"/>
+  <testcase name="test3()" classname="individual.project.BlaTest" time="0.001"/>
+  <testcase name="testAmountOfCakes()" classname="individual.project.BlaTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
