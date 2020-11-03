@@ -1,5 +1,6 @@
 package individual.project.resources;
 
+import individual.project.controllers.ItemController;
 import individual.project.model.Item;
 import individual.project.repository.*;
 
@@ -13,46 +14,38 @@ public class ItemResources {
     @Context
     private UriInfo uriInfo;
     public static final FakeDataStore fakeDataStore = new FakeDataStore();
+    public static final ItemController ITEM_CONTROLLER = new ItemController();
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllItems(@QueryParam("items") String items) {
         List<Item> itemList;
-            itemList = fakeDataStore.GetItems();
+            itemList = ITEM_CONTROLLER.showAllItems();
 
         GenericEntity<List<Item>> entity = new GenericEntity<>(itemList) {  };
         return Response.ok(entity).build();
     }
-    // Rebuild method below under later to filter items by type?
-//    @GET //GET at http://localhost:XXXX/students?
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response getAllItems(@QueryParam("type") String type) {
-//        List<Item> items;
-//        //If query parameter is missing return all students. Otherwise filter students by given countryCode
-//        if (uriInfo.getQueryParameters().containsKey("type")){
-//            Country country = fakeDataStore.getCountry(countryCode);
-//            if (country == null){ // if country code invalid, return BAD_REQUEST
-//                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid country code.").build();
-//            } else {
-//                students = fakeDataStore.getStudents(country);
-//            }
-//        } else {
-//            students = fakeDataStore.getStudents();
-//        }
-//        GenericEntity<List<Student>> entity = new GenericEntity<>(students) {  };
-//        return Response.ok(entity).build();
-//    }
 
     @POST //POST at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createItem(Item item) {
-        if (!fakeDataStore.addItem(item)){
-            String entity =  "Item with name " + item.getName() + " already exists.";
-            return Response.status(Response.Status.CONFLICT).entity(entity).build();
-        } else {
-           String url = uriInfo.getAbsolutePath() + "/" + item.getName(); // url of the created item
+
+        try{
+            ITEM_CONTROLLER.addItem(item);
+            String url = uriInfo.getAbsolutePath() + "/" + item.getName(); // url of the created item
             URI uri = URI.create(url);
             return Response.created(uri).build();
+        }catch(Exception e){
+            String entity =  "Item with name " + item.getName() + " already exists.";
+            return Response.status(Response.Status.CONFLICT).entity(entity).build();
         }
+//        if (!fakeDataStore.addItem(item)){
+//            String entity =  "Item with name " + item.getName() + " already exists.";
+//            return Response.status(Response.Status.CONFLICT).entity(entity).build();
+//        } else {
+//           String url = uriInfo.getAbsolutePath() + "/" + item.getName(); // url of the created item
+//            URI uri = URI.create(url);
+//            return Response.created(uri).build();
+//        }
     }
     @PUT //PUT at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)
