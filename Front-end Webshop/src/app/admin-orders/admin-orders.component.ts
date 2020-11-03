@@ -27,7 +27,9 @@ export class AdminOrdersComponent implements OnInit {
               address: [order.address, Validators.required],
               status: [order.status,  Validators.required],
               totalPrice: [order.totalPrice,],
-           
+              userId: [order.userId],
+              customerName: [order.customerName],
+              time: [order.time],
             }));
           });
           
@@ -44,6 +46,9 @@ export class AdminOrdersComponent implements OnInit {
       address: ['', Validators.required],
       status: ['',  Validators.required],
       totalPrice: [0],
+      userId: [0],
+      customerName: [0],
+      time: [0],
     }));
   }
 

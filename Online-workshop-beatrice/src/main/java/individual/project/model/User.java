@@ -1,32 +1,42 @@
 package individual.project.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 
-@SuppressWarnings("WeakerAccess")
-@XmlRootElement
+@Entity
+@Table(name = "individual_users")
 public class User {
-    public User(int id, String firstname, String lastname, String address, int points, String birthday, String orderHistory, String email, String password) {
-        this.id = id;
+    public User(String firstname, String lastname, String address, int points, String birthday, String email, String password) {
+
         this.firstName = firstname;
         this.lastName = lastname;
         this.address = address;
         this.points = points;
         this.birthday = birthday;
-        this.orderHistory = orderHistory;
         this.email = email;
         this.password = password;
     }
     public User() {
     }
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "id")
     private int id;
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
     private String lastName;
+    @Column(name = "address")
     private String address;
+    @Column(name = "points")
     private int points;
+    @Column(name = "birthday")
     private String birthday;
-    private String orderHistory;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
 
     public String getFirstName() {
@@ -95,11 +105,5 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getOrderHistory() {
-        return orderHistory;
-    }
 
-    public void setOrderHistory(String orderHistory) {
-        this.orderHistory = orderHistory;
-    }
 }

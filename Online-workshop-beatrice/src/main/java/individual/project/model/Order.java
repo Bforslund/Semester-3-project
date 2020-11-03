@@ -1,40 +1,55 @@
 package individual.project.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import javax.json.bind.annotation.JsonbTransient;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("WeakerAccess")
-@XmlRootElement
+@Entity
+@Table(name = "individual_orders")
 public class Order {
     public enum orderStatus {
 SHIPPED, PENDING
     }
 
-    public Order(int orderNumber, int userId, String address, String CustomerName) {
-        this.orderNumber = orderNumber;
+    public Order( int userId, String address, String CustomerName) {
+
         this.userId = userId;
         this.status = orderStatus.PENDING;
         this.customerName = CustomerName;
         this.address = address;
         this.time = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        orderedItemsList = new ArrayList<>();
+        orderedItemsList  = new ArrayList<>();
     }
 
     public Order() {
     }
-
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "orderNumber")
     private int orderNumber;
+    @Column(name = "totalPrice")
     private double totalPrice;
+    @Column(name = "userId")
     private int userId;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private orderStatus status;
+    @Column(name = "time")
     private String time;
+    @Column(name = "address")
     private String address;
+    @Column(name = "customerName")
     private String customerName;
-    private List<OrderItem> orderedItemsList;
 
+    @OneToMany(mappedBy = "order", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonbTransient
+    private List<OrderItem> orderedItemsList;
 
     public String getCustomerName() {
         return customerName;
@@ -46,7 +61,10 @@ SHIPPED, PENDING
 
 
     public void AddItemToList(OrderItem i){
-        orderedItemsList.add(i);
+
+        i.setOrder(this);
+        getOrderedItemsList().add(i);
+
     }
 
     public String getAddress() {
@@ -105,9 +123,5 @@ SHIPPED, PENDING
 
     public List<OrderItem> getOrderedItemsList() {
         return orderedItemsList;
-    }
-
-    public void setOrderedItemsList(List<OrderItem> orderedItemsList) {
-        this.orderedItemsList = orderedItemsList;
     }
 }

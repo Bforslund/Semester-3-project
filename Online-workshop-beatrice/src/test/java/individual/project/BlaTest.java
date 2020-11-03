@@ -42,7 +42,7 @@ public class BlaTest
         FakeDataStore fk = new FakeDataStore();
         Order o = fk.getOrder(1);
         Item cake = new Item(1, "Chocolate cake", 50, 60, "Choclate", Item.TypeOfItem.CAKE);
-        OrderItem o1 = new OrderItem(1, cake, 2);
+        OrderItem o1 = new OrderItem(1, o,cake, 2);
         o.AddItemToList(o1);
 
         int count = o.getOrderedItemsList().size();

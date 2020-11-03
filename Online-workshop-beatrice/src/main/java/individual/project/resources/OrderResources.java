@@ -1,9 +1,8 @@
 package individual.project.resources;
 
-import individual.project.model.Item;
-import individual.project.model.Order;
-import individual.project.model.OrderItem;
-import individual.project.model.User;
+
+import individual.project.controllers.OrderController;
+import individual.project.model.*;
 import individual.project.repository.*;
 
 import javax.ws.rs.*;
@@ -16,12 +15,12 @@ import java.util.List;
 public class OrderResources {
     @Context
     private UriInfo uriInfo;
-    public static final FakeDataStore fakeDataStore = new FakeDataStore();
+    public static final OrderController orderController = new OrderController();
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders(@QueryParam("orders") String orders) {
+    public Response getAllOrders() {
         List<Order> OrderList;
-        OrderList = fakeDataStore.GetOrders();
+        OrderList = orderController.showAllOrders();
 
         GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
         return Response.ok(entity).build();
@@ -31,7 +30,7 @@ public class OrderResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrderItems(@PathParam("orderNumber") int orderNr) {
         List<OrderItem> OrderItemList;
-        OrderItemList = fakeDataStore.getAllOrderItems(orderNr);
+        OrderItemList = orderController.showAllOrderItems(orderNr);
 
         GenericEntity<List<OrderItem>> entity = new GenericEntity<>(OrderItemList) {  };
         return Response.ok(entity).build();
@@ -40,8 +39,7 @@ public class OrderResources {
     @Path("order/{id}") // Get one order
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrderById(@PathParam("id") int id) {
-        Order o = fakeDataStore.getOrder(id);//studentsRepository.get(stNr);
-        User u = fakeDataStore.getUserFromOrderId(id);
+        Order o = orderController.getOrderById(id);//studentsRepository.get(stNr);
         if (o == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         } else {
@@ -53,7 +51,7 @@ public class OrderResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserByOrderId(@PathParam("id") int id) {
 
-        User u = fakeDataStore.getUserFromOrderId(id);
+        User u = orderController.getUserByOrder(id);
         if (u == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         } else {
@@ -63,7 +61,7 @@ public class OrderResources {
     @POST //POST at http://localhost:XXXX/items/
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createOrder(Order order) {
-        if (!fakeDataStore.addOrder(order)){
+        if (!orderController.addOrder(order)){
             String entity =  "Order with ordernumber " + order.getOrderNumber() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         } else {
@@ -76,7 +74,7 @@ public class OrderResources {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateOrder(Order order) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (fakeDataStore.updateOrder(order)) {
+        if (orderController.updateOrder(order)) {
             return Response.noContent().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
@@ -86,7 +84,7 @@ public class OrderResources {
     @DELETE //DELETE at http://localhost:XXXX/orders/3 works
     @Path("deleteAll")
     public Response deleteAllOrders() {
-        fakeDataStore.deleteAllOrder();
+        orderController.deleteAll();
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return Response.noContent().build();
     }
@@ -95,7 +93,7 @@ public class OrderResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrdersOfUser(@PathParam("id") int id) {
         List<Order> OrderList;
-        OrderList = fakeDataStore.GetAllOrdersOfUser(id);
+        OrderList = orderController.showAllOrdersOfOneUser(id);
 
         GenericEntity<List<Order>> entity = new GenericEntity<>(OrderList) {  };
         return Response.ok(entity).build();

@@ -21,7 +21,7 @@ user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "12
   
   }
   update() {
-    this.service.updateUserById(this.user, 1).subscribe(
+    this.service.updateUser(this.user).subscribe(
       (res: any) => {
         this.showNotification();
       });

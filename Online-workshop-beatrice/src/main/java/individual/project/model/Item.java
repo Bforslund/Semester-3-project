@@ -1,10 +1,16 @@
 package individual.project.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.annotations.GenericGenerator;
 
-@SuppressWarnings("WeakerAccess")
-@XmlRootElement
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "individual_items")
 public class Item {
+
+
+
     public enum TypeOfItem {
         CAKE, CUPCAKE, COOKIE, OTHER
     }
@@ -55,22 +61,25 @@ public class Item {
         this.type = type;
     }
 
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "id")
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "selling_price")
     private int sellingPrice;
+    @Column(name = "buying_price")
     private int buyingPrice;
+    @Column(name = "ingredients")
     private String ingredients;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private TypeOfItem type;
 
-    public Item(int id, String name, int sellingPrice, int buyingPrice, String ingredients, TypeOfItem type) {
-        this.id = id;
-        this.name = name;
-        this.sellingPrice = sellingPrice;
-        this.buyingPrice = buyingPrice;
-        this.ingredients = ingredients;
-        this.type = type;
 
-    }
     public Item(String name, int sellingPrice, int buyingPrice, String ingredients, TypeOfItem type) {
         this.name = name;
         this.sellingPrice = sellingPrice;
