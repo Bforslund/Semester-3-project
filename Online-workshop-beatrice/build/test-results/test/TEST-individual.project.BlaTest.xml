@@ -1,10 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="individual.project.BlaTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-11-03T15:54:35" hostname="DESKTOP-Q1LPFSA" time="0.027">
+<testsuite name="individual.project.BlaTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-11-04T13:52:24" hostname="DESKTOP-Q1LPFSA" time="4.229">
   <properties/>
-  <testcase name="testDep()" classname="individual.project.BlaTest" time="0.022"/>
-  <testcase name="test2()" classname="individual.project.BlaTest" time="0.001"/>
-  <testcase name="test3()" classname="individual.project.BlaTest" time="0.001"/>
-  <testcase name="testAmountOfCakes()" classname="individual.project.BlaTest" time="0.001"/>
+  <testcase name="testAmountOfCakes()" classname="individual.project.BlaTest" time="2.391"/>
+  <testcase name="testGettingAnItemFromId()" classname="individual.project.BlaTest" time="0.319"/>
+  <testcase name="testAddItemsToOrder()" classname="individual.project.BlaTest" time="0.59"/>
+  <testcase name="testHowManyItemsOneOrderHas()" classname="individual.project.BlaTest" time="0.302"/>
+  <testcase name="testAmountOfOrdersInOctober()" classname="individual.project.BlaTest" time="0.316"/>
+  <testcase name="testHowManyOrderIHave()" classname="individual.project.BlaTest" time="0.309"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <system-err><![CDATA[Nov 04, 2020 2:52:24 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version 5.4.14.Final
+Nov 04, 2020 2:52:25 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+Nov 04, 2020 2:52:25 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:25 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:25 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:25 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:25 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:25 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:25 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:26 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:27 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:27 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:27 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:27 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:27 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:27 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:28 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:28 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:28 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:28 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=dbi431685}
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 1 (min=1)
+Nov 04, 2020 2:52:28 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Nov 04, 2020 2:52:28 PM org.hibernate.dialect.H2Dialect <init>
+WARN: HHH000431: Unable to determine H2 database version, certain features may not work
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Nov 04, 2020 2:52:28 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
+INFO: HHH10001008: Cleaning up connection pool [jdbc:mysql://studmysql01.fhict.local:3306/dbi431685]
+]]></system-err>
 </testsuite>

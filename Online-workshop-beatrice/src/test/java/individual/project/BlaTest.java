@@ -1,10 +1,11 @@
 package individual.project;
 
-import individual.project.model.Item;
-import individual.project.model.Order;
-import individual.project.model.OrderItem;
-import individual.project.repository.FakeDataStatistics;
-import individual.project.repository.FakeDataStore;
+import individual.project.controllers.ItemController;
+import individual.project.controllers.OrderController;
+import individual.project.controllers.StatisticsController;
+import individual.project.controllers.UserController;
+import individual.project.model.*;
+import org.hibernate.stat.Statistics;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -17,45 +18,79 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class BlaTest
 {
-    /**
-     * Rigourous Test :-)
-     */
-    @Test
-    public void testDep()
-    {
-//       FakeDataStore fk = new FakeDataStore();
-//        List<Order> orders = fk.GetOrders();
-//        int count = orders.size();
-//        assertEquals(count, 2);
-        assertTrue(true);
-    }
-    @Test
-    public void test2()
-    {
-//        FakeDataStore fk = new FakeDataStore();
-//       Order o = fk.getOrder(1);
-//       int count = o.getOrderedItemsList().size();
-//        assertEquals(count, 1);
-    }
-    @Test
-    public void test3()
-    {
-//        FakeDataStore fk = new FakeDataStore();
-//        Order o = fk.getOrder(1);
-//        Item cake = new Item(1, "Chocolate cake", 50, 60, "Choclate", Item.TypeOfItem.CAKE);
-//        OrderItem o1 = new OrderItem(1, o,cake, 2);
-//        o.AddItemToList(o1);
+    OrderController persistenceController = new OrderController();
+    ItemController controller = new ItemController();
+    UserController ucontroller = new UserController();
+    StatisticsController scontroller = new StatisticsController();
+
+//    User user1 = new User("Bea", "forslund", "Meijhorst", 400, "1999, 10, 21",  "kkkk@live.se", "121221");
+////        Item i1 = new Item( "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE);
+////        Item i2 = new Item("sadsda", 50, 100,"Flour", Item.TypeOfItem.COOKIE);
+////        Item i3 = new Item( "bfdgd", 50, 100,"Flour", Item.TypeOfItem.OTHER);
 //
-//        int count = o.getOrderedItemsList().size();
-//        assertEquals(count, 2);
+//    Item i2 = controller.getItemById(2);
+//    Item i3 = controller.getItemById(7);
+//    Order o1 = new Order(  1,"kuk", "Frida framstedt");
+//
+//    OrderItem oi1 = new OrderItem(i2, 3);
+//    OrderItem oi2 = new OrderItem(i3, 2);
+//
+//        o1.AddItemToList(oi1);
+//        o1.AddItemToList(oi2);
+//        persistenceController.addOrder(o1);
+
+
+    @Test
+    public void testHowManyOrderIHave()
+    {
+
+        List<Order> orders = persistenceController.showAllOrders();
+        int count = orders.size();
+        assertEquals(count, 3);
+
     }
     @Test
-    public void testAmountOfCakes()
+    public void testHowManyItemsOneOrderHas()
     {
-//        FakeDataStatistics fk = new FakeDataStatistics();
-//       int total = fk.GetTotalAmountOfCakesSold();
-//
-//        assertEquals(total, 2);
+
+       Order o = persistenceController.getOrderById(1);
+       int count = o.getOrderedItemsList().size();
+        assertEquals(count, 2);
+    }
+    @Test
+    public void testGettingAnItemFromId()
+    {
+        Item cake = controller.getItemById(1);
+        String name = cake.getName();
+        assertEquals(name, "Chocolate cake");
+    }
+    @Test
+    public void testAddItemsToOrder()
+    {
+        Order o = persistenceController.getOrderById(3);
+        Item cake = controller.getItemById(1);
+        OrderItem o1 = new OrderItem(cake, 1);
+        o.AddItemToList(o1);
+
+        int count = o.getOrderedItemsList().size();
+        assertEquals(count, 3);
+    }
+    @Test
+    public void testAmountOfCakes() {
+       int total = scontroller.GetTotalAmountOfCakesSold();
+        assertEquals(total, 6);
+    }
+    @Test
+    public void testAmountOfOrdersInOctober() {
+        List<StatisticsOrder> orders = scontroller.GetOrderPerMonth();
+        StatisticsOrder sO = null;
+        for (StatisticsOrder o: orders) {
+            if(o.getMonth().equals("oct")){
+                sO = o;
+            }
+        }
+        int total = sO.getTotalOrders();
+        assertEquals(total, 1);
     }
 
 
