@@ -22,5 +22,9 @@ export class StatisticsService {
   public getTotalOther(){
     return this.httpClient.get('http://localhost:9090/statistics/other');
   }
+  public getTest(){
+    return this.httpClient.get('http://localhost:9090/statistics/');
+  }
+  
 
 }

@@ -3,7 +3,6 @@ package individual.project.resources;
 
 import individual.project.controllers.OrderController;
 import individual.project.model.*;
-import individual.project.repository.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;

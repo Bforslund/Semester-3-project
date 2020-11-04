@@ -22,7 +22,7 @@ SHIPPED, PENDING
         this.status = orderStatus.PENDING;
         this.customerName = CustomerName;
         this.address = address;
-        this.time = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.time = LocalDate.now();
         orderedItemsList  = new ArrayList<>();
     }
 
@@ -41,7 +41,7 @@ SHIPPED, PENDING
     @Column(name = "status")
     private orderStatus status;
     @Column(name = "time")
-    private String time;
+    private LocalDate time;
     @Column(name = "address")
     private String address;
     @Column(name = "customerName")
@@ -113,15 +113,19 @@ SHIPPED, PENDING
         this.status = status;
     }
 
-    public String getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 
     public List<OrderItem> getOrderedItemsList() {
         return orderedItemsList;
+    }
+
+    public void setOrderedItemsList(List<OrderItem> orderedItemsList) {
+        this.orderedItemsList = orderedItemsList;
     }
 }
