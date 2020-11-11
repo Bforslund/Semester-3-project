@@ -47,11 +47,31 @@ public class UserController {
             return null;
         }
     }
+    public User getUserByEmail(String email) {
+        List<User> users = showAllUsers();
+        for (User u :users) {
+            if(u.getEmail().equals(email)){
+                return u;
+            }
+        }
+        return null;
+    }
     public void deleteUser(int id) {
         try {
             usersRepository.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean login(String email, String password){
+        User u = getUserByEmail(email);
+        if(u == null){
+            return false;
+        }
+        if(u.getPassword().equals(password)){
+            return true;
+        }
+        return false;
     }
 }

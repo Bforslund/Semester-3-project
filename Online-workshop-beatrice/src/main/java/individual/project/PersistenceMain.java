@@ -19,16 +19,17 @@ public class PersistenceMain {
 //        Item i2 = new Item("sadsda", 50, 100,"Flour", Item.TypeOfItem.COOKIE);
 //        Item i3 = new Item( "bfdgd", 50, 100,"Flour", Item.TypeOfItem.OTHER);
 
-        Item i2 = controller.getItemById(2);
-        Item i3 = controller.getItemById(7);
-        Order o1 = new Order(  1,"kuk", "Frida framstedt");
-
-        OrderItem oi1 = new OrderItem(i2, 3);
-        OrderItem oi2 = new OrderItem(i3, 2);
-
-        o1.AddItemToList(oi1);
-        o1.AddItemToList(oi2);
-        persistenceController.addOrder(o1);
+     User u2 =  ucontroller.getUserByEmail("test@live.se");
+//        Item i2 = controller.getItemById(2);
+//        Item i3 = controller.getItemById(7);
+//        Order o1 = new Order(  1,"kuk", "Frida framstedt");
+//
+//        OrderItem oi1 = new OrderItem(i2, 3);
+//        OrderItem oi2 = new OrderItem(i3, 2);
+//
+//        o1.AddItemToList(oi1);
+//        o1.AddItemToList(oi2);
+//        persistenceController.addOrder(o1);
 
         // controller.UpdateItem();
 

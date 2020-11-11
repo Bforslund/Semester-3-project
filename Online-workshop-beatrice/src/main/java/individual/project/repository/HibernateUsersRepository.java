@@ -62,6 +62,7 @@ public class HibernateUsersRepository {
         }
     }
 
+
     public void create(User user) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();

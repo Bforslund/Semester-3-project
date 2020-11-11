@@ -20,7 +20,7 @@ id: number;
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.service.getUserByOrderId(this.id)
+    this.service.getUserByOrderId(2)
     .subscribe((data)=>{
     
      this.user = <User>data;

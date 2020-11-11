@@ -30,6 +30,7 @@ export class AdminUsersComponent implements OnInit {
               points: [user.points,  Validators.min(1)],
               birthday: [user.birthday,Validators.required],
               email: [user.email, Validators.required],
+              password: [user.password],
             }));
           });
         }
@@ -46,6 +47,7 @@ export class AdminUsersComponent implements OnInit {
       points: ['',  Validators.min(1)],
       birthday: ['',Validators.required],
       email: ['', Validators.required],
+      password: [0],
     }));
   }
 

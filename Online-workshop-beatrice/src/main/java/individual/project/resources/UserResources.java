@@ -4,10 +4,13 @@ import individual.project.controllers.ItemController;
 import individual.project.model.User;
 import individual.project.controllers.UserController;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
+import java.util.Base64;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @Path("/users")
 public class UserResources {
@@ -45,6 +48,21 @@ public class UserResources {
             String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the created item
             URI uri = URI.create(url);
             return Response.created(uri).build();
+        }
+    }
+    @POST //POST at http://localhost:XXXX/users/
+    @Path("login")
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response LoginUser(String body) {
+        final StringTokenizer tokenizer = new StringTokenizer(body, ":");
+        final String email = tokenizer.nextToken();
+        final String password = tokenizer.nextToken();
+
+        if (userController.login(email, password)){
+            return Response.noContent().build();
+        } else {
+           return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
         }
     }
     @PUT //Update user from admin

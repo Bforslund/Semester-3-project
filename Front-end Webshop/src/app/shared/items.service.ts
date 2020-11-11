@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import {OrderItem} from '../model/OrderItem';
 import {Item} from '../model/Item';
 import { Order } from '../model/Order';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'Basic ' + btoa('test@gmail.com:1234')
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -30,18 +36,18 @@ public GetOrder(){
 
 
   public getItems(){
-    return this.httpClient.get('http://localhost:9090/items/');
+    return this.httpClient.get('http://localhost:9090/items/', httpOptions);
   }
 
   postItems(formData) {
-    return this.httpClient.post('http://localhost:9090/items/', formData);
+    return this.httpClient.post('http://localhost:9090/items/', formData, httpOptions);
   }
 
   updateItems(formData) {
-    return this.httpClient.put('http://localhost:9090/items/', formData);
+    return this.httpClient.put('http://localhost:9090/items/', formData, httpOptions);
   }
 
   deleteItem(id) {
-    return this.httpClient.delete('http://localhost:9090/items/' + id);
+    return this.httpClient.delete('http://localhost:9090/items/' + id, httpOptions);
   }
 }
