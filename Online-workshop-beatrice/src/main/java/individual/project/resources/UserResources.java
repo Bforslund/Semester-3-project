@@ -4,7 +4,7 @@ import individual.project.controllers.ItemController;
 import individual.project.model.User;
 import individual.project.controllers.UserController;
 
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
@@ -18,6 +18,7 @@ public class UserResources {
     private UriInfo uriInfo;
     public static final UserController userController = new UserController();
     @GET
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllUsers(@QueryParam("users") String users) {
         List<User> UserList;
@@ -29,16 +30,28 @@ public class UserResources {
 
     @GET
     @Path("{id}")
+    @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserById(@PathParam("id") int id) {
+    public Response getUserById(@PathParam("id") int id, @HeaderParam("Authorization") String auth) {
+        String encodedCredentials = auth.replaceFirst("Basic ", "");
+        String credentials = new
+                String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
+        //Split username and password tokens in credentials
+        final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
+        final String email = tokenizer.nextToken();
+
         User user = userController.getUserById(id);//studentsRepository.get(stNr);
-        if (user == null) {
+        if(!user.getEmail().equals(email)){
+            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
+        }
+        else if (user == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         } else {
             return Response.ok(user).build();
         }
     }
     @POST //POST at http://localhost:XXXX/users/
+    @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(User user) {
         if (!userController.addUser(user)){
@@ -58,14 +71,15 @@ public class UserResources {
         final StringTokenizer tokenizer = new StringTokenizer(body, ":");
         final String email = tokenizer.nextToken();
         final String password = tokenizer.nextToken();
-
+      User user =  userController.getUserByEmail(email);
         if (userController.login(email, password)){
-            return Response.noContent().build();
+            return Response.ok(user).build();
         } else {
            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
         }
     }
     @PUT //Update user from admin
+    @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         if (userController.updateUser(user)) {
@@ -90,6 +104,7 @@ public class UserResources {
 
 
     @DELETE //DELETE at http://localhost:XXXX/students/3 works
+    @RolesAllowed({"ADMIN"})
     @Path("{id}")
     public Response deleteUser(@PathParam("id") int id) {
         userController.deleteUser(id);

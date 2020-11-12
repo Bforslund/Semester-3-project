@@ -3,11 +3,12 @@ package individual.project.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "individual_users")
 public class User {
-    public User(String firstname, String lastname, String address, int points, String birthday, String email, String password) {
+    public User(String firstname, String lastname, String address, int points, String birthday, String email, String password, roles role) {
 
         this.firstName = firstname;
         this.lastName = lastname;
@@ -16,6 +17,7 @@ public class User {
         this.birthday = birthday;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
     public User() {
     }
@@ -38,6 +40,22 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private roles role;
+
+    public enum roles {
+        ADMIN, USER
+    }
+
+
+    public roles getRole() {
+        return role;
+    }
+
+    public void setRole(roles role) {
+        this.role = role;
+    }
 
     public String getFirstName() {
         return firstName;

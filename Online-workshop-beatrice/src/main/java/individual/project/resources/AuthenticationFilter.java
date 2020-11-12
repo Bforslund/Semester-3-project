@@ -8,9 +8,7 @@ import javax.ws.rs.container.*;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.Provider;
 import java.lang.reflect.*;
-import java.util.Base64;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 @Provider
 public class AuthenticationFilter implements ContainerRequestFilter {
@@ -58,6 +56,22 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         System.out.println(password);
         //Check if username and password are valid (e.g., database)
         //If not valid: abort with UNAUTHORIED and stop
+        if (method.isAnnotationPresent(RolesAllowed.class)) {
+            // get allowed roles for this method
+            RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
+            Set<String> rolesSet = new
+                    HashSet<String>(Arrays.asList(rolesAnnotation.value()));
+ /* isUserAllowed : implement this method to check if this user has any of
+ the roles in the rolesSet
+ if not isUserAllowed abort the requestContext with FORBIDDEN response*/
+            if (!isUserAllowed(email, password, rolesSet)) {
+                Response response = Response.status(Response.Status.FORBIDDEN).build();
+                requestContext.abortWith(response);
+                return;
+            }
+        }
+
+
         if (!isValidUser(email, password)) {
             Response response = Response.status(Response.Status.UNAUTHORIZED).
                     entity("Invalid email and/or password.").build();
@@ -70,5 +84,17 @@ public class AuthenticationFilter implements ContainerRequestFilter {
        boolean valid;
       valid = controller.login(email, password);
       return valid;
+    }
+
+    private boolean isUserAllowed(String email, String password, Set<String> rolesSet){
+        UserController controller = new UserController();
+        String admin = "";
+        if(rolesSet.contains("ADMIN")){
+            admin = "ADMIN";
+        }
+
+       return controller.validateUser(email, password, admin);
+
+
     }
 }

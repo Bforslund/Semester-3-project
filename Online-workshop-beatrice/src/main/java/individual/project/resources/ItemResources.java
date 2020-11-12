@@ -4,6 +4,8 @@ import individual.project.controllers.ItemController;
 import individual.project.model.Item;
 
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
@@ -15,6 +17,7 @@ public class ItemResources {
     private UriInfo uriInfo;
     public static final ItemController itemController = new ItemController();
     @GET
+    @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllItems(@QueryParam("items") String items) {
         List<Item> itemList;
@@ -25,6 +28,7 @@ public class ItemResources {
     }
 
     @POST //POST at http://localhost:XXXX/items/
+    @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createItem(Item item) {
         if (!itemController.addItem(item)){
@@ -38,6 +42,7 @@ public class ItemResources {
 
     }
     @PUT //PUT at http://localhost:XXXX/items/
+    @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateItem(Item item) {
 
@@ -50,6 +55,7 @@ public class ItemResources {
     }
 
     @DELETE //DELETE at http://localhost:XXXX/students/3
+    @RolesAllowed({"ADMIN"})
     @Path("{id}")
     public Response deleteItem(@PathParam("id") int id) {
         itemController.DeleteItem(id);

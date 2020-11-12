@@ -4,6 +4,7 @@ import individual.project.controllers.StatisticsController;
 import individual.project.model.*;
 import individual.project.repository.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
@@ -16,6 +17,7 @@ public class StatisticsResources {
     public static final StatisticsController statController = new StatisticsController();
     @GET
     @Path("revenue")
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalRevenue() {
         double total = 0;
@@ -29,6 +31,7 @@ public class StatisticsResources {
     }
     @GET
     @Path("cakes")
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalCakesSold() {
         double total = 0;
@@ -42,6 +45,7 @@ public class StatisticsResources {
     }
     @GET
     @Path("cookies")
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalCookiesSold() {
         double total = 0;
@@ -55,6 +59,7 @@ public class StatisticsResources {
     }
     @GET
     @Path("cupcakes")
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalCupcakesSold() {
         double total = 0;
@@ -68,6 +73,7 @@ public class StatisticsResources {
     }
     @GET
     @Path("other")
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalOtherSold() {
         double total = 0;
@@ -80,6 +86,7 @@ public class StatisticsResources {
         }
     }
     @GET
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllItems() {
         List<StatisticsOrder> statList;

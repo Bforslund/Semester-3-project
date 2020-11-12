@@ -1,0 +1,65 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar navbar-light blue-grey lighten-5" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand"  routerLink="/">Webshop</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"  routerLinkActive="active">
+          <a class="nav-link waves-light"  routerLink="/home" mdbWavesEffect>Home</a>
+        </li>
+        <li class="nav-item"  routerLinkActive="active">
+          <a class="nav-link waves-light" routerLink="/items" mdbWavesEffect>Products</a>
+        </li>
+        
+  
+        <!-- Dropdown -->
+        <div *ngIf="loggedIn && admin"> 
+        <li class="nav-item dropdown"  routerLinkActive="active" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"  mdbWavesEffect>
+            Admin<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/admin">Manage items</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/orders">Manage orders</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/users">Manage users</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect  routerLink="/statistics">Statistics</a>
+          </div>
+        </li>
+      </div> 
+      </ul>
+      <!-- Links -->
+  
+      <ul class="navbar-nav ml-auto">
+           <span><div *ngIf="loggedIn; else elseBlock"> 
+                <li class="nav-item"  routerLinkActive="active">
+            <div class="btn-group" mdbDropdown >
+              <mdb-icon fas icon="user" mdbDropdownToggle ></mdb-icon>
+              <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                <a class="dropdown-item"  routerLink="/profile">View profile</a>
+                <a class="dropdown-item" routerLink="/orderhistory">Order history</a> 
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/login"(click)="logout()">Log out</a>
+              </div>
+            </div>
+        </li>
+        </div>
+        <ng-template #elseBlock>  <li class="nav-item"  routerLinkActive="active">
+            <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect>Log in</a>
+          </li></ng-template>
+        </span>  <span>
+          <li class="nav-item"  routerLinkActive="active">
+            <a class="button fancy-button"  routerLink="/checkout"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a>
+          </li>
+        </span> 
+        
+      </ul>
+    </links>
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->

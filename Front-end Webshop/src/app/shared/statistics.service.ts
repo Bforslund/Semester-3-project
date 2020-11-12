@@ -1,36 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Basic ' + btoa('test@gmail.com:1234')
-  })
-};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatisticsService {
-
-  constructor(private httpClient: HttpClient) { }
+  readLocalStorageValue() {
+    if(localStorage.getItem("userToken") != null){
+      this.httpOptions.headers = this.httpOptions.headers.set('Authorization',  'Basic ' + localStorage.getItem("userToken"));
+    };
+}
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  constructor(private httpClient: HttpClient) {
+    this.readLocalStorageValue();
+  }
 
   public getTotalOrders(){
-    return this.httpClient.get('http://localhost:9090/statistics/revenue', httpOptions);
+    return this.httpClient.get('http://localhost:9090/statistics/revenue', this.httpOptions);
   }
   public getTotalCakes(){
-    return this.httpClient.get('http://localhost:9090/statistics/cakes', httpOptions);
+    return this.httpClient.get('http://localhost:9090/statistics/cakes',this.httpOptions);
   }
   public getTotalCupcakes(){
-    return this.httpClient.get('http://localhost:9090/statistics/cupcakes', httpOptions);
+    return this.httpClient.get('http://localhost:9090/statistics/cupcakes', this.httpOptions);
   }
   public getTotalCookies(){
-    return this.httpClient.get('http://localhost:9090/statistics/cookies', httpOptions);
+    return this.httpClient.get('http://localhost:9090/statistics/cookies', this.httpOptions);
   }
   public getTotalOther(){
-    return this.httpClient.get('http://localhost:9090/statistics/other', httpOptions);
+    return this.httpClient.get('http://localhost:9090/statistics/other', this.httpOptions);
   }
   public getTest(){
-    return this.httpClient.get('http://localhost:9090/statistics/', httpOptions);
+    return this.httpClient.get('http://localhost:9090/statistics/', this.httpOptions);
   }
   
 

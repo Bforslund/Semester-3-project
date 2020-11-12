@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/users.service';
 import {User} from '../model/User';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -9,11 +9,23 @@ import {User} from '../model/User';
 })
 export class EditProfileComponent implements OnInit {
   notification = null; 
-  constructor(private service: UsersService) { }
-user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123")
-  ngOnInit(): void {
+  loggedIn:boolean;
+  id:string;
+  constructor(private service: UsersService, private router : Router) { }
+user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123","USER")
+readLocalStorageValue() {
+  return localStorage.getItem('userToken');
+}
 
-    this.service.getUserById(1)
+ngOnInit(): void {
+  if(this.readLocalStorageValue() != null){
+    this.loggedIn= true;
+  }else{
+    this.loggedIn = false;
+    this.router.navigate(['/login']);
+  }
+  this.id = localStorage.getItem('userId');
+    this.service.getUserById(this.id)
     .subscribe((data)=>{
       console.log(data);
      this.user = <User>data;

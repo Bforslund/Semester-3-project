@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormArray, FormBuilder, Validators, FormGroup  } from '@angular/forms';
 import { UsersService } from '../shared/users.service';
 
@@ -11,10 +12,20 @@ export class AdminUsersComponent implements OnInit {
   usersForms : FormArray = this.fb.array([]);
   usersList = [];
   notification = null;
-
-  constructor(public fb: FormBuilder, private service: UsersService) { }
+  loggedIn:boolean;
+  constructor(public fb: FormBuilder, private service: UsersService, private router : Router) { }
+  readLocalStorageValue() {
+    return localStorage.getItem('userToken');
+}
 
   ngOnInit(): void {
+    if(this.readLocalStorageValue() != null){
+      this.loggedIn= true;
+      console.log("logged innnn");
+    }else{
+      this.loggedIn = false;
+      this.router.navigate(['/login']);
+    }
     this.service.getUsers().subscribe(
       res => {
         if (res == [])
@@ -31,6 +42,7 @@ export class AdminUsersComponent implements OnInit {
               birthday: [user.birthday,Validators.required],
               email: [user.email, Validators.required],
               password: [user.password],
+              role: [user.role]
             }));
           });
         }
@@ -48,6 +60,7 @@ export class AdminUsersComponent implements OnInit {
       birthday: ['',Validators.required],
       email: ['', Validators.required],
       password: [0],
+      role:[0]
     }));
   }
 

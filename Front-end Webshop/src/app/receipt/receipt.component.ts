@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReceiptComponent implements OnInit {
 order: Order = new Order(5, 55, 3, "akdaksd", "jasdjs", "ajdjs", "22323fsd");
-user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj");
+user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj", "USER");
 orderItemsList: Array<OrderItem> = [];
 id: number;
   constructor(private service: OrdersService, private route: ActivatedRoute) { }

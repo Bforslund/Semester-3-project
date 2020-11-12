@@ -4,6 +4,8 @@ package individual.project.resources;
 import individual.project.controllers.OrderController;
 import individual.project.model.*;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
@@ -16,6 +18,7 @@ public class OrderResources {
     private UriInfo uriInfo;
     public static final OrderController orderController = new OrderController();
     @GET
+    @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrders() {
         List<Order> OrderList;
@@ -25,6 +28,7 @@ public class OrderResources {
         return Response.ok(entity).build();
     }
     @GET
+    @PermitAll
     @Path("order/{orderNumber}/orderitems") // Get orderItems from an order
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrderItems(@PathParam("orderNumber") int orderNr) {
@@ -35,6 +39,7 @@ public class OrderResources {
         return Response.ok(entity).build();
     }
     @GET
+    @PermitAll
     @Path("order/{id}") // Get one order
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrderById(@PathParam("id") int id) {
@@ -46,6 +51,7 @@ public class OrderResources {
         }
     }
     @GET
+    @PermitAll
     @Path("order/{id}/user") // Get one order
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserByOrderId(@PathParam("id") int id) {
@@ -58,6 +64,7 @@ public class OrderResources {
         }
     }
     @POST //POST at http://localhost:XXXX/items/
+    @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createOrder(Order order) {
         if (!orderController.addOrder(order)){
@@ -70,6 +77,7 @@ public class OrderResources {
         }
     }
     @PUT //PUT at http://localhost:XXXX/orders/id
+    @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateOrder(Order order) {
         // Idempotent method. Always update (even if the resource has already been updated before).
@@ -81,6 +89,7 @@ public class OrderResources {
     }
 
     @DELETE //DELETE at http://localhost:XXXX/orders/3 works
+    @RolesAllowed({"ADMIN"})
     @Path("deleteAll")
     public Response deleteAllOrders() {
         orderController.deleteAll();
@@ -89,6 +98,7 @@ public class OrderResources {
     }
     @GET
     @Path("user/{id}")
+    @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrdersOfUser(@PathParam("id") int id) {
         List<Order> OrderList;

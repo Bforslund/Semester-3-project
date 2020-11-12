@@ -1,22 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators, FormGroup  } from '@angular/forms';
 import { ItemsService } from '../shared/items.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
+  loggedIn:boolean;
 ItemsForms : FormArray = this.fb.array([]);
 itemsList = [];
 notification = null;
 
-  constructor(public fb: FormBuilder, private itemsService: ItemsService) { }
+  constructor(public fb: FormBuilder, private itemsService: ItemsService, private router : Router) { }
+  readLocalStorageValue() {
+    return localStorage.getItem('userToken');
+}
 
   ngOnInit(): void {
- 
+    if(this.readLocalStorageValue() != null){
+      this.loggedIn= true;
+      console.log("logged innnn");
+    }else{
+      this.loggedIn = false;
+      this.router.navigate(['/login']);
+    }
   this.itemsService.getItems().subscribe(
     res => {
       if (res == [])

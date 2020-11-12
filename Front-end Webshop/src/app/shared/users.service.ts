@@ -36,6 +36,10 @@ export class UsersService {
    return this.httpClient.post('http://localhost:9090/users/login', body, this.httpOptions);
   }
 
+  logout(){
+    this.httpOptions.headers = this.httpOptions.headers.delete('Authorization');
+  }
+
   
   updateUser(formData) {
     return this.httpClient.put('http://localhost:9090/users/', formData, this.httpOptions);

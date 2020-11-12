@@ -20,6 +20,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ItemsService } from './shared/items.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ItemsService } from './shared/items.service';
     ReceiptComponent,
     CheckOutComponent,
     OrderHistoryComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

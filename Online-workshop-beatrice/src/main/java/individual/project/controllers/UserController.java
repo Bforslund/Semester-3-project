@@ -74,4 +74,19 @@ public class UserController {
         }
         return false;
     }
+
+    public boolean validateUser(String email, String password, String role){
+        User u = getUserByEmail(email);
+        if(u == null){
+            return false;
+        }
+        if(u.getPassword().equals(password)){
+            if(u.getRole().toString().equals(role)){
+                return true;
+            }
+        }else{
+            return false;
+        }
+        return false;
+    }
 }

@@ -8,8 +8,8 @@ export class User{
         public points: number,
         public birthday: string,
         public email: string,
-        public password: string
-       
+        public password: string,
+        public role: string
     ) {  }
 
 }

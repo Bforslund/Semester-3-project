@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormArray, FormBuilder, Validators, FormGroup  } from '@angular/forms';
 import { OrdersService } from '../shared/orders.service';
 import {Order} from '../model/Order';
@@ -12,9 +13,20 @@ export class AdminOrdersComponent implements OnInit {
   ordersForms : FormArray = this.fb.array([]);
   ordersList = [];
   notification = null;
-  constructor(public fb: FormBuilder, private service: OrdersService) { }
+  loggedIn:boolean;
+  constructor(public fb: FormBuilder, private service: OrdersService, private router : Router) { }
+  readLocalStorageValue() {
+    return localStorage.getItem('userToken');
+}
 
   ngOnInit(): void {
+    if(this.readLocalStorageValue() != null){
+      this.loggedIn= true;
+      console.log("logged innnn");
+    }else{
+      this.loggedIn = false;
+      this.router.navigate(['/login']);
+    }
     this.service.getOrders().subscribe(
       res => {
         if (res == [])

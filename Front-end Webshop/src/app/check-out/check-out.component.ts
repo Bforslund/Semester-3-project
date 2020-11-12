@@ -12,7 +12,7 @@ export class CheckOutComponent implements OnInit {
  shoppingCart: OrderItem[];
  totalPrice: number = 0;
  nrOfItems:number;
- user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj");
+ user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj", "USER");
   constructor(private itemsService: ItemsService, private service: UsersService) { }
 
   ngOnInit(): void {
