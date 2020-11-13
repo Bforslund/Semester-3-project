@@ -9,7 +9,7 @@ import java.util.List;
 
 public class OrderController {
     HibernateOrdersRepository ordersRepository = new HibernateOrdersRepository();
-
+    UserController userController = new UserController();
     public List<Order> showAllOrders() {
       List<Order> orders;
         try {
@@ -89,9 +89,12 @@ public class OrderController {
         }
     }
     public User getUserByOrder(int id) {
+
         try {
-            User o = ordersRepository.getUserfromOrder(id);
-            return o;
+            Order o = ordersRepository.getOrderById(id);
+            int userId = o.getUserId();
+          User user = userController.getUserById(userId);
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

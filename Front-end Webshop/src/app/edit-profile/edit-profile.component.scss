@@ -1,56 +1,34 @@
-html,body{
-    background-color:#9fa8da;
-     background-size: cover;
-     background-repeat: no-repeat;
-     height: 100%;
-     font-family: 'Numans', sans-serif;
-     }
+body{
+    margin-top:10px;
+    background:#9fa8da;
+}
 .card {
-    background-color: #9fa8da;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
 }
-.form-control:focus {
-    box-shadow: none;
-    border-color: #BA68C8
-}
-
-.profile-button {
-    background: #BA68C8;
-    box-shadow: none;
-    border: none
-}
-
-.profile-button:hover {
-    background: #682773
-}
-
-.profile-button:focus {
-    background: #682773;
-    box-shadow: none
-}
-
-.profile-button:active {
-    background: #682773;
-    box-shadow: none
-}
-
-.back:hover {
-    color: #682773;
-    cursor: pointer
-}
-
-.labels {
-    font-weight: bold;
-    font-size: 15px
-}
-
 .card {
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
-   
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e5e9f2;
+    border-radius: .2rem;
 }
-p {
-   
-    font-size: 16px;
-    text-shadow: 2px 2px 8px #BA68C8 ;
-  }
+.card-header:first-child {
+    border-radius: calc(.2rem - 1px) calc(.2rem - 1px) 0 0;
+}
+.card-header {
+    border-bottom-width: 1px;
+}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    color: inherit;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e9f2;
+}

@@ -1,7 +1,46 @@
 <body>
-<div class="card">
-    <div class="card-body">
-        
+<div class="container p-0">
+
+
+    <div class="row">
+        <div class="col-md-5 col-xl-4">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Profile</h5>
+                </div>
+
+                <div class="list-group list-group-flush" role="tablist">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">
+                      Account
+                    </a>
+                
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#pass" role="tab">
+                      Password
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7 col-xl-8">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="account" role="tabpanel">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="mt-5 text-center"><span *ngIf="notification" class="elementToFadeInAndOut">
+                                <i class="fas fa-check-circle {{notification.class}}"></i>
+                                {{notification.message}}
+                            </span>
+                        </div>
+                            <div class="card-actions float-right">
+                              
+                            </div>
+                            <h5 class="card-title mb-0">Public info</h5>
+                        </div>
+                        <div class="card-body">
+
         <form (ngSubmit)="update()" #ProfileForm="ngForm">
 <div class="container h-100 d-flex justify-content-center">
     <div class="p-3 py-5">
@@ -10,12 +49,9 @@
 
 
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h6 class="text-right">Edit your profile</h6>
+            <h5 class="text-right">Edit your profile</h5>
         </div>
-        <span *ngIf="notification" class="elementToFadeInAndOut">
-            <i class="fas fa-check-circle {{notification.class}}"></i>
-            {{notification.message}}
-        </span>
+        
         <div class="row mt-2">
             <div class="col-md-6"><label class="labels">First name</label>
                 <input type="text" class="form-control" id="firstName"
@@ -67,6 +103,40 @@
 
 </div>
 </form>
- </div>
+</div>
+</div>
+
+
+
+</div>
+
+<div class="tab-pane fade" id="pass" role="tabpanel">
+
+<div class="card">
+    <div class="card-header">
+        <div class="mt-5 text-center">
+    </div>
+        <div class="card-actions float-right">
+          
+        </div>
+        <h5 class="card-title mb-0">Change password</h5>
+    
+<div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save</button></div>
+
+      
+          
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+</div>
+</div>
+</div>
+
 </div>
 </body>
