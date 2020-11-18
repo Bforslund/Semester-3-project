@@ -18,9 +18,10 @@ public class HibernateOrdersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
             List<Order> result = session.createQuery("from Order ", Order.class).list();
@@ -42,9 +43,10 @@ public class HibernateOrdersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             String jpql = "from Order where userId = :userId";
@@ -67,9 +69,10 @@ public class HibernateOrdersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             String jpql = "from OrderItem where order_orderNumber = :nr";
@@ -93,9 +96,10 @@ public class HibernateOrdersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
             Order o = (Order)session.get(Order.class, orderNumber);
@@ -116,9 +120,10 @@ public class HibernateOrdersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
 
@@ -144,13 +149,14 @@ public class HibernateOrdersRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             // insert student to the database and get the auto-generated student_number
@@ -176,13 +182,14 @@ public class HibernateOrdersRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
            session.update(o);
@@ -206,13 +213,14 @@ public class HibernateOrdersRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             session.createQuery("delete from Order").executeUpdate(); // fixed in runtime

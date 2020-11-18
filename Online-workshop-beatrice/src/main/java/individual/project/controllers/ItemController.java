@@ -13,7 +13,7 @@ public class ItemController {
             items = itemsRepository.getItems();
            return items;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
       return null;
     }
@@ -23,7 +23,7 @@ public class ItemController {
             System.out.println("Created item: " + i);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -32,7 +32,7 @@ public class ItemController {
             Item o = itemsRepository.getItemById(id);
             return o;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -41,14 +41,14 @@ public class ItemController {
             itemsRepository.update(i);
             System.out.println("Updated item: " + i);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     public void DeleteItem(int id) {
         try {
             itemsRepository.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

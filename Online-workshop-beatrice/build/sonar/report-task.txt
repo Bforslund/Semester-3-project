@@ -2,5 +2,5 @@ projectKey=org.example:Online-workshop-beatrice
 serverUrl=http://localhost:9000
 serverVersion=8.5.0.37579
 dashboardUrl=http://localhost:9000/dashboard?id=org.example%3AOnline-workshop-beatrice
-ceTaskId=AXUm48GBJL7C9_xY5r8J
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXUm48GBJL7C9_xY5r8J
+ceTaskId=AXXbt5tLgfa-BK98ZpRH
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXXbt5tLgfa-BK98ZpRH

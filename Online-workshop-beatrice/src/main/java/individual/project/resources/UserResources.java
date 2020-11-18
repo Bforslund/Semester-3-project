@@ -44,7 +44,7 @@ public class UserResources {
         if(!user.getEmail().equals(email)){
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         }
-        else if (user == null) {
+        else if (user.equals(null)) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         } else {
             return Response.ok(user).build();

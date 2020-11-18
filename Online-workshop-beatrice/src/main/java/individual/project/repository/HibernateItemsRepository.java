@@ -22,9 +22,10 @@ public class HibernateItemsRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
             List<Item> result = session.createQuery("from Item ", Item.class).list();
@@ -48,13 +49,16 @@ public class HibernateItemsRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+                ) {
+
+
             session.beginTransaction();
 
             // insert student to the database and get the auto-generated student_number
@@ -76,9 +80,10 @@ public class HibernateItemsRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
             Item o = (Item)session.get(Item.class, id);
@@ -102,13 +107,14 @@ public class HibernateItemsRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             Item i = (Item)session.get(Item.class, item.getId());
             i.setName(item.getName());
@@ -138,13 +144,14 @@ public class HibernateItemsRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             Item i = (Item)session.get(Item.class, id);

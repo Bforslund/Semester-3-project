@@ -14,7 +14,7 @@ public class UserController {
             items = usersRepository.getUsers();
            return items;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
       return null;
     }
@@ -24,7 +24,7 @@ public class UserController {
             System.out.println("Created user: " + u);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -34,7 +34,7 @@ public class UserController {
             System.out.println("Updated user: " + u);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -43,7 +43,7 @@ public class UserController {
            User u = usersRepository.getUserById(id);
             return u;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -60,7 +60,7 @@ public class UserController {
         try {
             usersRepository.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

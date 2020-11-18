@@ -19,9 +19,10 @@ public class HibernateUsersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
             List<User> result = session.createQuery("from User ", User.class).list();
@@ -42,9 +43,10 @@ public class HibernateUsersRepository {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
-            SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Session session = sessionFactory.openSession();
+        try(
+                SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+                Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
             User user = (User)session.get(User.class, id);
@@ -70,13 +72,14 @@ public class HibernateUsersRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             // insert student to the database and get the auto-generated student_number
@@ -101,13 +104,14 @@ public class HibernateUsersRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
            session.update(u);
@@ -131,13 +135,14 @@ public class HibernateUsersRepository {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
-        try {
+        try (
+                // builds a session factory from the service registry
+                SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-            // builds a session factory from the service registry
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                // obtains the session
+                Session session = sessionFactory.openSession();
 
-            // obtains the session
-            Session session = sessionFactory.openSession();
+        ) {
             session.beginTransaction();
 
             User u = (User)session.load(User.class,id);

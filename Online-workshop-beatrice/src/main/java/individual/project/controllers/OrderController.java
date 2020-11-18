@@ -16,7 +16,7 @@ public class OrderController {
             orders = ordersRepository.getOrders();
            return orders;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
       return null;
     }
@@ -26,7 +26,7 @@ public class OrderController {
             orderitems = ordersRepository.getOrderItems(nr);
             return orderitems;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -36,7 +36,7 @@ public class OrderController {
             orders = ordersRepository.getAllOrderOfOneUser(userId);
             return orders;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -46,7 +46,7 @@ public class OrderController {
             System.out.println("Created order: " + o);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -58,7 +58,7 @@ public class OrderController {
             System.out.println("Created order: " + o);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -68,7 +68,7 @@ public class OrderController {
             System.out.println("Updated order: " + o);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -77,7 +77,7 @@ public class OrderController {
            Order o = ordersRepository.getOrderById(id);
             return o;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -85,7 +85,7 @@ public class OrderController {
         try {
             ordersRepository.delete();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     public User getUserByOrder(int id) {
@@ -96,7 +96,7 @@ public class OrderController {
           User user = userController.getUserById(userId);
             return user;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
     }
