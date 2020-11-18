@@ -51,9 +51,9 @@ public class UserResources {
         }
     }
     @POST //POST at http://localhost:XXXX/users/
-    @RolesAllowed({"ADMIN"})
+    @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(User user) {
+    public Response createUser(User user) {// register
         if (!userController.addUser(user)){
             String entity =  "user with email " + user.getEmail() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();

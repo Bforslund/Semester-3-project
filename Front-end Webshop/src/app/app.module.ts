@@ -21,7 +21,8 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ItemsService } from './shared/items.service';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { RegisterComponent } from './register/register.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CheckOutComponent,
     OrderHistoryComponent,
     StatisticsComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatFormFieldModule
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

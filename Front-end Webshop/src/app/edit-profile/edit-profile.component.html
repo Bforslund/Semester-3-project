@@ -120,9 +120,46 @@
           
         </div>
         <h5 class="card-title mb-0">Change password</h5>
+        <form (ngSubmit)="updatePassword(userData.value)" #userData="ngForm">
+        <div class="form-group row">
+            <label for="user_name" class="col-md-4 col-form-label text-md-right">Password</label>
+            <div class="col-md-6">
+            <input matInput 
+                type="password" 
+                [(ngModel)]="userData.password" 
+                name="password" 
+                placeholder="Password" 
+                class="form-control" 
+                required
+                #password="ngModel" 
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+            <div *ngIf="password.invalid && (userData.submitted || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required"> Password is required. </div>
+            <div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+            </div>
+            </div>
+        </div>
     
-<div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save</button></div>
-
+        <div class="form-group row">
+            <label for="user_name" class="col-md-4 col-form-label text-md-right">Confirm password</label>
+            <div class="col-md-6">
+            <input matInput 
+                type="password" 
+                [(ngModel)]="userData.confirmpassword" 
+                name="confirmpassword" 
+                placeholder="Confirm Password" 
+                class="form-control" 
+                required 
+                #confirmpassword="ngModel" 
+                pattern="{{ password.value }}" />
+            <div *ngIf=" confirmpassword.invalid && (userData.submitted || confirmpassword.touched)" class="alert alert-danger">
+            <div *ngIf="confirmpassword.errors.required"> Confirm password is required. </div>
+            <div *ngIf="confirmpassword.errors.pattern"> Password & Confirm Password does not match.</div>
+            </div>
+            </div>
+        </div>
+<div class="mt-5 text-center"><button class="btn btn-primary profile-button" [disabled]="!userData.valid"  type="submit">Save</button></div>
+        </form>
       
           
     </div>

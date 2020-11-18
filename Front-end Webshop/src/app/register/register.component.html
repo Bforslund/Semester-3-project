@@ -1,0 +1,115 @@
+<body>
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Register</div>
+                        <div class="card-body">
+                            <form  #userData="ngForm" (ngSubmit)="onSubmitRegistration(userData.value)"> 
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="firstName"
+                                        required
+                                        ngModel name="firstName"
+                                        #firstName="ngModel" placeholder="first name">
+                    
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="lastName"
+                                        required
+                                        ngModel name="lastName"
+                                        #lastName="ngModel"placeholder="last name">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">Email Address</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="email"
+                                        required
+                                        ngModel name="email"
+                                        #email="ngModel" placeholder="email" >
+                                    </div>
+                                </div>
+
+                              
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Address</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="address"
+                                        required
+                                        ngModel name="address"
+                                        #address="ngModel" placeholder="address">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="permanent_address" class="col-md-4 col-form-label text-md-right">Birthday</label>
+                                    <div class="col-md-6">
+                                        <select id="birthday" name="birthday" required ngModel
+                                            class="form-control">
+                                            <option *ngFor="let y of years" [value]="y.year">
+                                            {{y.year}}
+                                            </option>
+                                            </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <div class="col-md-6">
+                                    <input matInput 
+                                        type="password" 
+                                        [(ngModel)]="userData.password" 
+                                        name="password" 
+                                        placeholder="Password" 
+                                        class="form-control" 
+                                        required
+                                        #password="ngModel" 
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                                    <div *ngIf="password.invalid && (userData.submitted || password.touched)" class="alert alert-danger">
+                                    <div *ngIf="password.errors.required"> Password is required. </div>
+                                    <div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+                                    </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row">
+                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">Confirm password</label>
+                                    <div class="col-md-6">
+                                    <input matInput 
+                                        type="password" 
+                                        [(ngModel)]="userData.confirmpassword" 
+                                        name="confirmpassword" 
+                                        placeholder="Confirm Password" 
+                                        class="form-control" 
+                                        required 
+                                        #confirmpassword="ngModel" 
+                                        pattern="{{ password.value }}" />
+                                    <div *ngIf=" confirmpassword.invalid && (userData.submitted || confirmpassword.touched)" class="alert alert-danger">
+                                    <div *ngIf="confirmpassword.errors.required"> Confirm password is required. </div>
+                                    <div *ngIf="confirmpassword.errors.pattern"> Password & Confirm Password does not match.</div>
+                                    </div>
+                                    </div>
+                                </div>
+                
+                               
+                                    <div class="col-md-6 offset-md-4">
+                                        <button [disabled]="!userData.valid" class="btn btn-primary" type="submit">Register</button>
+                                    </div>
+                                
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+   
+
+</main>
+</body>

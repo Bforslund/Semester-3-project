@@ -11,6 +11,7 @@ export class EditProfileComponent implements OnInit {
   notification = null; 
   loggedIn:boolean;
   id:string;
+  token:string;
   constructor(private service: UsersService, private router : Router) { }
 user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123","USER")
 readLocalStorageValue() {
@@ -42,5 +43,18 @@ ngOnInit(): void {
 showNotification() {
       this.notification = { class: 'text-primary', message: 'updated!' };
 
+}
+
+updatePassword(data){
+  this.user.password = data.password;
+  this.token = btoa(this.user.email+':'+this.user.password);
+  localStorage.clear();
+  localStorage.setItem('userToken', this.token);
+  localStorage.setItem('userId', this.user.id.toString());
+  location.reload();
+  this.service.updateUser(this.user).subscribe(
+    (res: any) => {
+      console.log("updated password!");
+    });
 }
 }

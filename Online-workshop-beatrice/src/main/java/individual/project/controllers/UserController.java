@@ -66,7 +66,7 @@ public class UserController {
 
     public boolean login(String email, String password){
         User u = getUserByEmail(email);
-        if(u == null){
+        if(u.equals(null)){
             return false;
         }
         if(u.getPassword().equals(password)){
@@ -77,7 +77,7 @@ public class UserController {
 
     public boolean validateUser(String email, String password, String role){
         User u = getUserByEmail(email);
-        if(u == null){
+        if(u.equals(null)){
             return false;
         }
         if(u.getPassword().equals(password)){

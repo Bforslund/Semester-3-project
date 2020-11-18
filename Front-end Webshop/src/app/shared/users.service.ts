@@ -52,6 +52,10 @@ export class UsersService {
     return this.httpClient.get('http://localhost:9090/users/' + id, this.httpOptions);
 }
 
+registerUser(model){
+  return this.httpClient.post('http://localhost:9090/users/', model, this.httpOptions);
+}
+
 
 
 }

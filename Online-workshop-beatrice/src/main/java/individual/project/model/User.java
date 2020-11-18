@@ -21,6 +21,18 @@ public class User {
     }
     public User() {
     }
+
+    public User(String firstName, String lastName, String address, String birthday, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.birthday = birthday;
+        this.email = email;
+        this.password = password;
+        this.points = 0;
+        this.role = roles.USER;
+    }
+
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
