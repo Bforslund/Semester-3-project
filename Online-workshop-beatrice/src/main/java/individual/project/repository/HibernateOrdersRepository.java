@@ -11,9 +11,9 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
 
-public class HibernateOrdersRepository {
+public class HibernateOrdersRepository implements IOrdersRepository {
 
-
+    @Override
     public List<Order> getOrders() throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -39,6 +39,7 @@ public class HibernateOrdersRepository {
         }
     }
 
+    @Override
     public List<Order> getAllOrderOfOneUser(int userId) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -65,6 +66,7 @@ public class HibernateOrdersRepository {
         }
     }
 
+    @Override
     public List<OrderItem> getOrderItems(int nr) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -92,6 +94,7 @@ public class HibernateOrdersRepository {
             throw new Exception("Cannot read items from the database", e);
         }
     }
+    @Override
     public Order getOrderById(int orderNumber) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -116,6 +119,7 @@ public class HibernateOrdersRepository {
             throw new Exception("Cannot read items from the database", e);
         }
     }
+    @Override
     public User getUserfromOrder(int orderNumber) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -142,6 +146,7 @@ public class HibernateOrdersRepository {
         }
     }
 
+    @Override
     public void create(Order o) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
@@ -175,6 +180,7 @@ public class HibernateOrdersRepository {
 
     }
 
+    @Override
     public void update(Order o) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
@@ -206,6 +212,7 @@ public class HibernateOrdersRepository {
         }
 
     }
+    @Override
     public void delete() throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();

@@ -4,11 +4,12 @@ import individual.project.model.Order;
 import individual.project.model.OrderItem;
 import individual.project.model.User;
 import individual.project.repository.HibernateOrdersRepository;
+import individual.project.repository.IOrdersRepository;
 
 import java.util.List;
 
 public class OrderController {
-    HibernateOrdersRepository ordersRepository = new HibernateOrdersRepository();
+    IOrdersRepository ordersRepository = new HibernateOrdersRepository();
     UserController userController = new UserController();
     public List<Order> showAllOrders() {
       List<Order> orders;

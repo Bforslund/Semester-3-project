@@ -93,6 +93,7 @@ SHIPPED, PENDING
         double price = 0;
         for (OrderItem order:orderedItemsList) {
             price += order.getItem().getSellingPrice();
+            price *= order.getQuantity();
         }
         this.totalPrice = price;
     }

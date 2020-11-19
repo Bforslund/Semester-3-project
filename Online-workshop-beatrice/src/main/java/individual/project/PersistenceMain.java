@@ -2,6 +2,7 @@ package individual.project;
 
 import individual.project.controllers.*;
 import individual.project.model.*;
+import individual.project.repository.HibernateOrdersRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class PersistenceMain {
         OrderController persistenceController = new OrderController();
         ItemController controller = new ItemController();
         UserController ucontroller = new UserController();
-        StatisticsController scontroller = new StatisticsController();
+        StatisticsController scontroller = new StatisticsController(new HibernateOrdersRepository());
        User user1 = new User("Bea", "forslund", "Meijhorst", 400, "1999, 10, 21",  "kkkk@live.se", "121221", User.roles.ADMIN);
 //        Item i1 = new Item( "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE);
 //        Item i2 = new Item("sadsda", 50, 100,"Flour", Item.TypeOfItem.COOKIE);

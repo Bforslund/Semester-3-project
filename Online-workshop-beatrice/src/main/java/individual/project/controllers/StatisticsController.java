@@ -8,7 +8,11 @@ import java.util.List;
 
 public class StatisticsController {
     HibernateItemsRepository itemsRepository = new HibernateItemsRepository();
-    HibernateOrdersRepository ordersRepository = new HibernateOrdersRepository();
+    IOrdersRepository ordersRepository;
+
+    public StatisticsController(IOrdersRepository ordersRepository) {
+        this.ordersRepository = ordersRepository;
+    }
 
     public double GetTotalRevenue(){
         try {
@@ -113,18 +117,18 @@ public class StatisticsController {
             }
 
 
-            StatisticsOrder jan = new StatisticsOrder("jan", 0);
-            StatisticsOrder feb = new StatisticsOrder("feb", 0);
-            StatisticsOrder mar = new StatisticsOrder("mar", 0);
-            StatisticsOrder apr = new StatisticsOrder("apr", 0);
-            StatisticsOrder may = new StatisticsOrder("may", 0);
-            StatisticsOrder jun = new StatisticsOrder("jun", 0);
-            StatisticsOrder jul = new StatisticsOrder("jul", 0);
-            StatisticsOrder aug = new StatisticsOrder("aug", 0);
-            StatisticsOrder sep = new StatisticsOrder("sep", 0);
-            StatisticsOrder oct = new StatisticsOrder("oct", 0);
-            StatisticsOrder nov = new StatisticsOrder("nov", 0);
-            StatisticsOrder dec = new StatisticsOrder("dec", 0);
+            StatisticsOrder jan = new StatisticsOrder("JANUARY", 0);
+            StatisticsOrder feb = new StatisticsOrder("FEBRUARY", 0);
+            StatisticsOrder mar = new StatisticsOrder("MARCH", 0);
+            StatisticsOrder apr = new StatisticsOrder("APRIL", 0);
+            StatisticsOrder may = new StatisticsOrder("MAY", 0);
+            StatisticsOrder jun = new StatisticsOrder("JUNE", 0);
+            StatisticsOrder jul = new StatisticsOrder("JULY", 0);
+            StatisticsOrder aug = new StatisticsOrder("AUGUST", 0);
+            StatisticsOrder sep = new StatisticsOrder("SEPTEMBER", 0);
+            StatisticsOrder oct = new StatisticsOrder("OCTOBER", 0);
+            StatisticsOrder nov = new StatisticsOrder("NOVEMBER", 0);
+            StatisticsOrder dec = new StatisticsOrder("DECEMBER", 0);
             List<StatisticsOrder> StatList = new ArrayList<>();
 
             for (Integer m: allMonths) {

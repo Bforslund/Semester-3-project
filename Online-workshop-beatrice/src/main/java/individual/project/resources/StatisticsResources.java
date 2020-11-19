@@ -14,7 +14,8 @@ import java.util.List;
 public class StatisticsResources {
     @Context
     private UriInfo uriInfo;
-    public static final StatisticsController statController = new StatisticsController();
+
+    public static final StatisticsController statController = new StatisticsController(new HibernateOrdersRepository());
     @GET
     @Path("revenue")
     @RolesAllowed({"ADMIN"})
