@@ -1,10 +1,12 @@
 package individual.project;
 
+import individual.project.Repositories.FakeOrdersRespository;
 import individual.project.controllers.ItemController;
 import individual.project.controllers.OrderController;
 import individual.project.controllers.StatisticsController;
 import individual.project.controllers.UserController;
 import individual.project.model.*;
+import individual.project.repository.IOrdersRepository;
 import org.hibernate.stat.Statistics;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,8 @@ public class BlaTest
     OrderController persistenceController = new OrderController();
     ItemController controller = new ItemController();
     UserController ucontroller = new UserController();
-    StatisticsController scontroller = new StatisticsController();
+    FakeOrdersRespository ordersRepository = new FakeOrdersRespository();
+    StatisticsController scontroller = new StatisticsController(ordersRepository);
 
 //    User user1 = new User("Bea", "forslund", "Meijhorst", 400, "1999, 10, 21",  "kkkk@live.se", "121221");
 ////        Item i1 = new Item( "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE);
