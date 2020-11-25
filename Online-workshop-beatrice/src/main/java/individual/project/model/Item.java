@@ -3,7 +3,6 @@ package individual.project.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "individual_items")
@@ -27,6 +26,10 @@ public class Item {
     }
 
     public void setName(String name) {
+        if (name == null || name.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }
         this.name = name;
     }
 
@@ -35,6 +38,10 @@ public class Item {
     }
 
     public void setSellingPrice(int sellingPrice) {
+        if (sellingPrice < buyingPrice)
+        {
+            throw new IllegalArgumentException();
+        }
         this.sellingPrice = sellingPrice;
     }
 
@@ -43,6 +50,10 @@ public class Item {
     }
 
     public void setBuyingPrice(int buyingPrice) {
+        if (buyingPrice < 0)
+        {
+            throw new IllegalArgumentException();
+        }
         this.buyingPrice = buyingPrice;
     }
 
@@ -51,6 +62,10 @@ public class Item {
     }
 
     public void setIngredients(String ingredients) {
+        if (ingredients == null || ingredients.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }
         this.ingredients = ingredients;
     }
     public TypeOfItem getType() {
@@ -58,6 +73,10 @@ public class Item {
     }
 
     public void setType(TypeOfItem type) {
+        if (type == null)
+        {
+            throw new IllegalArgumentException();
+        }
         this.type = type;
     }
 
@@ -97,5 +116,4 @@ public class Item {
         return name +": " + ingredients + ": " + sellingPrice;
     }
 
-    // TODO check so that values cant be null or 0
 }

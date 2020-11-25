@@ -20,9 +20,14 @@ public class UserController {
     }
    public boolean addUser(User u) {
         try {
-            usersRepository.create(u);
-            System.out.println("Created user: " + u);
-            return true;
+            if(getUserByEmail(u.getEmail()) == null){
+                usersRepository.create(u);
+                System.out.println("Created user: " + u);
+                return true;
+            }else{
+                return false;
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;

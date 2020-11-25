@@ -13,7 +13,7 @@ export class EditProfileComponent implements OnInit {
   id:string;
   token:string;
   constructor(private service: UsersService, private router : Router) { }
-user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123","USER")
+user = new User(1, "", "", "", 0, "", "", "","")
 readLocalStorageValue() {
   return localStorage.getItem('userToken');
 }

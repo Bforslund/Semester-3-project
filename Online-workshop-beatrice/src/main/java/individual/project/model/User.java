@@ -74,6 +74,10 @@ public class User {
     }
 
     public void setFirstName(String firstName) {
+        if (firstName == null || firstName.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }
         this.firstName = firstName;
     }
 
@@ -82,7 +86,10 @@ public class User {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if (lastName == null || lastName.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -90,7 +97,10 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email == null || email.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }this.email = email;
     }
 
     public String getPassword() {
@@ -98,7 +108,10 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if (password == null || password.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }this.password = password;
     }
 
     public int getId() {
@@ -116,7 +129,10 @@ public class User {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        if (address == null || address.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }this.address = address;
     }
 
     public int getPoints() {
@@ -132,7 +148,10 @@ public class User {
     }
 
     public void setBirthday(String birthday) {
-        this.birthday = birthday;
+        if (birthday == null || birthday.isEmpty())
+        {
+            throw new IllegalArgumentException();
+        }this.birthday = birthday;
     }
 
 
