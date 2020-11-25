@@ -1,13 +1,11 @@
 package individual.project;
 
 import individual.project.Repositories.FakeOrdersRespository;
-import individual.project.controllers.ItemController;
-import individual.project.controllers.OrderController;
+
 import individual.project.controllers.StatisticsController;
-import individual.project.controllers.UserController;
+
 import individual.project.model.*;
-import individual.project.repository.IOrdersRepository;
-import org.hibernate.stat.Statistics;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

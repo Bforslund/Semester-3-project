@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticsController {
-    HibernateItemsRepository itemsRepository = new HibernateItemsRepository();
     IOrdersRepository ordersRepository;
 
     public StatisticsController(IOrdersRepository ordersRepository) {

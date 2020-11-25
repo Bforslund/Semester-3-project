@@ -15,9 +15,10 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
 
-public class HibernateItemsRepository {
+public class HibernateItemsRepository implements IItemRepository {
 
 
+    @Override
     public List<Item> getItems() throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -42,6 +43,7 @@ public class HibernateItemsRepository {
             throw new Exception("Cannot read items from the database", e);
         }
     }
+    @Override
     public void create(Item i) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
@@ -76,6 +78,7 @@ public class HibernateItemsRepository {
         }
 
     }
+    @Override
     public Item getItemById(int id) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -100,6 +103,7 @@ public class HibernateItemsRepository {
             throw new Exception("Cannot read items from the database", e);
         }
     }
+    @Override
     public void update(Item item) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
@@ -137,6 +141,7 @@ public class HibernateItemsRepository {
         }
 
     }
+    @Override
     public void delete(int id) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();

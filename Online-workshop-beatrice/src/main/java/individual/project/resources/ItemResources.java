@@ -2,6 +2,7 @@ package individual.project.resources;
 
 import individual.project.controllers.ItemController;
 import individual.project.model.Item;
+import individual.project.repository.HibernateItemsRepository;
 
 
 import javax.annotation.security.PermitAll;
@@ -22,7 +23,7 @@ import javax.ws.rs.container.*;
 public class ItemResources {
     @Context
     private UriInfo uriInfo;
-    public static final ItemController itemController = new ItemController();
+    public static final ItemController itemController = new ItemController(new HibernateItemsRepository());
 
     @GET
     @PermitAll
@@ -70,6 +71,46 @@ public class ItemResources {
             public void run() {
                 List<Item> itemList;
                 itemList = itemController.search(term);
+
+                asyncResponse.resume(Response.ok(itemList).build());
+            }
+        }).start();
+    }
+    @GET
+    @PermitAll
+    @Path("{type}/{price}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void getAllFilteredItems(@PathParam("type") String type, @PathParam("price") double price, @Suspended final AsyncResponse asyncResponse) {
+        Item.TypeOfItem itemType = itemController.MakeToEnum(type);
+        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+
+            @Override
+            public void handleTimeout(AsyncResponse asyncResponse) {
+                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+                        .entity("Operation time out.").build());
+            }
+        });
+        asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
+
+        asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
+            @Override
+            public void onDisconnect(AsyncResponse disconnected) {
+                System.out.println("Connection to the client is closed or lost!");
+            }
+        });
+
+        asyncResponse.register(new CompletionCallback() { // register a CompletionCallback listener
+            @Override
+            public void onComplete(Throwable throwable) {
+                System.out.println("Processing is complete!");
+            }
+        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Item> itemList;
+                itemList = itemController.filterByType(itemType,price);
 
                 asyncResponse.resume(Response.ok(itemList).build());
             }

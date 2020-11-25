@@ -1,17 +1,9 @@
 package individual.project;
 import individual.project.Repositories.FakeOrdersRespository;
-import individual.project.controllers.ItemController;
-import individual.project.controllers.OrderController;
-import individual.project.controllers.StatisticsController;
-import individual.project.controllers.UserController;
-import individual.project.model.*;
-import individual.project.repository.IOrdersRepository;
-import org.hibernate.stat.Statistics;
-import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
+import individual.project.model.*;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +12,6 @@ public class OrderTest {
     //    @Rule
 //    public ExpectedException exception = ExpectedException.none();
 
-    FakeOrdersRespository ordersRepository = new FakeOrdersRespository();
 
     @Test
     public void testAddItemsToOrder()
