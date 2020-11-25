@@ -2,6 +2,7 @@ package individual.project.controllers;
 import individual.project.model.*;
 import individual.project.repository.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemController {
@@ -16,6 +17,23 @@ public class ItemController {
             System.out.println(e.getMessage());
         }
       return null;
+    }
+    public List<Item> search(String term) {
+        List<Item> items;
+       String searchTerm = term.toLowerCase();
+        try {
+            items = itemsRepository.getItems();
+            List<Item> foundItems = new ArrayList<>();
+            for (Item i:items) {
+                if(i.getName().toLowerCase().indexOf(searchTerm) >= 0){
+                    foundItems.add(i);
+                }
+            }
+            return foundItems;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
    public boolean addItem(Item i) {
         try {

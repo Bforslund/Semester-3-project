@@ -21,16 +21,16 @@ public class PersistenceMain {
 //        Item i3 = new Item( "bfdgd", 50, 100,"Flour", Item.TypeOfItem.OTHER);
 
        // ucontroller.addUser(user1);
-//        Item i2 = controller.getItemById(2);
-//        Item i3 = controller.getItemById(7);
-//        Order o1 = new Order(  1,"kuk", "Frida framstedt");
+        Item i2 = controller.getItemById(2);
+        Item i3 = controller.getItemById(7);
+      Order o1 = new Order(  1,"kuk", "Frida framstedt");
 //
-//        OrderItem oi1 = new OrderItem(i2, 3);
-//        OrderItem oi2 = new OrderItem(i3, 2);
-//
-//        o1.AddItemToList(oi1);
-//        o1.AddItemToList(oi2);
-//        persistenceController.addOrder(o1);
+        OrderItem oi1 = new OrderItem(i2, 3);
+        OrderItem oi2 = new OrderItem(i3, 2);
+
+        o1.AddItemToList(oi1);
+        o1.AddItemToList(oi2);
+        persistenceController.addOrder(o1);
 
         // controller.UpdateItem();
 

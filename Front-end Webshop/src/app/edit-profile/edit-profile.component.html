@@ -69,13 +69,7 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-12"><label class="labels">Email</label>
-                <input type="text" class="form-control" id="email"
-                    required
-                    [(ngModel)]="user.email" name="email"
-                    #email="ngModel">
-
-            </div>
+         
            
             <div class="col-md-12"><label class="labels">Address</label>
                 <input type="text" class="form-control" id="address"
@@ -86,6 +80,10 @@
             </div>
         </div>
         <div class="row mt-3">
+            <div class="col-md-12"><label class="labels">Email</label>
+                <p>{{user.email}}</p>
+
+            </div>
             <div class="col-md-6"><label class="labels">Points</label>
                 <p>{{user.points}}</p>
             </div>

@@ -79,7 +79,6 @@ public class UserResources {
         }
     }
     @PUT //Update user from admin
-    @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         if (userController.updateUser(user)) {

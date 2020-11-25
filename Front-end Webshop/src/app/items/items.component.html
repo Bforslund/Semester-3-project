@@ -10,3 +10,16 @@
   </p>
 
   <a class="button fancy-button" href="#"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a>
+  <div id="search-component">
+    <h4><label for="search-box">Item Search</label></h4>
+  
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  
+    <ul class="search-result">
+      <li *ngFor="let item of items$ | async" >
+      
+          {{item.name}}
+      
+      </li>
+    </ul>
+  </div>
