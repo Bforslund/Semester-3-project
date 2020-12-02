@@ -13,19 +13,10 @@ export class AdminUsersComponent implements OnInit {
   usersList = [];
   notification = null;
   loggedIn:boolean;
-  constructor(public fb: FormBuilder, private service: UsersService, private router : Router) { }
-  readLocalStorageValue() {
-    return localStorage.getItem('userToken');
-}
+  constructor(public fb: FormBuilder, private service: UsersService) { }
 
   ngOnInit(): void {
-    if(this.readLocalStorageValue() != null){
-      this.loggedIn= true;
-      console.log("logged innnn");
-    }else{
-      this.loggedIn = false;
-      this.router.navigate(['/login']);
-    }
+ 
     this.service.getUsers().subscribe(
       res => {
         if (res == [])

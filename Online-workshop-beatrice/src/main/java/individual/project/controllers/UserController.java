@@ -3,6 +3,8 @@ package individual.project.controllers;
 import individual.project.model.User;
 import individual.project.repository.HibernateUsersRepository;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class UserController {
@@ -21,6 +23,8 @@ public class UserController {
    public boolean addUser(User u) {
         try {
             if(getUserByEmail(u.getEmail()) == null){
+                String newPassword = doHashing(u.getPassword());
+                u.setPassword(newPassword);
                 usersRepository.create(u);
                 System.out.println("Created user: " + u);
                 return true;
@@ -74,7 +78,8 @@ public class UserController {
         if(u.equals(null)){
             return false;
         }
-        if(u.getPassword().equals(password)){
+        String encryptedPass = doHashing(password);
+        if(u.getPassword().equals(encryptedPass)){
             return true;
         }
         return false;
@@ -93,5 +98,25 @@ public class UserController {
             return false;
         }
         return false;
+    }
+
+    public String doHashing(String password){
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+
+          byte[] result=  md.digest();
+            StringBuilder sb = new StringBuilder();
+
+            for (byte b : result) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

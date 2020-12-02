@@ -14,19 +14,10 @@ export class AdminOrdersComponent implements OnInit {
   ordersList = [];
   notification = null;
   loggedIn:boolean;
-  constructor(public fb: FormBuilder, private service: OrdersService, private router : Router) { }
-  readLocalStorageValue() {
-    return localStorage.getItem('userToken');
-}
+  constructor(public fb: FormBuilder, private service: OrdersService) { }
 
   ngOnInit(): void {
-    if(this.readLocalStorageValue() != null){
-      this.loggedIn= true;
-      console.log("logged innnn");
-    }else{
-      this.loggedIn = false;
-      this.router.navigate(['/login']);
-    }
+ 
     this.service.getOrders().subscribe(
       res => {
         if (res == [])

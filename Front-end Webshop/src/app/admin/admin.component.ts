@@ -13,19 +13,11 @@ ItemsForms : FormArray = this.fb.array([]);
 itemsList = [];
 notification = null;
 
-  constructor(public fb: FormBuilder, private itemsService: ItemsService, private router : Router) { }
-  readLocalStorageValue() {
-    return localStorage.getItem('userToken');
-}
+  constructor(public fb: FormBuilder, private itemsService: ItemsService) { }
+
 
   ngOnInit(): void {
-    if(this.readLocalStorageValue() != null){
-      this.loggedIn= true;
-      console.log("logged innnn");
-    }else{
-      this.loggedIn = false;
-      this.router.navigate(['/login']);
-    }
+
   this.itemsService.getItems().subscribe(
     res => {
       if (res == [])

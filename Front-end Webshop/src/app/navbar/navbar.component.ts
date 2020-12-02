@@ -15,23 +15,24 @@ loggedIn:boolean;
   ngOnInit(): void {
     if(this.readLocalStorageValue() != null){
       this.loggedIn= true;
+      this.id = localStorage.getItem('userId');
+      this.service.getUserById(this.id)
+      .subscribe((data)=>{
+       this.user = <User>data;
+       console.log(this.user);
+       if(this.user.role === "ADMIN"){
+        this.admin = true;
+        
+      }else{
+        this.admin = false;
+      }
+      });
       console.log("logged innnn");
     }else{
       this.loggedIn = false;
     }
 
-    this.id = localStorage.getItem('userId');
-    this.service.getUserById(this.id)
-    .subscribe((data)=>{
-     this.user = <User>data;
-     console.log(this.user);
-     if(this.user.role === "ADMIN"){
-      this.admin = true;
-      
-    }else{
-      this.admin = false;
-    }
-    });
+
    
 
 

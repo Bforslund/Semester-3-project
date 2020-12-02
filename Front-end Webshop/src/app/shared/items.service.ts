@@ -89,6 +89,8 @@ public GetOrder(){
       return of(result as T);
     };
   }
-
+  public filterItems(term:string, price:number){
+    return this.httpClient.get('http://localhost:9090/items/'+ term + '/' + price, this.httpOptions);
+  }
 
 }

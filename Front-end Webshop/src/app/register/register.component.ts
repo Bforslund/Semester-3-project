@@ -45,8 +45,16 @@ export class RegisterComponent implements OnInit {
       (res: any) => {
         console.log(this.user);
         this.router.navigate(['/login']);
-                    });
-   }
+                    },       (error: Response) => {
+                      if(error.status === 409){
+                         console.log('This user already exists');
+                        }
+                        else{
+                          console.log('Wrong data provided');
+                        } 
+                    })
+ }
+        
 
   
 

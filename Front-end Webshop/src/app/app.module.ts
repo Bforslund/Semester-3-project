@@ -23,7 +23,8 @@ import { ItemsService } from './shared/items.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSliderModule} from '@angular/material/slider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatRadioModule,
+    MatSliderModule
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

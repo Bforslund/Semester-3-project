@@ -13,7 +13,8 @@ import {StatisticsComponent} from './statistics/statistics.component';
 import {OrderHistoryComponent} from './order-history/order-history.component';
 import {RegisterComponent} from './register/register.component'
 import { state } from '@angular/animations';
-
+import { AuthGuard } from  './auth/auth.guard';
+import { AdminAuthGuard } from  './auth/admin-auth.guard';
 const routes: Routes = [ {
   path: 'home',
   component: HomeComponent
@@ -25,18 +26,22 @@ const routes: Routes = [ {
 
 {
   path: 'admin',
-  component: AdminComponent
+  component: AdminComponent,
+  canActivate: [ AdminAuthGuard ]
 },
 {
   path: 'orders',
-  component: AdminOrdersComponent
+  component: AdminOrdersComponent,
+  canActivate: [ AdminAuthGuard ]
 },{
   path: 'users',
-  component: AdminUsersComponent
+  component: AdminUsersComponent,
+  canActivate: [ AdminAuthGuard ]
 },
 {
   path: 'profile',
-  component: EditProfileComponent
+  component: EditProfileComponent,
+  canActivate: [ AuthGuard ]
 },
 {
   path: 'login',
@@ -44,7 +49,8 @@ const routes: Routes = [ {
 },
 {
   path: 'receipt/:id',
-  component: ReceiptComponent
+  component: ReceiptComponent,
+  canActivate: [ AuthGuard ]
 },
 {
   path: 'checkout',
@@ -52,11 +58,13 @@ const routes: Routes = [ {
 },
 {
   path: 'statistics',
-  component: StatisticsComponent
+  component: StatisticsComponent,
+  canActivate: [ AdminAuthGuard ]
 },
 {
   path: 'orderhistory',
-  component: OrderHistoryComponent
+  component: OrderHistoryComponent,
+  canActivate: [ AuthGuard ]
 },
 {
   path: 'register',

@@ -23,3 +23,34 @@
       </li>
     </ul>
   </div>
+  <div id="search-component">
+    <h4><label for="search-box">Item Filter</label></h4>
+  
+    <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    
+    class="example-radio-group"
+    [(ngModel)]="item.TypeOfItem">
+    <mat-radio-button (change)="radioChange($event)" class="example-radio-button" *ngFor="let type of productTypes" [value]="type">
+      {{type}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <div>Your favorite season is: {{item.TypeOfItem}}</div>
+    
+    <mat-slider
+    (input)="onInputChange($event)"
+    thumbLabel
+    [displayWith]="formatLabel"
+    tickInterval="500"
+    min="2"
+    max="500"></mat-slider>
+
+    <ul class="search-result">
+      <li *ngFor="let item of filterItems$ | async" >
+      
+          {{item.name}}
+      
+      </li>
+    </ul>
+  </div>
+   
