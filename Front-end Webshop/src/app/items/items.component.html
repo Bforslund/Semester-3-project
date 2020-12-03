@@ -1,28 +1,7 @@
-<h2>Products</h2>
-<mat-selection-list #items>
-    <mat-list-option *ngFor="let item of itemsList">
-      {{item.name}}
-    </mat-list-option>
-  </mat-selection-list>
-  
-  <p>
-    Options selected: {{items.selectedOptions.selected.length}}
-  </p>
 
-  <a class="button fancy-button" href="#"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a>
-  <div id="search-component">
-    <h4><label for="search-box">Item Search</label></h4>
-  
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-  
-    <ul class="search-result">
-      <li *ngFor="let item of items$ | async" >
-      
-          {{item.name}}
-      
-      </li>
-    </ul>
-  </div>
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+    
   <div id="search-component">
     <h4><label for="search-box">Item Filter</label></h4>
   
@@ -53,4 +32,39 @@
       </li>
     </ul>
   </div>
-   
+  <h4><label for="search-box">Item Search</label></h4>
+  
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" class="fas fa-chevron-left" mat-button (click)="drawer.toggle()"></button>
+    
+      <h2>Products</h2>
+      <div *ngFor="let product of itemsList">
+
+        <h3>
+          <a [title]="product.name + ' details'" (click)="openProductDetails(product)">
+            {{ product.name }}
+          </a>
+        </h3>
+      
+      </div>
+  
+
+  <!-- <a class="button fancy-button"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a> -->
+
+  <div id="search-component">
+ 
+  
+    <ul class="search-result">
+      <li *ngFor="let item of items$ | async" >
+      
+          {{item.name}}
+      
+      </li>
+    </ul>
+  </div>
+    </div>
+  
+  </mat-drawer-container>

@@ -16,7 +16,7 @@
 
             <!--Card content-->
           
-                <form class="card-body" (ngSubmit)="submit()" #ShippingForm="ngForm">
+                <form class="card-body"  #ShippingForm="ngForm"(ngSubmit)="submit(ShippingForm.value)">
 
               <!--Grid row-->
               <div class="row">
@@ -82,21 +82,7 @@
 
               </div>
 
-              
-              
-
-              <hr>
-
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="same-address">
-                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="save-info">
-                <label class="custom-control-label" for="save-info">Save this information for next time</label>
-              </div>
-
-              <hr>
+             
 
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
@@ -166,7 +152,7 @@
           <ul class="list-group mb-3 z-depth-1">
             <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of shoppingCart"> 
               <div>
-                <h6 class="my-0">{{product.item.name}}</h6>
+                <h6 class="my-0">{{product.item.name}} ({{product.quantity}})</h6>
                 <small class="text-muted">{{product.item.ingredients}}</small>
               </div>
               <span class="text-muted">${{product.item.sellingPrice}}</span>

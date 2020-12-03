@@ -16,17 +16,19 @@ public class Order {
 SHIPPED, PENDING
     }
 
-    public Order( int userId, String address, String CustomerName) {
+    public Order( int userId, String address, String CustomerName, double totalPrice, List<OrderItem> orderItems) {
 
         this.userId = userId;
+        this.totalPrice = totalPrice;
         this.status = orderStatus.PENDING;
         this.customerName = CustomerName;
         this.address = address;
         this.time = LocalDate.now();
-        orderedItemsList  = new ArrayList<>();
+        orderedItemsList  = orderItems;
     }
 
     public Order() {
+        orderedItemsList  = new ArrayList<>();
     }
     @Id
     @GeneratedValue(generator="increment")
@@ -48,7 +50,6 @@ SHIPPED, PENDING
     private String customerName;
 
     @OneToMany(mappedBy = "order", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonbTransient
     private List<OrderItem> orderedItemsList;
 
     public String getCustomerName() {
@@ -60,11 +61,14 @@ SHIPPED, PENDING
     }
 
 
-    public void AddItemToList(OrderItem i){
+    public void AddItemToList(OrderItem i) {
 
         i.setOrder(this);
         getOrderedItemsList().add(i);
+    }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getAddress() {

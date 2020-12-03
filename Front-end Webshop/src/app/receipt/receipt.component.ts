@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./receipt.component.scss']
 })
 export class ReceiptComponent implements OnInit {
-order: Order = new Order(5, 55, 3, "akdaksd", "jasdjs", "ajdjs", "22323fsd");
+order: Order = new Order(55, 3, "akdaksd", "jasdjs");
 user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj", "USER");
 orderItemsList: Array<OrderItem> = [];
 id: number;

@@ -15,15 +15,19 @@ import {RegisterComponent} from './register/register.component'
 import { state } from '@angular/animations';
 import { AuthGuard } from  './auth/auth.guard';
 import { AdminAuthGuard } from  './auth/admin-auth.guard';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 const routes: Routes = [ {
   path: 'home',
   component: HomeComponent
 },
 {
-  path: 'items',
+  path: 'products',
   component: ItemsComponent
 },
-
+{
+  path: 'products/:id',
+  component: ProductDetailsComponent
+},
 {
   path: 'admin',
   component: AdminComponent,

@@ -43,7 +43,18 @@ public class OrderController {
     }
    public boolean addOrder(Order o) {
         try {
-            ordersRepository.create(o);
+            Order order = new Order();
+            order.setCustomerName(o.getCustomerName());
+            order.setAddress(o.getAddress());
+            order.setStatus(o.getStatus());
+            order.setTime(o.getTime());
+            order.setTotalPrice(o.getTotalPrice());
+            order.setUserId(o.getUserId());
+
+            for (OrderItem item: o.getOrderedItemsList()) {
+                order.AddItemToList(item);
+            }
+            ordersRepository.create(order);
             System.out.println("Created order: " + o);
             return true;
         } catch (Exception e) {

@@ -25,6 +25,10 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CheckoutLoginComponent } from './checkout-login/checkout-login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +44,9 @@ import {MatSliderModule} from '@angular/material/slider';
     OrderHistoryComponent,
     StatisticsComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductDetailsComponent,
+    CheckoutLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,9 @@ import {MatSliderModule} from '@angular/material/slider';
     HttpClientModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSidenavModule,
+    MatDialogModule
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { Order } from '../model/Order';
 
 
 
@@ -29,9 +30,9 @@ export class UsersService {
    // console.log(httpOptions.headers);
     return this.httpClient.get('http://localhost:9090/users/', this.httpOptions);
   }
-
+order:Order;
   login(email, password){
-   
+   this.order = new Order( 0, 1, "","");
    const body = email+":"+password;
    return this.httpClient.post('http://localhost:9090/users/login', body, this.httpOptions);
   }

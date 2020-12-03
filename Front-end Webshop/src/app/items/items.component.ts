@@ -8,6 +8,8 @@ import {
 import {Item} from '../model/Item';
 import { MatSliderChange } from '@angular/material/slider';
 import { MatRadioChange } from '@angular/material/radio';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-items',
@@ -18,15 +20,20 @@ export class ItemsComponent implements OnInit{
   itemsList: Item[];
   items$: Observable<Item[]>;
   filterItems$: Observable<Item[]>;
-
+  showFiller = false;
   price:number =0;
   type:string = null;
-  constructor(private itemsService: ItemsService) { }
-
 
 
   item = new Item(1,"",1,1,"","");
   productTypes: string[] = ['CAKE', 'CUPCAKE', 'COOKIE', 'OTHER'];
+
+  selectedOptions: Item[];
+
+
+  constructor( public dialog: MatDialog,private itemsService: ItemsService) { }
+
+
 
   onInputChange(event: MatSliderChange) {
    
@@ -57,11 +64,11 @@ export class ItemsComponent implements OnInit{
   }
   private searchTerms = new Subject<string>();
   ngOnInit(): void {
-  //   this.itemsService.getItems()
-  //   .subscribe((data)=>{
-  //     console.log(data);
-  //     this.itemsList = <Item[]>data;
-  // });
+    this.itemsService.getItems()
+    .subscribe((data)=>{
+      console.log(data);
+      this.itemsList = <Item[]>data;
+  });
 
   this.items$ = this.searchTerms.pipe(
     // wait 300ms after each keystroke before considering the term
@@ -75,6 +82,17 @@ export class ItemsComponent implements OnInit{
   );
 
  
+}
+openProductDetails(item: Item): void {
+  
+  const dialogRef = this.dialog.open(ProductDetailsComponent, {
+    maxWidth: '50%',
+    data: {item: item}
+  }); 
+  dialogRef.afterClosed()
+    .subscribe(res => {
+  });
+
 }
 
 }

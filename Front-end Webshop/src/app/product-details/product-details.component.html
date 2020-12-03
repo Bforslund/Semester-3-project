@@ -1,0 +1,11 @@
+<h2>Product Details</h2>
+<form  #productForm="ngForm" (submit)="recordSubmit(productForm.value.quantity)">
+<div *ngIf="product">
+  <h3>{{ product.name }}</h3>
+  <h4>{{ product.sellingPrice | currency }}</h4>
+  <p>{{ product.ingredients }}</p>
+  <input type="number" id="quantity" name="quantity" ngModel>
+  <button type="submit" class="form-control" (click)="addToCart(product)">Buy</button>
+
+</div>
+</form>

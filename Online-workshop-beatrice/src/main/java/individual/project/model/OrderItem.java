@@ -2,6 +2,7 @@ package individual.project.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 
@@ -16,6 +17,7 @@ public class OrderItem {
     private int id;
 
     @ManyToOne(optional = false)
+    @JsonbTransient
     private Order order;
 
     @ManyToOne(optional = false)

@@ -2,6 +2,7 @@ package individual.project.resources;
 
 import individual.project.controllers.ItemController;
 import individual.project.model.Item;
+import individual.project.model.Order;
 import individual.project.repository.HibernateItemsRepository;
 
 
@@ -36,20 +37,31 @@ public class ItemResources {
         };
         return Response.ok(entity).build();
     }
-
+    @GET
+    @PermitAll
+    @Path("item/{id}") // Get one item
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrderById(@PathParam("id") int id) {
+        Item o = itemController.getItemById(id);//studentsRepository.get(stNr);
+        if (o == null) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid item id.").build();
+        } else {
+            return Response.ok(o).build();
+        }
+    }
     @GET
     @PermitAll
     @Path("{term}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllSearchItems(@PathParam("term") String term, @Suspended final AsyncResponse asyncResponse) {
-        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
-
-            @Override
-            public void handleTimeout(AsyncResponse asyncResponse) {
-                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-                        .entity("Operation time out.").build());
-            }
-        });
+//        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+//
+//            @Override
+//            public void handleTimeout(AsyncResponse asyncResponse) {
+//                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+//                        .entity("Operation time out.").build());
+//            }
+//        });
         asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
 
         asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
@@ -82,14 +94,14 @@ public class ItemResources {
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllFilteredItems(@PathParam("type") String type, @PathParam("price") double price, @Suspended final AsyncResponse asyncResponse) {
         Item.TypeOfItem itemType = itemController.MakeToEnum(type);
-        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
-
-            @Override
-            public void handleTimeout(AsyncResponse asyncResponse) {
-                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-                        .entity("Operation time out.").build());
-            }
-        });
+//        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+//
+//            @Override
+//            public void handleTimeout(AsyncResponse asyncResponse) {
+//                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+//                        .entity("Operation time out.").build());
+//            }
+//        });
         asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
 
         asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener

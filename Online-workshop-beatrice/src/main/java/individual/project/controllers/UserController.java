@@ -90,7 +90,8 @@ public class UserController {
         if(u.equals(null)){
             return false;
         }
-        if(u.getPassword().equals(password)){
+        String encryptedPass = doHashing(password);
+        if(u.getPassword().equals(encryptedPass)){
             if(u.getRole().toString().equals(role)){
                 return true;
             }
