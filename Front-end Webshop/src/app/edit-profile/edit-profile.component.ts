@@ -14,17 +14,8 @@ export class EditProfileComponent implements OnInit {
   token:string;
   constructor(private service: UsersService, private router : Router) { }
 user = new User(1, "", "", "", 0, "", "", "","")
-readLocalStorageValue() {
-  return localStorage.getItem('userToken');
-}
 
 ngOnInit(): void {
-  if(this.readLocalStorageValue() != null){
-    this.loggedIn= true;
-  }else{
-    this.loggedIn = false;
-    this.router.navigate(['/login']);
-  }
   this.id = localStorage.getItem('userId');
     this.service.getUserById(this.id)
     .subscribe((data)=>{

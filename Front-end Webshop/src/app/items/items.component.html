@@ -1,4 +1,5 @@
 
+  <body>
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
     
@@ -32,25 +33,28 @@
       </li>
     </ul>
   </div>
-  <h4><label for="search-box">Item Search</label></h4>
-  
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+ 
     </mat-drawer>
   
     <div class="example-sidenav-content">
-      <button type="button" class="fas fa-chevron-left" mat-button (click)="drawer.toggle()"></button>
-    
-      <h2>Products</h2>
+      <button type="button" class="fas fa-chevron-right" mat-button (click)="drawer.toggle()"></button>
+      <h4><label for="search-box">Item Search</label></h4>
+  
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+      <div class="content">
+      <h1>Products</h1> 
       <div *ngFor="let product of itemsList">
 
-        <h3>
+        <h4>
           <a [title]="product.name + ' details'" (click)="openProductDetails(product)">
-            {{ product.name }}
+           <ul>
+             <li>{{ product.name }}</li>
+           </ul> 
           </a>
-        </h3>
+        </h4>
       
       </div>
-  
+    </div>
 
   <!-- <a class="button fancy-button"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a> -->
 
@@ -68,3 +72,4 @@
     </div>
   
   </mat-drawer-container>
+</body>

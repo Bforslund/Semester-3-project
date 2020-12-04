@@ -4,6 +4,7 @@
   <h3>{{ product.name }}</h3>
   <h4>{{ product.sellingPrice | currency }}</h4>
   <p>{{ product.ingredients }}</p>
+  <label>Quantity:</label>
   <input type="number" id="quantity" name="quantity" ngModel>
   <button type="submit" class="form-control" (click)="addToCart(product)">Buy</button>
 

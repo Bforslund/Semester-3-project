@@ -29,6 +29,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CheckoutLoginComponent } from './checkout-login/checkout-login.component';
+import { FaqComponent } from './faq/faq.component';
+import { RecipesComponent } from './recipes/recipes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,9 @@ import { CheckoutLoginComponent } from './checkout-login/checkout-login.componen
     NavbarComponent,
     RegisterComponent,
     ProductDetailsComponent,
-    CheckoutLoginComponent
+    CheckoutLoginComponent,
+    FaqComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,

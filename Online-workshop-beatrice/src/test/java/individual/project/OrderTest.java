@@ -16,7 +16,7 @@ public class OrderTest {
     @Test
     public void testAddItemsToOrder()
     {
-        Order o = new Order(1, "address", "name");
+        Order o = new Order();
         Item i1 = new Item( "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE);
         OrderItem oi1 = new OrderItem(i1, 70);
 
@@ -28,7 +28,7 @@ public class OrderTest {
     @Test
     public void testGetTotalPriceOfOrder()
     {
-        Order o = new Order(1, "address", "name");
+        Order o = new Order();
         Item i1 = new Item( "Cake", 50, 100,"Flour", Item.TypeOfItem.CAKE);
         OrderItem oi1 = new OrderItem(i1, 70);
         o.AddItemToList(oi1);

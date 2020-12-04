@@ -12,10 +12,11 @@ import {CheckOutComponent} from './check-out/check-out.component';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {OrderHistoryComponent} from './order-history/order-history.component';
 import {RegisterComponent} from './register/register.component'
-import { state } from '@angular/animations';
+import { FaqComponent } from './faq/faq.component';
 import { AuthGuard } from  './auth/auth.guard';
 import { AdminAuthGuard } from  './auth/admin-auth.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { RecipesComponent } from './recipes/recipes.component';
 const routes: Routes = [ {
   path: 'home',
   component: HomeComponent
@@ -73,6 +74,14 @@ const routes: Routes = [ {
 {
   path: 'register',
   component: RegisterComponent
+},
+{
+  path: 'faq',
+  component: FaqComponent
+},
+{
+  path: 'recipes',
+  component: RecipesComponent
 },
 ];
 

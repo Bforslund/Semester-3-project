@@ -1,0 +1,75 @@
+<div class="backgroudddd">
+<div class="container">
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div id="creatPostBlock">
+        <input type="text" id="title" name="title" placeholder="Title"[(ngModel)]="title" required>
+        <textarea [(ngModel)]="content" placeholder="Ingredients" id="newPostText"></textarea> <br />
+        <textarea [(ngModel)]="instructions" placeholder="Instructions" id="newPostText"></textarea> <br />
+        <form>
+
+            <div class="buttons">
+                <button (click)="createRecipe()" class="postBtn">Post</button>
+            </div>
+            
+        </form>
+        
+        <br />
+        <br />
+    </div>
+
+    <hr />
+    <br />
+    <br />
+    <br />
+</div>
+
+<div class="container">
+    <div *ngFor="let p of allRecipes ">
+
+
+
+        <div class="container">
+    
+        
+            <div class="post-block">
+            
+        
+          
+                <button class="float-right" mat-icon-button ria-label="" (click)="export()">
+                    Download
+                  </button>
+    
+               
+                
+                  
+                  <div id="pdfTable" #pdfTable>
+            <p style="font-size: 11px;">Recipe created by {{p.userId}}</p>
+            
+            
+<ul>
+    <h2>  {{p.title}}</h2>
+    <li>{{p.content}}</li>
+    <li>{{p.instructions}}</li>
+  
+</ul>
+            <br>
+            <p class="p-date">{{p.date}}</p>
+            <p></p>
+            
+        
+        </div>
+            </div>
+            
+          
+          
+        </div>
+        
+    
+    </div>
+</div>
+
+</div>

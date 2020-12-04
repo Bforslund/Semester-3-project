@@ -41,6 +41,7 @@
         <mapping class="individual.project.model.User"/>
         <mapping class="individual.project.model.Order"/>
         <mapping class="individual.project.model.OrderItem"/>
+        <mapping class="individual.project.model.Recipe"/>
       </session-factory>
 
   </hibernate-configuration>
