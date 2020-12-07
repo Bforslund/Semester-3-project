@@ -11,6 +11,7 @@ import { UsersService } from '../shared/users.service';
 export class RegisterComponent implements OnInit {
   user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123", "USER")
   constructor(private service: UsersService,private router : Router) { }
+  isLoginError : boolean = false;
   years = [
     {year : '<1995'},
     {year : 1996},
@@ -47,10 +48,11 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
                     },       (error: Response) => {
                       if(error.status === 409){
-                         console.log('This user already exists');
+                        this.isLoginError = true;
                         }
                         else{
                           console.log('Wrong data provided');
+                          this.isLoginError = true;
                         } 
                     })
  }

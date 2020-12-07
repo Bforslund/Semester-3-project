@@ -37,6 +37,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
+    compile group: 'org.glassfish.grizzly', name: 'grizzly-websockets', version: '2.4.4'
+    compile group: 'org.glassfish.grizzly', name: 'grizzly-http-servlet-server', version: '2.4.4'
+
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.14.Final'// leave this version. It does not work with higher versions!
     compile 'mysql:mysql-connector-java:5.1.23'
     runtime 'mysql:mysql-connector-java:5.1.23'

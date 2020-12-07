@@ -37,6 +37,7 @@ this.order = this.userservice.order;
     let newOrderItem = new OrderItem(this.product, quantity);
     this.cartService.addToCart(newOrderItem);
     window.alert('Your product has been added to the cart!');
+    this.dialogRef.close();
   }
 
 }

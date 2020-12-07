@@ -31,6 +31,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CheckoutLoginComponent } from './checkout-login/checkout-login.component';
 import { FaqComponent } from './faq/faq.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,9 +53,11 @@ import { RecipesComponent } from './recipes/recipes.component';
     ProductDetailsComponent,
     CheckoutLoginComponent,
     FaqComponent,
-    RecipesComponent
+    RecipesComponent,
+    ThankyouComponent
   ],
   imports: [
+    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
@@ -66,7 +71,8 @@ import { RecipesComponent } from './recipes/recipes.component';
     MatRadioModule,
     MatSliderModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

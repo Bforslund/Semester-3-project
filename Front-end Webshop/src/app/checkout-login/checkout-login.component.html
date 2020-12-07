@@ -1,7 +1,9 @@
-<div id="confirm" mat-dialog-content>
+<body>
+<div id="question" mat-dialog-content>
     <p> Checkout with existing account or checkout without account?</p>
   </div>
   <div mat-dialog-actions>
-      <button mat-raised-button cdkFocusInitial (click)="existing()">With existing account</button>
-      <button mat-raised-button  (click)="continue()">Continue</button>  
+      <button mat-raised-button class="workTHEN"  cdkFocusInitial (click)="existing()">Log in with existing account</button>
+      <button mat-raised-button  (click)="continue()">Continue without an account</button>  
   </div> 
+</body>

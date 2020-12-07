@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import { RecipesService } from '../shared/recipes.service';
 import { UsersService } from '../shared/users.service';
 import { User } from '../model/User';
+import { NotificationsService } from '../shared/notifications.service';
 
 export class Recipe {
   constructor(
@@ -27,7 +28,7 @@ export class RecipesComponent implements OnInit {
  newRecipe = new Recipe(1, "idk","100 g rumsvarmt","Tigermuffins, 10 st.","234",1);
  allRecipes:Recipe[];
  user:User;
-  constructor(private service: RecipesService,private Uservice: UsersService) { }
+  constructor(private service: RecipesService,private Uservice: UsersService,private Notservice: NotificationsService) {}
   data = {};
   id:string;
 
@@ -66,9 +67,23 @@ export class RecipesComponent implements OnInit {
       (res: any) => {
       console.log("Submitted");
       });
-  
+      this.sendMessage();
     window.location.reload()
   }
+
+  sendMessage(): void {
+    this.Notservice.sendMessage("New recipe added!");
+  }
+
+  // disconnect(): void {
+  //   this.Notservice.close();
+  // }
+
+  // connect(): void {
+  //   this.Notservice.connect();
+  // }
+
+
   export(){
     var data = document.getElementById('pdfTable');
       html2canvas(data).then(canvas => {  

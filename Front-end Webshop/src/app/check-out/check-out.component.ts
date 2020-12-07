@@ -20,7 +20,7 @@ export class CheckOutComponent implements OnInit {
  totalPrice: number = 0;
  nrOfItems:number;
  
- user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj", "USER");
+ user: User = new User(1, "", "", "", 0, "", "", "", "USER");
   constructor(public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
 
   ngOnInit(): void {

@@ -17,6 +17,7 @@ import { AuthGuard } from  './auth/auth.guard';
 import { AdminAuthGuard } from  './auth/admin-auth.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 const routes: Routes = [ {
   path: 'home',
   component: HomeComponent
@@ -82,6 +83,10 @@ const routes: Routes = [ {
 {
   path: 'recipes',
   component: RecipesComponent
+},
+{
+  path: 'thankyou',
+  component: ThankyouComponent
 },
 ];
 

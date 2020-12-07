@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-login',
@@ -8,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class CheckoutLoginComponent implements OnInit {
 
-  constructor( public dialogRef: MatDialogRef<CheckoutLoginComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private router: Router, public dialogRef: MatDialogRef<CheckoutLoginComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +17,7 @@ export class CheckoutLoginComponent implements OnInit {
     this.dialogRef.close();
   }
   existing(){
+    this.router.navigate(['/login']);
     this.dialogRef.close();
   }
 }
