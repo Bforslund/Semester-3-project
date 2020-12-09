@@ -41,7 +41,7 @@ public class OrderController {
         }
         return null;
     }
-   public boolean addOrder(Order o) {
+   public Order addOrder(Order o) {
         try {
             Order order = new Order();
             order.setCustomerName(o.getCustomerName());
@@ -56,10 +56,10 @@ public class OrderController {
             }
             ordersRepository.create(order);
             System.out.println("Created order: " + o);
-            return true;
+            return order;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
+            return null;
         }
     }
     public boolean addOrderItem(OrderItem o) {

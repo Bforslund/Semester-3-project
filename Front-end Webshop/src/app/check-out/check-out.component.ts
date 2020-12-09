@@ -1,6 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CheckoutLoginComponent } from '../checkout-login/checkout-login.component';
 import { Order } from '../model/Order';
 import { OrderItem } from '../model/OrderItem';
@@ -21,7 +22,7 @@ export class CheckOutComponent implements OnInit {
  nrOfItems:number;
  
  user: User = new User(1, "", "", "", 0, "", "", "", "USER");
-  constructor(public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
+  constructor(private router: Router,public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
 
   ngOnInit(): void {
   this.shoppingCart = this.cartService.getItems();
@@ -60,8 +61,10 @@ order.orderedItemsList = <OrderItem[]>this.shoppingCart;
 order.status = "PENDING";
 order.time = today;
 console.log(order);
-this.orderService.postOrder(order).subscribe((data)=>{
-  console.log(data);
+this.orderService.postOrder(order).subscribe((res: any)=>{
+  localStorage.setItem('justOrdered', 'yes');
+  //console.log(res);
+  this.router.navigate(['/thankyou/' + res.orderNumber]);
 },       (error: Response) => {
     console.log(error);
 });

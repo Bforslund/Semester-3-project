@@ -1,6 +1,7 @@
 import { OrderItem } from './OrderItem';
 
 export class Order{
+    
     public orderedItemsList: OrderItem[];
     public status: string;
     public time: string;

@@ -1,11 +1,13 @@
 <div class="backgroudddd">
 <div class="container">
+ 
     <br />
     <br />
     <br />
     <br />
 
     <div id="creatPostBlock">
+        <h1> <p>Here all of our visitors can post their own recipes!</p></h1>
         <input type="text" id="title" name="title" placeholder="Title"[(ngModel)]="title" required>
         <textarea [(ngModel)]="content" placeholder="Ingredients" id="newPostText"></textarea> <br />
         <textarea [(ngModel)]="instructions" placeholder="Instructions" id="newPostText"></textarea> <br />
@@ -39,8 +41,8 @@
             
         
           
-                <button class="float-right" mat-icon-button ria-label="" (click)="export()">
-                    Download
+                <button  mat-icon-button ria-label="" (click)="export()">
+                    Download as a PDF
                   </button>
     
                

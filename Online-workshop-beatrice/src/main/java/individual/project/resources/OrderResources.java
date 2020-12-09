@@ -67,13 +67,13 @@ public class OrderResources {
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createOrder(Order order) {
-        if (!orderController.addOrder(order)){
+        Order o = orderController.addOrder(order);
+        if (o == null){
             String entity =  "Order with ordernumber " + order.getOrderNumber() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         } else {
-            String url = uriInfo.getAbsolutePath() + "/" + order.getOrderNumber(); // url of the created order
-            URI uri = URI.create(url);
-            return Response.created(uri).build();
+
+            return Response.ok(o).build();
         }
     }
     @PUT //PUT at http://localhost:XXXX/orders/id

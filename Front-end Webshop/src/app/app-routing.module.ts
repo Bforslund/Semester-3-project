@@ -20,7 +20,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 const routes: Routes = [ {
   path: 'home',
-  component: HomeComponent
+  component: ItemsComponent
 },
 {
   path: 'products',
@@ -85,7 +85,7 @@ const routes: Routes = [ {
   component: RecipesComponent
 },
 {
-  path: 'thankyou',
+  path: 'thankyou/:id',
   component: ThankyouComponent
 },
 ];
