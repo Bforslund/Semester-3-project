@@ -28,7 +28,7 @@ dependencies {
 
     // Grizzly will host the service
     implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '2.+'
-
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
     // Logging
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.+'

@@ -2,11 +2,12 @@
 <form  #productForm="ngForm" (submit)="recordSubmit(productForm.value.quantity)">
 <div *ngIf="product">
   <h3>{{ product.name }}</h3>
-  <h4>{{ product.sellingPrice | currency }}</h4>
+  <h4>€{{ product.sellingPrice}}</h4>
   <p>{{ product.ingredients }}</p>
   <label>Quantity:</label>
   <input type="number" id="quantity" name="quantity" ngModel>
-  <button type="submit" class="btn btn-primary" (click)="addToCart(product)">Buy</button>
+  <br>
+  <button type="submit" class="btn btn-primary" (click)="addToCart(product)">Add to cart</button>
 
 </div>
 </form>

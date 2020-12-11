@@ -1,7 +1,7 @@
 
   <body>
     <div class="backgroudddd">
-  <mat-drawer-container class="example-container" autosize>
+  <mat-drawer-container class="example-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
     
   <div id="search-component">
@@ -16,62 +16,97 @@
       {{type}}
     </mat-radio-button>
   </mat-radio-group>
-  <div>Your favorite season is: {{item.TypeOfItem}}</div>
+  <div>Max price of a product:</div>
     
     <mat-slider
     (input)="onInputChange($event)"
     thumbLabel
     [displayWith]="formatLabel"
-    tickInterval="500"
+    tickInterval="100"
     min="2"
-    max="500"></mat-slider>
-
-    <ul class="search-result">
-      <li *ngFor="let item of filterItems$ | async" >
-      
-          {{item.name}}
-      
-      </li>
-    </ul>
+    max="100"></mat-slider>
+    <br>
+    <br>
+    
+    <button class="btn btn-secondary" (click)="filter()">Filter by price and type</button>
+    <br>
+    <br>
+    
+    <button  class="btn btn-info" (click)="reload()">Clean filter</button>
   </div>
  
     </mat-drawer>
   
     <div class="example-sidenav-content">
       <button type="button" class="fas fa-chevron-right" mat-button (click)="drawer.toggle()"></button>
-      <h4><label for="search-box">Item Search</label></h4>
+      
+      <div class="content">
+        <h4><label for="search-box">Item Search</label></h4>
   
       <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-      <div class="content">
-      <h1>Products</h1> 
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+     <b> <h1>Products</h1> </b>
+      <div *ngIf="searchOrNot()"> 
+        <div class="d-flex justify-content-between align-items-center">
       <div *ngFor="let product of itemsList">
-
-        <h4>
-          <a [title]="product.name + ' details'" (click)="openProductDetails(product)">
+          <!-- <a [title]="product.name + ' details'" (click)="openProductDetails(product)"> -->
            <ul>
-             <li>{{ product.name }}</li>
+           
+            <li>  <img src="https://www.vanillacupcakery.com.au/wp-content/uploads/2020/06/Sprinkles-Birthday-Cake-256x256.jpg">
+              <br>
+              {{ product.name }}
+             <br>
+                <div class="btn-group">
+                 
+                  <button type="button" class="btn btn-sm btn-outline-secondary product-btn" (click)="openProductDetails(product)">View Details</button>
+                </div>
+            
+            
+            </li>
            </ul> 
-          </a>
-        </h4>
+         
+  
       
+      </div>
+      </div>
+    </div>
+    <div *ngIf="true" id="search-component">
+      <div class="d-flex justify-content-between align-items-center">
+        <div *ngFor="let item of items$ | async" >
+  
+         
+             <ul>
+             
+              <li>  <img src="https://www.vanillacupcakery.com.au/wp-content/uploads/2020/06/Sprinkles-Birthday-Cake-256x256.jpg">
+                <br>
+                {{ item.name }}
+               <br>
+                  <div class="btn-group">
+                   
+                    <button type="button" class="btn btn-sm btn-outline-secondary product-btn" (click)="openProductDetails(product)">View Details</button>
+                  </div>
+            
+              </li>
+             </ul> 
+        
+        </div>
+        </div>
       </div>
     </div>
 
   <!-- <a class="button fancy-button"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a> -->
 
-  <div id="search-component">
- 
-  
-    <ul class="search-result">
-      <li *ngFor="let item of items$ | async" >
-      
-          {{item.name}}
-      
-      </li>
-    </ul>
-  </div>
+
     </div>
-  
+    <br>
+      <br>
+      <br>
+    
   </mat-drawer-container>
 </div>
+
 </body>

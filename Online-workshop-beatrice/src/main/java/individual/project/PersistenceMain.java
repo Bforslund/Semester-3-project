@@ -4,6 +4,7 @@ import individual.project.controllers.*;
 import individual.project.model.*;
 import individual.project.repository.HibernateItemsRepository;
 import individual.project.repository.HibernateOrdersRepository;
+import io.jsonwebtoken.Claims;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +33,14 @@ public class PersistenceMain {
 //        o1.AddItemToList(oi1);
 //        o1.AddItemToList(oi2);
 //        persistenceController.addOrder(o1);
-      String newPass =  ucontroller.doHashing("1234");
+     // String newPass =  ucontroller.doHashing("1234");
+        String token = ucontroller.createJWT("1","email", "password", -1);
 
+        Claims decoded = ucontroller.decodeJWT(token);
         // controller.UpdateItem();
-
+        String email = decoded.getIssuer();
+        String password = decoded.getSubject();
+        String id = decoded.getId();
     }
 
 

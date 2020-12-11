@@ -17,13 +17,13 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit{
-  itemsList: Item[];
+  itemsList: Observable<Item[]>;
   items$: Observable<Item[]>;
   filterItems$: Observable<Item[]>;
   showFiller = false;
   price:number =0;
   type:string = null;
-
+searching:boolean = false;
 
   item = new Item(1,"",1,1,"","");
   productTypes: string[] = ['CAKE', 'CUPCAKE', 'COOKIE', 'OTHER'];
@@ -35,21 +35,19 @@ export class ItemsComponent implements OnInit{
 
 
 
-  onInputChange(event: MatSliderChange) {
+  async onInputChange(event: MatSliderChange) {
    
     this.price=event.value;
-  //   this.itemsService.filterItems(this.type,event.value, )
-  //   .subscribe((data)=>{
-  //     console.log(data);
-  //     this.itemsList = <Item[]>data;
-  // });
+    
+
   }
-  radioChange(event: MatRadioChange) {
+  async radioChange(event: MatRadioChange) {
     this.type=event.value;
-    this.itemsService.filterItems(event.value, this.price)
+    this.searching = false;
+    this.itemsService.filterItems(this.type, 0)
     .subscribe((data)=>{
       console.log(data);
-      this.itemsList = <Item[]>data;
+      this.itemsList = <Observable<Item[]>>data;
   });
 }
 
@@ -61,13 +59,19 @@ export class ItemsComponent implements OnInit{
 
   search(term: string): void {
     this.searchTerms.next(term);
+    if(term){
+      this.searching = true;
+    }else{
+      this.searching = false;
+    }
+   
   }
   private searchTerms = new Subject<string>();
   ngOnInit(): void {
     this.itemsService.getItems()
     .subscribe((data)=>{
       console.log(data);
-      this.itemsList = <Item[]>data;
+      this.itemsList = <Observable<Item[]>>data;
   });
 
   this.items$ = this.searchTerms.pipe(
@@ -93,6 +97,24 @@ openProductDetails(item: Item): void {
     .subscribe(res => {
   });
 
+}
+searchOrNot(){
+if(this.searching){
+  return false;
+    }else{
+      return true;
+    }
+}
+filter(){
+  console.log(this.type + this.price)
+      this.itemsService.filterItems(this.type, this.price)
+    .subscribe((data)=>{
+      console.log(data);
+      this.itemsList = <Observable<Item[]>>data;
+  });
+}
+reload(){
+  location.reload();
 }
 
 }

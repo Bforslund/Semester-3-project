@@ -34,6 +34,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     MatSidenavModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatBadgeModule
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]

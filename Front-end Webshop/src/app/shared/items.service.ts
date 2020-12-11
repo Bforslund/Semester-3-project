@@ -4,7 +4,7 @@ import {OrderItem} from '../model/OrderItem';
 import {Item} from '../model/Item';
 import { Order } from '../model/Order';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, delay, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

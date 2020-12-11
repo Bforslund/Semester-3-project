@@ -8,6 +8,7 @@ import individual.project.repository.HibernateItemsRepository;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletMapping;
 import javax.ws.rs.*;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.CompletionCallback;
@@ -54,14 +55,14 @@ public class ItemResources {
     @Path("{term}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllSearchItems(@PathParam("term") String term, @Suspended final AsyncResponse asyncResponse) {
-//        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
-//
-//            @Override
-//            public void handleTimeout(AsyncResponse asyncResponse) {
-//                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-//                        .entity("Operation time out.").build());
-//            }
-//        });
+        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+
+            @Override
+            public void handleTimeout(AsyncResponse asyncResponse) {
+                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+                        .entity("Operation time out.").build());
+            }
+        });
         asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
 
         asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
@@ -88,20 +89,21 @@ public class ItemResources {
             }
         }).start();
     }
+
     @GET
     @PermitAll
     @Path("{type}/{price}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllFilteredItems(@PathParam("type") String type, @PathParam("price") double price, @Suspended final AsyncResponse asyncResponse) {
         Item.TypeOfItem itemType = itemController.MakeToEnum(type);
-//        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
-//
-//            @Override
-//            public void handleTimeout(AsyncResponse asyncResponse) {
-//                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-//                        .entity("Operation time out.").build());
-//            }
-//        });
+        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+
+            @Override
+            public void handleTimeout(AsyncResponse asyncResponse) {
+                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+                        .entity("Operation time out.").build());
+            }
+        });
         asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
 
         asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener

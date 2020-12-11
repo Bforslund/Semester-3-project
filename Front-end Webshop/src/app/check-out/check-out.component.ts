@@ -20,9 +20,11 @@ export class CheckOutComponent implements OnInit {
  
  totalPrice: number = 0;
  nrOfItems:number;
+
+ error:boolean;
  
  user: User = new User(1, "", "", "", 0, "", "", "", "USER");
-  constructor(private router: Router,public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
+  constructor(private userService: UsersService,private router: Router,public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
 
   ngOnInit(): void {
   this.shoppingCart = this.cartService.getItems();
@@ -57,17 +59,27 @@ submit(data) {
 var order = new Order(this.totalPrice, this.user.id, data.firstName +' '+ data.lastName, data.address);
 var today = new Date().toISOString().slice(0, 10);
 order.orderedItemsList = <OrderItem[]>this.shoppingCart;
-
 order.status = "PENDING";
 order.time = today;
 console.log(order);
-this.orderService.postOrder(order).subscribe((res: any)=>{
-  localStorage.setItem('justOrdered', 'yes');
-  //console.log(res);
-  this.router.navigate(['/thankyou/' + res.orderNumber]);
-},       (error: Response) => {
-    console.log(error);
-});
+if(order.orderedItemsList.length < 1){
+  this.error= true;
+}else{
+  this.user.points += 10;
+this.service.updateUser(this.user).subscribe(
+  (res: any) => {
+    console.log(this.user.points);
+  });
+  this.orderService.postOrder(order).subscribe((res: any)=>{
+    localStorage.setItem('justOrdered', 'yes');
+    //console.log(res);
+    this.router.navigate(['/thankyou/' + res.orderNumber]);
+  },       (error: Response) => {
+      console.log(error);
+  });
+}
+
+
 }
 
 

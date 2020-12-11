@@ -17,7 +17,7 @@
             <!--Card content-->
           
                 <form class="card-body"  #ShippingForm="ngForm"(ngSubmit)="submit(ShippingForm.value)">
-
+                
               <!--Grid row-->
               <div class="row">
 
@@ -86,6 +86,10 @@
 
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
+                  <input id="pointsRB" name="paymentMethod" type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label" for="pointsRB">Pay with your points? ({{user.points}})</label>
+                </div>
+                <div class="custom-control custom-radio">
                   <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
                   <label class="custom-control-label" for="credit">Credit card</label>
                 </div>
@@ -127,10 +131,18 @@
                     Security code required
                   </div>
                 </div>
+                <div class="col-md-3 mb-3">
+                  <div *ngIf="error" class="red-text center error-message">
+                    <i class="material-icons">error</i> Cannot create an order without order items.
+                  </div>
+                </div>
+               
               </div>
+              
               <hr class="mb-4">
+         
               <button [disabled]="!ShippingForm.valid" class="btn btn-primary btn-lg btn-block" type="submit">Create Order</button>
-
+              
             </form>
 
           </div>
@@ -160,9 +172,10 @@
             
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (EURO)</span>
-              <strong>${{totalPrice}}</strong>
+              <strong>€{{totalPrice}}</strong>
             </li>
           </ul>
+          
           <!-- Cart -->
 
           <!-- Promo code -->

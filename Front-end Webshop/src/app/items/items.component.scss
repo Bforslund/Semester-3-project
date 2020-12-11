@@ -1,10 +1,10 @@
-body {
-  background-image: url('https://ca-times.brightspotcdn.com/dims4/default/485b204/2147483647/strip/true/crop/2048x1379+0+0/resize/1486x1001!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F16%2F84%2F6d475eceb85c0e39c93c1aa01ce0%2Fla-fo-proof-chocolate-cake-photos-012');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  font-family: 'Numans', sans-serif;
-  }
+// body {
+//   background-image: url('https://ca-times.brightspotcdn.com/dims4/default/485b204/2147483647/strip/true/crop/2048x1379+0+0/resize/1486x1001!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F16%2F84%2F6d475eceb85c0e39c93c1aa01ce0%2Fla-fo-proof-chocolate-cake-photos-012');
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   height: 100%;
+//   font-family: 'Numans', sans-serif;
+//   }
 .example-radio-group {
     display: flex;
     flex-direction: column;
@@ -44,5 +44,12 @@ body {
   }
   ul {
       list-style-type: none;
+    
      }
+
+     li {
+      font-size: 20px;
+      
+     }
+   
      

@@ -18,7 +18,12 @@ import { AdminAuthGuard } from  './auth/admin-auth.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
-const routes: Routes = [ {
+const routes: Routes = [ 
+  {
+    path: '',
+    component: ItemsComponent
+  },
+  {
   path: 'home',
   component: ItemsComponent
 },
