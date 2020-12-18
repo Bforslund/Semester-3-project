@@ -66,14 +66,16 @@ public class UserResources {
     @POST //POST at http://localhost:XXXX/users/
     @Path("login")
     @PermitAll
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("text/plain")
     public Response LoginUser(String body) {
         final StringTokenizer tokenizer = new StringTokenizer(body, ":");
         final String email = tokenizer.nextToken();
         final String password = tokenizer.nextToken();
       User user =  userController.getUserByEmail(email);
         if (userController.login(email, password)){
-            return Response.ok(user).build();
+            String userId = Integer.toString(user.getId());
+            String token = userController.createJWT(userId, user.getFirstName(),user.getLastName(), -1);
+            return Response.ok(token).build();
         } else {
            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
         }

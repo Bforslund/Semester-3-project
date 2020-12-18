@@ -20,17 +20,18 @@ import java.util.logging.Logger;
  */
 class Publisher {
 
-
+    //private static final URI BASE_URI = URI.create("http://0.0.0.0:9090/");
+    private static final URI BASE_URI = URI.create("http://localhost:19090/");
     public static void main(String[] args) {
 
         try {
-            URI baseUri = UriBuilder.fromUri("http://localhost/").port(9090).build();
+           // URI baseUri = UriBuilder.fromUri("http://localhost/").port(9090).build();
 
             CustomApplicationConfig customApplicationConfig = new CustomApplicationConfig();
             // create and start a grizzly server
-            HttpServer server = GrizzlyHttpServerFactory.createHttpServer(baseUri, customApplicationConfig,false);
+            HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, customApplicationConfig,false);
 
-            System.out.println("Hosting resources at " + baseUri.toURL());
+            System.out.println("Hosting resources at " + BASE_URI.toURL());
 
 //            System.out.println("Try the following GET operations in your internet browser: ");
 //            String[] getOperations = {BASE_URI.toURL() + "students/hello",

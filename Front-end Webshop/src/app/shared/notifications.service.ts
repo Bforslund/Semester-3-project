@@ -5,7 +5,7 @@ import {EMPTY, Observable, Subject} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {BehaviorSubject} from 'rxjs';
 
-const WS_ENDPOINT = 'ws://localhost:9090/ws/notifications';
+const WS_ENDPOINT = 'ws://localhost:19090/ws/notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class NotificationsService {
     return webSocket(WS_ENDPOINT);
   }
   public connect(): void {
+  
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = NotificationsService.getNewWebSocket() as WebSocketSubject<any>;
       this.socket$.subscribe(
@@ -53,6 +54,7 @@ export class NotificationsService {
   }
 
   public sendMessage(msg: any): void {
+   
     if (!this.socket$){
       return;
     }
@@ -64,8 +66,9 @@ export class NotificationsService {
     this.socket$.complete();
   }
   openSnackBar() {
+    
     this._snackBar.open("New recipe added!", "Close", {
-      duration: 100000,
+      duration: 5000,
     });
   }
 

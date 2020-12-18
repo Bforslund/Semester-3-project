@@ -29,23 +29,23 @@ export class ItemsService {
 
 
   public getItems(){
-    return this.httpClient.get('http://localhost:9090/items/', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/items/', this.httpOptions);
   }
   
 public getItemById(id){
-  return this.httpClient.get('http://localhost:9090/items/item/' + id, this.httpOptions);
+  return this.httpClient.get('http://localhost:19090/items/item/' + id, this.httpOptions);
 }
 
   postItems(formData) {
-    return this.httpClient.post('http://localhost:9090/items/', formData, this.httpOptions);
+    return this.httpClient.post('http://localhost:19090/items/', formData, this.httpOptions);
   }
 
   updateItems(formData) {
-    return this.httpClient.put('http://localhost:9090/items/', formData, this.httpOptions);
+    return this.httpClient.put('http://localhost:19090/items/', formData, this.httpOptions);
   }
 
   deleteItem(id) {
-    return this.httpClient.delete('http://localhost:9090/items/' + id, this.httpOptions);
+    return this.httpClient.delete('http://localhost:19090/items/' + id, this.httpOptions);
   }
 
 
@@ -54,7 +54,7 @@ public getItemById(id){
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.httpClient.get<Item[]>('http://localhost:9090/items/' + term, this.httpOptions).pipe(
+    return this.httpClient.get<Item[]>('http://localhost:19090/items/' + term, this.httpOptions).pipe(
       tap(x => x.length ?
         console.log(`found products matching "${term}"`) :
          console.log(`no products matching "${term}"`)),
@@ -76,7 +76,7 @@ public getItemById(id){
     };
   }
   public filterItems(term:string, price:number){
-    return this.httpClient.get('http://localhost:9090/items/'+ term + '/' + price, this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/items/'+ term + '/' + price, this.httpOptions);
   }
 
 }

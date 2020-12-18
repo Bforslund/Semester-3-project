@@ -55,6 +55,7 @@ export class RecipesComponent implements OnInit {
   }
 
   createRecipe() {
+    this.sendMessage();
     var today = new Date().toISOString().slice(0, 10);
   
       this.newRecipe.content = this.content;
@@ -67,8 +68,8 @@ export class RecipesComponent implements OnInit {
       (res: any) => {
       console.log("Submitted");
       });
-      this.sendMessage();
-    window.location.reload()
+      
+   window.location.reload()
   }
 
   sendMessage(): void {

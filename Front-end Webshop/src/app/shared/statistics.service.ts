@@ -21,22 +21,22 @@ export class StatisticsService {
   }
 
   public getTotalOrders(){
-    return this.httpClient.get('http://localhost:9090/statistics/revenue', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/statistics/revenue', this.httpOptions);
   }
   public getTotalCakes(){
-    return this.httpClient.get('http://localhost:9090/statistics/cakes',this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/statistics/cakes',this.httpOptions);
   }
   public getTotalCupcakes(){
-    return this.httpClient.get('http://localhost:9090/statistics/cupcakes', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/statistics/cupcakes', this.httpOptions);
   }
   public getTotalCookies(){
-    return this.httpClient.get('http://localhost:9090/statistics/cookies', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/statistics/cookies', this.httpOptions);
   }
   public getTotalOther(){
-    return this.httpClient.get('http://localhost:9090/statistics/other', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/statistics/other', this.httpOptions);
   }
   public getTest(){
-    return this.httpClient.get('http://localhost:9090/statistics/', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/statistics/', this.httpOptions);
   }
   
 

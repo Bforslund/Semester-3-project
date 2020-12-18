@@ -96,15 +96,15 @@ public class ItemResources {
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllFilteredItems(@PathParam("type") String type, @PathParam("price") double price, @Suspended final AsyncResponse asyncResponse) {
         Item.TypeOfItem itemType = itemController.MakeToEnum(type);
-        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
-
-            @Override
-            public void handleTimeout(AsyncResponse asyncResponse) {
-                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-                        .entity("Operation time out.").build());
-            }
-        });
-        asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
+//        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+//
+//            @Override
+//            public void handleTimeout(AsyncResponse asyncResponse) {
+//                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+//                        .entity("Operation time out.").build());
+//            }
+//        });
+        asyncResponse.setTimeout(600, TimeUnit.MILLISECONDS); // set the timeout interval
 
         asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
             @Override

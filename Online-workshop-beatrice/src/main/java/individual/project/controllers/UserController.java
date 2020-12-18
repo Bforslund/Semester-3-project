@@ -15,6 +15,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class UserController {
     HibernateUsersRepository usersRepository = new HibernateUsersRepository();
 
@@ -80,7 +82,15 @@ public class UserController {
             System.out.println(e.getMessage());
         }
     }
+    public User getUserFromToken(String token) {
+        Claims decoded = decodeJWT(token);
 
+        String id = decoded.getId();
+
+        User u = getUserById(parseInt(id));
+
+        return u;
+    }
     public boolean login(String email, String password){
         User u = getUserByEmail(email);
         if(u.equals(null)){
@@ -93,20 +103,19 @@ public class UserController {
         return false;
     }
 
-    public boolean validateUser(String email, String password, String role){
-        User u = getUserByEmail(email);
+    public boolean validateUser(String id, String role){
+        User u = getUserById(parseInt(id));
         if(u.equals(null)){
             return false;
         }
-        String encryptedPass = doHashing(password);
-        if(u.getPassword().equals(encryptedPass)){
+
             if(u.getRole().toString().equals(role)){
                 return true;
+            }else{
+                return false;
             }
-        }else{
-            return false;
-        }
-        return false;
+
+
     }
 
     public String doHashing(String password){

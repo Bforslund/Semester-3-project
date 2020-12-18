@@ -20,10 +20,10 @@ export class RecipesService {
     })
   };
   public getRecipes(){
-    return this.httpClient.get('http://localhost:9090/recipes/', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/recipes/', this.httpOptions);
   }
   postRecipes(data) {
-    return this.httpClient.post('http://localhost:9090/recipes/', data, this.httpOptions);
+    return this.httpClient.post('http://localhost:19090/recipes/', data, this.httpOptions);
   }
 
 }

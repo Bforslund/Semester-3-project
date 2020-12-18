@@ -43,18 +43,18 @@ order:Order;
 
   
   updateUser(formData) {
-    return this.httpClient.put('http://localhost:9090/users/', formData, this.httpOptions);
+    return this.httpClient.put('http://localhost:19090/users/', formData, this.httpOptions);
   }
 
   deleteUser(id) {
-    return this.httpClient.delete('http://localhost:9090/users/' + id, this.httpOptions);
+    return this.httpClient.delete('http://localhost:19090/users/' + id, this.httpOptions);
   }
   getUserById(id){
-    return this.httpClient.get('http://localhost:9090/users/' + id, this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/users/' + id, this.httpOptions);
 }
 
 registerUser(model){
-  return this.httpClient.post('http://localhost:9090/users/', model, this.httpOptions);
+  return this.httpClient.post('http://localhost:19090/users/', model, this.httpOptions);
 }
 
 

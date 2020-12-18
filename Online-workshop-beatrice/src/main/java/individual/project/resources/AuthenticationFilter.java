@@ -2,6 +2,7 @@ package individual.project.resources;
 
 import individual.project.controllers.UserController;
 import individual.project.model.User;
+import io.jsonwebtoken.Claims;
 
 import javax.annotation.security.*;
 import javax.ws.rs.container.*;
@@ -12,7 +13,7 @@ import java.util.*;
 
 @Provider
 public class AuthenticationFilter implements ContainerRequestFilter {
-
+    UserController controller = new UserController();
     @Context
     private ResourceInfo resourceInfo;
     // requestContext contains information about the HTTP request message
@@ -42,58 +43,41 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             requestContext.abortWith(response);
             return;
         }
-        //Get encoded username and password
-        final String encodedCredentials =
-                authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
-        //Decode username and password into one string
-        String credentials = new
-                String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
-        //Split username and password tokens in credentials
-        final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
-        final String email = tokenizer.nextToken();
-        final String password = tokenizer.nextToken();
-        System.out.println(email);
-        System.out.println(password);
+        final String token = authorization.get(0);
+        Claims decoded = controller.decodeJWT(token);
+        // If i can decode it it is valid
+        String id = decoded.getId();
+        if(id.isEmpty()){
+            System.out.println("Invalid user");
+            Response response = Response.status(Response.Status.UNAUTHORIZED).
+                    entity("Invalid email and/or password.").build();
+            requestContext.abortWith(response);
+            return;
+        }
         //Check if username and password are valid (e.g., database)
         //If not valid: abort with UNAUTHORIED and stop
         if (method.isAnnotationPresent(RolesAllowed.class)) {
-            // get allowed roles for this method
             RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
             Set<String> rolesSet = new
                     HashSet<String>(Arrays.asList(rolesAnnotation.value()));
- /* isUserAllowed : implement this method to check if this user has any of
- the roles in the rolesSet
- if not isUserAllowed abort the requestContext with FORBIDDEN response*/
-            if (!isUserAllowed(email, password, rolesSet)) {
+            if (!isUserAllowed(id, rolesSet)) {
                 Response response = Response.status(Response.Status.FORBIDDEN).build();
                 requestContext.abortWith(response);
                 return;
             }
         }
 
-
-        if (!isValidUser(email, password)) {
-            Response response = Response.status(Response.Status.UNAUTHORIZED).
-                    entity("Invalid email and/or password.").build();
-            requestContext.abortWith(response);
-            return;
-        }
-    }
-   private boolean isValidUser(String email, String password) {
-       UserController controller = new UserController();
-       boolean valid;
-      valid = controller.login(email, password);
-      return valid;
     }
 
-    private boolean isUserAllowed(String email, String password, Set<String> rolesSet){
-        UserController controller = new UserController();
+
+    private boolean isUserAllowed(String id, Set<String> rolesSet){
+
         String admin = "";
         if(rolesSet.contains("ADMIN")){
             admin = "ADMIN";
         }
 
-       return controller.validateUser(email, password, admin);
+       return controller.validateUser(id, admin);
 
 
     }
