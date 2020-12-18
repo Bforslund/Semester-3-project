@@ -30,15 +30,15 @@ export class RecipesComponent implements OnInit {
  user:User;
   constructor(private service: RecipesService,private Uservice: UsersService,private Notservice: NotificationsService) {}
   data = {};
-  id:string;
+  token:string;
 
   content : string;
   instructions : string;
   title : string;
   ngOnInit(): void {
-    this.id = localStorage.getItem('userId');
-    if(this.id){
-      this.Uservice.getUserById(this.id)
+    this.token = localStorage.getItem('userToken');
+    if(this.token){
+      this.Uservice.getUser()
       .subscribe((data)=>{
         console.log(data);
        this.user = <User>data;

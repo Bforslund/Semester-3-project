@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../shared/users.service';
-import {User} from '../model/User';
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +12,6 @@ token:string;
 loggedIn:boolean;
 isLoginError : boolean = false;
   constructor(private service: UsersService,private router : Router) { }
-  user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123", "USER")
   ngOnInit(): void {
     if(this.readLocalStorageValue() != null){
       this.loggedIn= true;
@@ -22,15 +21,18 @@ isLoginError : boolean = false;
       
     }
   }
+
   OnSubmit(email,password){
     this.token = btoa(email+':'+password);
   this.service.login(email, password)
   .subscribe(
     (res: any) => {
       console.log(this.token);
-      this.user = <User>res;
-     localStorage.setItem('userToken', this.token);
-     localStorage.setItem('userId', this.user.id.toString());
+      
+     localStorage.setItem('userToken', res);
+   
+     location.reload();
+
      location.reload();
      this.router.navigate(['/profile']);
     },

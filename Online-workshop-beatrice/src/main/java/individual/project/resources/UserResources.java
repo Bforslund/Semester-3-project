@@ -29,22 +29,12 @@ public class UserResources {
     }
 
     @GET
-    @Path("{id}")
+    @Path("me")
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserById(@PathParam("id") int id, @HeaderParam("Authorization") String auth) {
-        String encodedCredentials = auth.replaceFirst("Basic ", "");
-        String credentials = new
-                String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
-        //Split username and password tokens in credentials
-        final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
-        final String email = tokenizer.nextToken();
-
-        User user = userController.getUserById(id);//studentsRepository.get(stNr);
-        if(!user.getEmail().equals(email)){
-            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
-        }
-        else if (user.equals(null)) {
+    public Response getUserById(@HeaderParam("Authorization") String token) {
+        User user = userController.getUserFromToken(token);
+        if (user.equals(null)) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         } else {
             return Response.ok(user).build();

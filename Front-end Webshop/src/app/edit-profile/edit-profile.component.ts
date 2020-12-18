@@ -16,8 +16,7 @@ export class EditProfileComponent implements OnInit {
 user = new User(1, "", "", "", 0, "", "", "","")
 
 ngOnInit(): void {
-  this.id = localStorage.getItem('userId');
-    this.service.getUserById(this.id)
+    this.service.getUser()
     .subscribe((data)=>{
       console.log(data);
      this.user = <User>data;

@@ -14,8 +14,8 @@ export class AdminAuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      this.id = localStorage.getItem('userId');
-      this.service.getUserById(this.id)
+      
+      this.service.getUser()
       .subscribe((data)=>{
        this.user = <User>data;
       

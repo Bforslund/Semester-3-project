@@ -8,7 +8,7 @@ import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 export class StatisticsService {
   readLocalStorageValue() {
     if(localStorage.getItem("userToken") != null){
-      this.httpOptions.headers = this.httpOptions.headers.set('Authorization',  'Basic ' + localStorage.getItem("userToken"));
+      this.httpOptions.headers = this.httpOptions.headers.set('Authorization', localStorage.getItem("userToken"));
     };
 }
   httpOptions = {

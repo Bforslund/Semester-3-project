@@ -28,7 +28,7 @@
     <br>
     <br>
     
-    <button class="btn btn-secondary" (click)="filter()">Filter by price and type</button>
+    <button class="btn btn-secondary" (click)="filter()">Filter by price and/or type</button>
     <br>
     <br>
     
@@ -51,14 +51,14 @@
       <br>
      <b> <h1>Products</h1> </b>
       <div *ngIf="searchOrNot()"> 
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-wrap align-items-center">
       <div *ngFor="let product of itemsList">
-          <!-- <a [title]="product.name + ' details'" (click)="openProductDetails(product)"> -->
+          <a [title]="product.name + ' details'" (click)="openProductDetails(product)"> 
            <ul>
            
             <li>  <img src="https://www.vanillacupcakery.com.au/wp-content/uploads/2020/06/Sprinkles-Birthday-Cake-256x256.jpg">
               <br>
-              {{ product.name }}
+              {{ product.name }} : <b> €{{product.sellingPrice}}</b>
              <br>
                 <div class="btn-group">
                  
@@ -68,22 +68,22 @@
             
             </li>
            </ul> 
-         
+          </a>
   
       
       </div>
       </div>
     </div>
     <div *ngIf="true" id="search-component">
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex flex-wrap align-items-center">
         <div *ngFor="let item of items$ | async" >
-  
+          <a [title]="item.name + ' details'" (click)="openProductDetails(item)"> 
          
              <ul>
              
               <li>  <img src="https://www.vanillacupcakery.com.au/wp-content/uploads/2020/06/Sprinkles-Birthday-Cake-256x256.jpg">
                 <br>
-                {{ item.name }}
+                {{ item.name }}: <b> €{{item.sellingPrice}}</b>
                <br>
                   <div class="btn-group">
                    
@@ -92,13 +92,11 @@
             
               </li>
              </ul> 
-        
+          </a>
         </div>
         </div>
       </div>
     </div>
-
-  <!-- <a class="button fancy-button"><mdb-icon fas icon="shopping-cart"  mdbDropdownToggle></mdb-icon>Checkout</a> -->
 
 
     </div>

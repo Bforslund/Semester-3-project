@@ -23,7 +23,7 @@ export class CheckOutComponent implements OnInit {
 
  error:boolean;
  
- user: User = new User(1, "", "", "", 0, "", "", "", "USER");
+ user: User;
   constructor(private userService: UsersService,private router: Router,public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class CheckOutComponent implements OnInit {
     this.totalPrice += val.item.sellingPrice;
     this.totalPrice *= val.quantity;
   }
-  this.service.getUserById(1)
+  this.service.getUser()
   .subscribe((data)=>{
     console.log(data);
    this.user = <User>data;

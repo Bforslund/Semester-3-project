@@ -9,14 +9,13 @@ import {User} from '../model/User';
 export class NavbarComponent implements OnInit {
   id:string;
   admin:boolean;
-  user = new User(1, "Bea", "dummy data", "test1", 200, "1999", "kuk@live.se", "123","USER")
+  user:User;
   constructor(private service: UsersService) { }
 loggedIn:boolean;
   ngOnInit(): void {
     if(this.readLocalStorageValue() != null){
       this.loggedIn= true;
-      this.id = localStorage.getItem('userId');
-      this.service.getUserById(this.id)
+      this.service.getUser()
       .subscribe((data)=>{
        this.user = <User>data;
        console.log(this.user);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Order } from '../model/Order';
-
+import jwt_decode from 'jwt-decode';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Order } from '../model/Order';
 export class UsersService {
   readLocalStorageValue() {
     if(localStorage.getItem("userToken") != null){
-      this.httpOptions.headers = this.httpOptions.headers.set('Authorization',  'Basic ' + localStorage.getItem("userToken"));
+      this.httpOptions.headers = this.httpOptions.headers.set('Authorization',  localStorage.getItem("userToken"));
     };
 }
   httpOptions = {
@@ -28,18 +28,30 @@ export class UsersService {
     console.log(this.httpOptions.headers);
     //httpOptions.headers = httpOptions.headers.delete('Authorization');
    // console.log(httpOptions.headers);
-    return this.httpClient.get('http://localhost:9090/users/', this.httpOptions);
+    return this.httpClient.get('http://localhost:19090/users/', this.httpOptions);
   }
 order:Order;
   login(email, password){
    this.order = new Order( 0, 1, "","");
+ 
    const body = email+":"+password;
-   return this.httpClient.post('http://localhost:9090/users/login', body, this.httpOptions);
+   return this.httpClient.post('http://localhost:19090/users/login', body, {responseType: 'text'});
   }
 
   logout(){
     this.httpOptions.headers = this.httpOptions.headers.delete('Authorization');
   }
+
+   getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
+  }
+
+
 
   
   updateUser(formData) {
@@ -49,8 +61,8 @@ order:Order;
   deleteUser(id) {
     return this.httpClient.delete('http://localhost:19090/users/' + id, this.httpOptions);
   }
-  getUserById(id){
-    return this.httpClient.get('http://localhost:19090/users/' + id, this.httpOptions);
+  getUser(){
+    return this.httpClient.get('http://localhost:19090/users/me', this.httpOptions);
 }
 
 registerUser(model){

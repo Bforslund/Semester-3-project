@@ -36,23 +36,13 @@ searching:boolean = false;
 
 
   async onInputChange(event: MatSliderChange) {
-   
     this.price=event.value;
-    
-
   }
   async radioChange(event: MatRadioChange) {
     this.type=event.value;
-    this.searching = false;
-    this.itemsService.filterItems(this.type, 0)
-    .subscribe((data)=>{
-      console.log(data);
-      this.itemsList = <Observable<Item[]>>data;
-  });
 }
 
   formatLabel(value: number) {
-  
     return value;
   }
 
@@ -106,6 +96,7 @@ if(this.searching){
     }
 }
 filter(){
+  this.searching = false;
   console.log(this.type + this.price)
       this.itemsService.filterItems(this.type, this.price)
     .subscribe((data)=>{
