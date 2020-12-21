@@ -27,6 +27,17 @@ SHIPPED, PENDING
         orderedItemsList  = orderItems;
     }
 
+    public Order(int orderNumber, double totalPrice, int userId, String address, String customerName) {
+        this.orderNumber = orderNumber;
+        this.totalPrice = totalPrice;
+        this.userId = userId;
+        this.address = address;
+        this.customerName = customerName;
+        this.time = LocalDate.now();
+        this.status = orderStatus.PENDING;
+        orderedItemsList  = new ArrayList<>();
+    }
+
     public Order() {
         orderedItemsList  = new ArrayList<>();
     }

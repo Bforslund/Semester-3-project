@@ -66,11 +66,5 @@ public class StatisticsTest
         assertEquals(total, 600);
     }
 
-//    @Test(expected = IndexOutOfBoundsException.class)
-//    public void testFakeRevenue() {
-//        int total = scontroller.GetTotalAmountOfCakesSold();
-//
-//    }
-
 
 }
