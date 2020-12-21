@@ -23,7 +23,7 @@ export class CheckOutComponent implements OnInit {
 
  error:boolean;
  
- user: User;
+ user: User = new User(1, "","","",1,"","","","USER");
   constructor(private userService: UsersService,private router: Router,public dialog: MatDialog,private itemsService: ItemsService, private service: UsersService, private cartService: CartService,private orderService: OrdersService) { }
 
   ngOnInit(): void {
@@ -72,7 +72,7 @@ this.service.updateUser(this.user).subscribe(
   });
   this.orderService.postOrder(order).subscribe((res: any)=>{
     localStorage.setItem('justOrdered', 'yes');
-    //console.log(res);
+    this.cartService.clearCart();
     this.router.navigate(['/thankyou/' + res.orderNumber]);
   },       (error: Response) => {
       console.log(error);

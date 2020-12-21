@@ -34,10 +34,15 @@ this.order = this.userservice.order;
   }
 
   recordSubmit(quantity){
-    let newOrderItem = new OrderItem(this.product, quantity);
-    this.cartService.addToCart(newOrderItem);
-    window.alert('Your product has been added to the cart!');
-    this.dialogRef.close();
+    if(quantity<= 0){
+      window.alert('You need to add a valid quantity');
+    }else{
+      let newOrderItem = new OrderItem(this.product, quantity);
+      this.cartService.addToCart(newOrderItem);
+      window.alert('Your product has been added to the cart!');
+      this.dialogRef.close();
+    }
+  
   }
 
 }
