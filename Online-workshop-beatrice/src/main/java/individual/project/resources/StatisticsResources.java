@@ -22,7 +22,7 @@ public class StatisticsResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalRevenue() {
         double total = 0;
-        total = statController.GetTotalRevenue();
+        total = statController.getTotalRevenue();
 
         if (total == -1) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid total.").build();
@@ -36,7 +36,7 @@ public class StatisticsResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalCakesSold() {
         double total = 0;
-        total = statController.GetTotalAmountOfCakesSold();
+        total = statController.getTotalAmountOfCakesSold();
 
         if (total == -1) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid total.").build();
@@ -50,7 +50,7 @@ public class StatisticsResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalCookiesSold() {
         double total = 0;
-        total = statController.GetTotalAmountOfCookiesSold();
+        total = statController.getTotalAmountOfCookiesSold();
 
         if (total == -1) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid total.").build();
@@ -64,7 +64,7 @@ public class StatisticsResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalCupcakesSold() {
         double total = 0;
-        total = statController.GetTotalAmountOfCupcakesSold();
+        total = statController.getTotalAmountOfCupcakesSold();
 
         if (total == -1) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid total.").build();
@@ -78,7 +78,7 @@ public class StatisticsResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTotalOtherSold() {
         double total = 0;
-        total = statController.GetTotalAmountOfOtherSold();
+        total = statController.getTotalAmountOfOtherSold();
 
         if (total == -1) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid total.").build();
@@ -91,7 +91,7 @@ public class StatisticsResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllItems() {
         List<StatisticsOrder> statList;
-        statList = statController.GetOrderPerMonth();
+        statList = statController.getOrderPerMonth();
 
         GenericEntity<List<StatisticsOrder>> entity = new GenericEntity<>(statList) {  };
         return Response.ok(entity).build();

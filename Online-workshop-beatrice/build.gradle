@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id "org.sonarqube" version "3.0"
     id'com.github.johnrengelman.shadow'version'6.1.0'
+    id 'jacoco'
 }
 
 group 'org.example'
@@ -49,10 +50,28 @@ dependencies {
 }
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
 shadowJar {
     mergeServiceFiles()
     manifest {
         attributes 'Main-Class': 'individual.project.Publisher'
     }
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+jacoco {
+    toolVersion = "0.8.5"
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+sonarqube {
+    tasks['sonarqube'].dependsOn test
 }

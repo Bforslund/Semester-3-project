@@ -1,9 +1,6 @@
 package individual.project.repository;
-
 import individual.project.model.Item;
-
 import java.util.List;
-
 public interface IItemRepository {
     List<Item> getItems() throws Exception;
 

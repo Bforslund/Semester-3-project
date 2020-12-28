@@ -27,22 +27,22 @@ public class StatisticsTest
 
     @Test
     public void testAmountOfCakes() {
-       int total = scontroller.GetTotalAmountOfCakesSold();
+       int total = scontroller.getTotalAmountOfCakesSold();
         assertEquals(total, 3);
     }
     @Test
     public void testAmountOfCupcakes() {
-        int total = scontroller.GetTotalAmountOfCupcakesSold();
+        int total = scontroller.getTotalAmountOfCupcakesSold();
         assertEquals(total, 3);
     }
     @Test
     public void testAmountOfCookies() {
-        int total = scontroller.GetTotalAmountOfCookiesSold();
+        int total = scontroller.getTotalAmountOfCookiesSold();
         assertEquals(total, 2);
     }
     @Test
     public void testAmountOfOther() {
-        int total = scontroller.GetTotalAmountOfOtherSold();
+        int total = scontroller.getTotalAmountOfOtherSold();
         assertEquals(total, 4);
     }
     @Test
@@ -50,7 +50,7 @@ public class StatisticsTest
         LocalDate now = LocalDate.now();
         Month monthNow = now.getMonth();
 
-        List<StatisticsOrder> orders = scontroller.GetOrderPerMonth();
+        List<StatisticsOrder> orders = scontroller.getOrderPerMonth();
         StatisticsOrder sO = null;
         for (StatisticsOrder o: orders) {
             if(o.getMonth().equals(monthNow.toString())){
@@ -62,7 +62,7 @@ public class StatisticsTest
     }
     @Test
     public void testGetTotalRevenue() {
-        double total = scontroller.GetTotalRevenue();
+        double total = scontroller.getTotalRevenue();
         assertEquals(total, 600);
     }
 

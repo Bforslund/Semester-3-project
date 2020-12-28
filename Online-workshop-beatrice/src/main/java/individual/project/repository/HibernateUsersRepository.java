@@ -1,7 +1,5 @@
 package individual.project.repository;
-
 import individual.project.model.User;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

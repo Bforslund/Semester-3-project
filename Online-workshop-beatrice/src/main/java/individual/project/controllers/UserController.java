@@ -133,7 +133,7 @@ public class UserController {
             return sb.toString();
 
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return "";
     }

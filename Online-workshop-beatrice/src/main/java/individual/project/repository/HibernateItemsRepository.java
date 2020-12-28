@@ -1,16 +1,11 @@
 package individual.project.repository;
-
 import individual.project.model.*;
-
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
@@ -33,8 +28,8 @@ public class HibernateItemsRepository implements IItemRepository {
 
 
             session.getTransaction().commit();
-            session.close();
-            sessionFactory.close();
+          //  session.close();
+          //  sessionFactory.close();
             return result;
         } catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
@@ -68,8 +63,8 @@ public class HibernateItemsRepository implements IItemRepository {
             i.setId(id); // set the auto-generated student_number
 
             session.getTransaction().commit();
-            session.close();
-            sessionFactory.close();
+         //   session.close();
+          //  sessionFactory.close();
         } catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
             // so destroy it manually.
@@ -89,12 +84,12 @@ public class HibernateItemsRepository implements IItemRepository {
         ) {
             session.beginTransaction();
             // "from Student" should be on the class name "Student", not table name "students"!
-            Item o = (Item)session.get(Item.class, id);
+            Item o = session.get(Item.class, id);
 
 
             session.getTransaction().commit();
-            session.close();
-            sessionFactory.close();
+          //  session.close();
+          //  sessionFactory.close();
             return o;
         } catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
@@ -120,7 +115,7 @@ public class HibernateItemsRepository implements IItemRepository {
 
         ) {
             session.beginTransaction();
-            Item i = (Item)session.get(Item.class, item.getId());
+            Item i = session.get(Item.class, item.getId());
             i.setName(item.getName());
             i.setIngredients(item.getIngredients());
             i.setBuyingPrice(item.getBuyingPrice());
@@ -131,8 +126,8 @@ public class HibernateItemsRepository implements IItemRepository {
 
 
             session.getTransaction().commit();
-            session.close();
-            sessionFactory.close();
+         //   session.close();
+          //  sessionFactory.close();
         } catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
             // so destroy it manually.
@@ -159,13 +154,13 @@ public class HibernateItemsRepository implements IItemRepository {
         ) {
             session.beginTransaction();
 
-            Item i = (Item)session.get(Item.class, id);
+            Item i = session.get(Item.class, id);
             session.delete(i);
 
 
             session.getTransaction().commit();
-            session.close();
-            sessionFactory.close();
+          //  session.close();
+          //  sessionFactory.close();
         } catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
             // so destroy it manually.

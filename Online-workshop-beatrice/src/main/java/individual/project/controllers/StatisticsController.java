@@ -13,7 +13,7 @@ public class StatisticsController {
         this.ordersRepository = ordersRepository;
     }
 
-    public double GetTotalRevenue(){
+    public double getTotalRevenue(){
         try {
             double total = 0;
             List<Order> orderList = ordersRepository.getOrders();
@@ -25,7 +25,7 @@ public class StatisticsController {
             return 0;
         }
     }
-    public int GetTotalAmountOfCakesSold(){
+    public int getTotalAmountOfCakesSold(){
         try{
         int total = 0;
         List<Order> orderList = ordersRepository.getOrders();
@@ -43,7 +43,7 @@ public class StatisticsController {
         return 0;
     }
     }
-    public int GetTotalAmountOfCupcakesSold(){
+    public int getTotalAmountOfCupcakesSold(){
         try{
             int total = 0;
             List<Order> orderList = ordersRepository.getOrders();
@@ -61,7 +61,7 @@ public class StatisticsController {
             return 0;
         }
     }
-    public int GetTotalAmountOfCookiesSold(){
+    public int getTotalAmountOfCookiesSold(){
         try{
             int total = 0;
             List<Order> orderList = ordersRepository.getOrders();
@@ -79,7 +79,7 @@ public class StatisticsController {
             return 0;
         }
     }
-    public int GetTotalAmountOfOtherSold(){
+    public int getTotalAmountOfOtherSold(){
         try{
             int total = 0;
             List<Order> orderList = ordersRepository.getOrders();
@@ -97,15 +97,9 @@ public class StatisticsController {
             return 0;
         }
     }
-    //int month = localDate.getMonthValue();
-    public int SalesPerMonth(){ // how much u sold, users
-        return 0;
-    }
+    public List<StatisticsOrder> getOrderPerMonth() {
+        List<StatisticsOrder> StatList = new ArrayList<>();
 
-    public int GetMostSoldItem(){
-        return 0;
-    }
-    public List<StatisticsOrder> GetOrderPerMonth() {
         try {
             List<Integer> allMonths = new ArrayList<>();
             List<Order> orderList = ordersRepository.getOrders();
@@ -128,7 +122,6 @@ public class StatisticsController {
             StatisticsOrder oct = new StatisticsOrder("OCTOBER", 0);
             StatisticsOrder nov = new StatisticsOrder("NOVEMBER", 0);
             StatisticsOrder dec = new StatisticsOrder("DECEMBER", 0);
-            List<StatisticsOrder> StatList = new ArrayList<>();
 
             for (Integer m: allMonths) {
                 switch (m) {
@@ -192,7 +185,11 @@ public class StatisticsController {
                         i++;
                         dec.setTotalOrders(i);
                         break;
-
+                    default:
+                        i = dec.getTotalOrders();
+                        i++;
+                        dec.setTotalOrders(i);
+                        break;
                 }
             }
 
@@ -211,7 +208,7 @@ public class StatisticsController {
             return StatList;
 
         } catch (Exception e) {
-            return null;
+            return StatList;
         }
     }
 }

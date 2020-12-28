@@ -34,7 +34,7 @@ public class UserResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserById(@HeaderParam("Authorization") String token) {
         User user = userController.getUserFromToken(token);
-        if (user.equals(null)) {
+        if (user == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user id.").build();
         } else {
             return Response.ok(user).build();
