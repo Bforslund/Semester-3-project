@@ -57,6 +57,9 @@ order:Order;
   updateUser(formData) {
     return this.httpClient.put('http://localhost:19090/users/', formData, this.httpOptions);
   }
+  updateUserPassword(formData) {
+    return this.httpClient.put('http://localhost:19090/users/password/', formData, this.httpOptions);
+  }
 
   deleteUser(id) {
     return this.httpClient.delete('http://localhost:19090/users/' + id, this.httpOptions);

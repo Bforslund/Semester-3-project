@@ -29,11 +29,12 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <div class="mt-5 text-center"><span *ngIf="notification" class="elementToFadeInAndOut">
+                            <div class="mt-5 text-center">
+                            <span *ngIf="notification" class="elementToFadeInAndOut">
                                 <i class="fas fa-check-circle {{notification.class}}"></i>
                                 {{notification.message}}
                             </span>
-                        </div>
+                            </div>
                             <div class="card-actions float-right">
                               
                             </div>
@@ -113,6 +114,12 @@
 <div class="card">
     <div class="card-header">
         <div class="mt-5 text-center">
+            <div class="mt-5 text-center">
+                <span *ngIf="notification" class="elementToFadeInAndOut">
+                    <i class="fas fa-check-circle {{notification.class}}"></i>
+                    {{notification.message}}
+                </span>
+                </div>
     </div>
         <div class="card-actions float-right">
           

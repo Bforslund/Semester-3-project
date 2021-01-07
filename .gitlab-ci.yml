@@ -1,23 +1,37 @@
-stages:
+--- 
+build: 
+  script: 
+    - "cd Online-workshop-beatrice/"
+    - "./gradlew build"
+  stage: build
+deploy: 
+  script: 
+    - "cd Online-workshop-beatrice/"
+    - "./gradlew shadowJar"
+    - "./docker build -t bforslund/ips-webshop-backend ."
+    - "./docker push bforslund/ips-webshop-backend"
+    - "cd .."
+    - "cd Front-end Webshop/"
+    - "./ng build --prod"
+    - "./docker build -t bforslund/ips-webshop-frontend ."
+    - "./docker push bforslund/ips-webshop-frontend"
+  stage: deploy
+sonarqube: 
+  dependencies: 
+    - test
+  script: 
+    - "cd Online-workshop-beatrice/"
+    - "./gradlew sonarqube"
+  stage: sonarqube
+stages: 
   - build
   - test
   - sonarqube
-build:
-  stage: build
-  script:
-    - cd Online-workshop-beatrice/
-    - ./gradlew build
-test:
-  stage: test
-  script:
-    - cd Online-workshop-beatrice/
-    - ./gradlew test
-  dependencies:
+  - deploy
+test: 
+  dependencies: 
     - build
-sonarqube:
-  stage: sonarqube
-  script:
-    - cd Online-workshop-beatrice/
-    - ./gradlew sonarqube
-  dependencies:
-    - test
+  script: 
+    - "cd Online-workshop-beatrice/"
+    - "./gradlew test"
+  stage: test

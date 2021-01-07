@@ -70,7 +70,7 @@ public class UserResources {
            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
         }
     }
-    @PUT //Update user from admin
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         if (userController.updateUser(user)) {
@@ -79,20 +79,16 @@ public class UserResources {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
         }
     }
-
-    //Duplicated
-//    @PUT //PUT at http://localhost:XXXX/items/
-//    @Path("user/{id}")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public Response updateUser(@PathParam("id") int id, User user) {
-//        // Idempotent method. Always update (even if the resource has already been updated before).
-//        if (userController.updateUser(user, id)) {
-//            return Response.noContent().build();
-//        } else {
-//            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
-//        }
-//    }
-
+    @PUT
+    @Path("password")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updatePassword(User user) {
+        if (userController.updatePassword(user)) {
+            return Response.noContent().build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid id.").build();
+        }
+    }
 
     @DELETE //DELETE at http://localhost:XXXX/students/3 works
     @RolesAllowed({"ADMIN"})

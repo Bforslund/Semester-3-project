@@ -37,14 +37,9 @@ showNotification() {
 
 updatePassword(data){
   this.user.password = data.password;
-  this.token = btoa(this.user.email+':'+this.user.password);
-  localStorage.clear();
-  localStorage.setItem('userToken', this.token);
-  localStorage.setItem('userId', this.user.id.toString());
-  location.reload();
-  this.service.updateUser(this.user).subscribe(
+  this.service.updateUserPassword(this.user).subscribe(
     (res: any) => {
-      console.log("updated password!");
+      this.showNotification();
     });
 }
 }

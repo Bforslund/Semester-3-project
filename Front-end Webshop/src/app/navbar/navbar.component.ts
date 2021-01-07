@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/users.service';
 import {User} from '../model/User';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
   id:string;
   admin:boolean;
   user:User;
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService,private router: Router) { }
 loggedIn:boolean;
   ngOnInit(): void {
     if(this.readLocalStorageValue() != null){
@@ -26,7 +27,6 @@ loggedIn:boolean;
         this.admin = false;
       }
       });
-      console.log("logged innnn");
     }else{
       this.loggedIn = false;
     }
@@ -44,6 +44,7 @@ logout(){
   location.reload();
   localStorage.clear();
   this.service.logout();
+  this.router.navigate(['/login']);
 }
 
 

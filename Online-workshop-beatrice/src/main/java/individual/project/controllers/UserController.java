@@ -57,6 +57,18 @@ public class UserController {
             return false;
         }
     }
+    public boolean updatePassword(User u) {
+        try {
+            String newPassword = doHashing(u.getPassword());
+            u.setPassword(newPassword);
+            usersRepository.update(u);
+            System.out.println("Updated user: " + u);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
     public User getUserById(int id) {
         try {
            User u = usersRepository.getUserById(id);

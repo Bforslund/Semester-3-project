@@ -20,8 +20,11 @@ import java.util.logging.Logger;
  */
 class Publisher {
 
-    //private static final URI BASE_URI = URI.create("http://0.0.0.0:9090/");
-    private static final URI BASE_URI = URI.create("http://localhost:19090/");
+   // private static final URI BASE_URI = URI.create("http://0.0.0.0:9090/");
+    // ^^ for docker
+
+   private static final URI BASE_URI = URI.create("http://localhost:19090/");
+    // ^ For starting here in intellj
     public static void main(String[] args) {
 
         try {
