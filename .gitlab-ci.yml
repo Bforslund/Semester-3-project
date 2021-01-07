@@ -9,6 +9,7 @@ deploy:
     - "cd Online-workshop-beatrice/"
     - "./gradlew shadowJar"
     - "docker build -t bforslund/ips-webshop-backend ."
+    - "docker login -u $docker_username -p $docker_password"
     - "docker push bforslund/ips-webshop-backend"
     - "cd .."
     - "cd Front-end Webshop/"
