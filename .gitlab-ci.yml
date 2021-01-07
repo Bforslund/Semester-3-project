@@ -13,9 +13,8 @@ deploy:
     - "docker push bforslund/ips-webshop-backend"
     - "cd .."
     - "cd Front-end-webshop/"
-    - "npm install -g @angular/cli"
     - "npm install"
-    - "ng build --prod"
+    - "npm build-prod"
     - "docker build -t bforslund/ips-webshop-frontend ."
     - "docker push bforslund/ips-webshop-frontend"
   stage: deploy
