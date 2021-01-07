@@ -12,7 +12,7 @@ deploy:
     - "docker login -u $docker_username -p $docker_password"
     - "docker push bforslund/ips-webshop-backend"
     - "cd .."
-    - "cd Front-end Webshop/"
+    - "cd Front-end-webshop/"
     - "ng build --prod"
     - "docker build -t bforslund/ips-webshop-frontend ."
     - "docker push bforslund/ips-webshop-frontend"
