@@ -14,7 +14,7 @@ deploy:
     - "cd .."
     - "cd Front-end-webshop/"
     - "npm install"
-    - "npm build-prod"
+    - "npm run build-prod"
     - "docker build -t bforslund/ips-webshop-frontend ."
     - "docker push bforslund/ips-webshop-frontend"
   stage: deploy
