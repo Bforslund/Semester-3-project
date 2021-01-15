@@ -1,10 +1,5 @@
-package individual.project.Repositories;
+package individual.project.repository;
 import individual.project.model.Item;
-import individual.project.model.Order;
-import individual.project.model.OrderItem;
-import individual.project.model.User;
-import individual.project.repository.IItemRepository;
-import individual.project.repository.IOrdersRepository;
 
 import java.util.ArrayList;
 import java.util.List;

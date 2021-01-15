@@ -2,6 +2,7 @@ package individual.project.resources;
 
 import individual.project.controllers.UserController;
 import individual.project.model.User;
+import individual.project.repository.HibernateUsersRepository;
 import io.jsonwebtoken.Claims;
 
 import javax.annotation.security.*;
@@ -13,7 +14,7 @@ import java.util.*;
 
 @Provider
 public class AuthenticationFilter implements ContainerRequestFilter {
-    UserController controller = new UserController();
+    UserController controller = new UserController(new HibernateUsersRepository());
     @Context
     private ResourceInfo resourceInfo;
     // requestContext contains information about the HTTP request message

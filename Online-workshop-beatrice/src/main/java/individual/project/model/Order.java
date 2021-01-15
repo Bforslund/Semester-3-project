@@ -3,9 +3,7 @@ package individual.project.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.json.bind.annotation.JsonbTransient;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +14,12 @@ public class Order {
 SHIPPED, PENDING
     }
 
-    public Order( int userId, String address, String CustomerName, double totalPrice, List<OrderItem> orderItems) {
+    public Order( int userId, String address, String customerName, double totalPrice, List<OrderItem> orderItems) {
 
         this.userId = userId;
         this.totalPrice = totalPrice;
         this.status = orderStatus.PENDING;
-        this.customerName = CustomerName;
+        this.customerName = customerName;
         this.address = address;
         this.time = LocalDate.now();
         orderedItemsList  = orderItems;
@@ -72,7 +70,7 @@ SHIPPED, PENDING
     }
 
 
-    public void AddItemToList(OrderItem i) {
+    public void addItemToList(OrderItem i) {
 
         i.setOrder(this);
         getOrderedItemsList().add(i);
@@ -100,18 +98,21 @@ SHIPPED, PENDING
     }
 
     public double getTotalPrice() {
-        CalculateTotalPrice();
         return totalPrice;
     }
-
-    public void CalculateTotalPrice() {
-        double price = 0;
-        for (OrderItem order:orderedItemsList) {
-            price += order.getItem().getSellingPrice();
-            price *= order.getQuantity();
-        }
-        this.totalPrice = price;
-    }
+//    public double getTotalPrice() {
+//        CalculateTotalPrice();
+//        return totalPrice;
+//    }
+//
+//    public void CalculateTotalPrice() {
+//        double price = 0;
+//        for (OrderItem order:orderedItemsList) {
+//            price += order.getItem().getSellingPrice();
+//            price *= order.getQuantity();
+//        }
+//        this.totalPrice = price;
+//    }
 
     public int getUserId() {
         return userId;

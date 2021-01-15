@@ -1,8 +1,6 @@
-package individual.project.ControllerTests;
+package individual.project.controllers;
 
-import individual.project.Repositories.FakeOrdersRespository;
-
-import individual.project.controllers.StatisticsController;
+import individual.project.repository.FakeOrdersRespository;
 
 import individual.project.model.*;
 
@@ -15,11 +13,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class StatisticsTest
+public class StatisticsControllerTest
 {
-
-//    @Rule
-//    public ExpectedException exception = ExpectedException.none();
 
     FakeOrdersRespository ordersRepository = new FakeOrdersRespository();
     StatisticsController scontroller = new StatisticsController(ordersRepository);

@@ -3,7 +3,6 @@ package individual.project.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "individual_users")
@@ -89,7 +88,8 @@ public class User {
         if (lastName == null || lastName.isEmpty())
         {
             throw new IllegalArgumentException();
-        }this.lastName = lastName;
+        }
+        this.lastName = lastName;
     }
 
     public String getEmail() {

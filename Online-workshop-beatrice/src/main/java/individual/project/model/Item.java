@@ -38,7 +38,7 @@ public class Item {
     }
 
     public void setSellingPrice(int sellingPrice) {
-        if (sellingPrice < buyingPrice)
+        if (sellingPrice < buyingPrice || sellingPrice < 0 || sellingPrice == 0)
         {
             throw new IllegalArgumentException();
         }
@@ -50,7 +50,7 @@ public class Item {
     }
 
     public void setBuyingPrice(int buyingPrice) {
-        if (buyingPrice < 0)
+        if (buyingPrice < 0 || buyingPrice == 0)
         {
             throw new IllegalArgumentException();
         }
@@ -108,12 +108,17 @@ public class Item {
 
     }
 
+    public Item(int id, String name, int sellingPrice, int buyingPrice, String ingredients, TypeOfItem type) {
+        this.id = id;
+        this.name = name;
+        this.sellingPrice = sellingPrice;
+        this.buyingPrice = buyingPrice;
+        this.ingredients = ingredients;
+        this.type = type;
+    }
+
     public Item() {
     }
 
-    @Override
-    public String toString() {
-        return name +": " + ingredients + ": " + sellingPrice;
-    }
 
 }

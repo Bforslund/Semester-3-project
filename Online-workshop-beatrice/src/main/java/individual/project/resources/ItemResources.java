@@ -21,12 +21,12 @@ import javax.ws.rs.container.*;
 public class ItemResources {
     @Context
     private UriInfo uriInfo;
-    public static final ItemController itemController = new ItemController(new HibernateItemsRepository());
+    public ItemController itemController = new ItemController(new HibernateItemsRepository());
 
     @GET
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllItems(@QueryParam("items") String items) {
+    public Response getAllItems() {
         List<Item> itemList;
         itemList = itemController.showAllItems();
 
@@ -38,7 +38,7 @@ public class ItemResources {
     @PermitAll
     @Path("item/{id}") // Get one item
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getOrderById(@PathParam("id") int id) {
+    public Response getItemById(@PathParam("id") int id) {
         Item o = itemController.getItemById(id);
         if (o == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid item id.").build();
@@ -51,29 +51,7 @@ public class ItemResources {
     @Path("{term}")
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllSearchItems(@PathParam("term") String term, @Suspended final AsyncResponse asyncResponse) {
-        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
-
-            @Override
-            public void handleTimeout(AsyncResponse asyncResponse) {
-                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-                        .entity("Operation time out.").build());
-            }
-        });
-        asyncResponse.setTimeout(100, TimeUnit.MILLISECONDS); // set the timeout interval
-
-        asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
-            @Override
-            public void onDisconnect(AsyncResponse disconnected) {
-                System.out.println("Connection to the client is closed or lost!");
-            }
-        });
-
-        asyncResponse.register(new CompletionCallback() { // register a CompletionCallback listener
-            @Override
-            public void onComplete(Throwable throwable) {
-                System.out.println("Processing is complete!");
-            }
-        });
+        async(asyncResponse);
 
         new Thread(new Runnable() {
             @Override
@@ -92,30 +70,8 @@ public class ItemResources {
     @Produces(MediaType.APPLICATION_JSON)
     public void getAllFilteredItems(@PathParam("type") String type, @PathParam("price") double price, @Suspended final AsyncResponse asyncResponse) {
         Item.TypeOfItem itemType = itemController.MakeToEnum(type);
-        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
 
-            @Override
-            public void handleTimeout(AsyncResponse asyncResponse) {
-                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
-                        .entity("Operation time out.").build());
-            }
-        });
-        asyncResponse.setTimeout(600, TimeUnit.MILLISECONDS); // set the timeout interval
-
-        asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
-            @Override
-            public void onDisconnect(AsyncResponse disconnected) {
-                System.out.println("Connection to the client is closed or lost!");
-            }
-        });
-
-        asyncResponse.register(new CompletionCallback() { // register a CompletionCallback listener
-            @Override
-            public void onComplete(Throwable throwable) {
-                System.out.println("Processing is complete!");
-            }
-        });
-
+        async(asyncResponse);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -128,7 +84,6 @@ public class ItemResources {
     }
 
 
-
     @POST //POST at http://localhost:XXXX/items/
     @RolesAllowed({"ADMIN"})
     @Consumes(MediaType.APPLICATION_JSON)
@@ -137,8 +92,8 @@ public class ItemResources {
             String entity =  "Item with name " + item.getName() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         } else {
-           String url = uriInfo.getAbsolutePath() + "/" + item.getId(); // url of the created item
-            URI uri = URI.create(url);
+//           String url = uriInfo.getAbsolutePath() + "/" + item.getId(); // url of the created item
+            URI uri = URI.create("created");
             return Response.created(uri).build();
         }
 
@@ -162,5 +117,31 @@ public class ItemResources {
     public Response deleteItem(@PathParam("id") int id) {
         itemController.DeleteItem(id);
         return Response.noContent().build();
+    }
+
+    public void async(@Suspended final AsyncResponse asyncResponse){
+        asyncResponse.setTimeoutHandler(new TimeoutHandler() {  // register the TimeoutHandler
+
+            @Override
+            public void handleTimeout(AsyncResponse asyncResponse) {
+                asyncResponse.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE)
+                        .entity("Operation time out.").build());
+            }
+        });
+        asyncResponse.setTimeout(600, TimeUnit.MILLISECONDS); // set the timeout interval
+
+        asyncResponse.register(new ConnectionCallback() { // register a ConnectionCallback listener
+            @Override
+            public void onDisconnect(AsyncResponse disconnected) {
+                System.out.println("Connection to the client is closed or lost!");
+            }
+        });
+
+        asyncResponse.register(new CompletionCallback() { // register a CompletionCallback listener
+            @Override
+            public void onComplete(Throwable throwable) {
+                System.out.println("Processing is complete!");
+            }
+        });
     }
 }

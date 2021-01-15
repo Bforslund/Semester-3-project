@@ -47,9 +47,19 @@ dependencies {
     runtime 'mysql:mysql-connector-java:5.1.23'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
+
+    //mockito
+    testCompile "org.mockito:mockito-core:2.+"
+
+    // https://mincong.io/2020/04/19/mockito-junit5/
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.28.2'
+
+
 }
 test {
     useJUnitPlatform()
+
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
 shadowJar {

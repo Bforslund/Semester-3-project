@@ -3,6 +3,7 @@ package individual.project.resources;
 
 import individual.project.controllers.OrderController;
 import individual.project.model.*;
+import individual.project.repository.HibernateOrdersRepository;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -16,7 +17,7 @@ import java.util.List;
 public class OrderResources {
     @Context
     private UriInfo uriInfo;
-    public static final OrderController orderController = new OrderController();
+    public OrderController orderController = new OrderController(new HibernateOrdersRepository());
     @GET
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)

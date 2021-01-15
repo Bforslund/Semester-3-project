@@ -9,6 +9,10 @@ public class StatisticsOrder {
         this.totalOrders = totalOrders;
     }
 
+    public StatisticsOrder() {
+
+    }
+
     public String getMonth() {
         return month;
     }

@@ -113,19 +113,24 @@ this.itemsRepository = itemsRepository;
             return null;
         }
     }
-    public void UpdateItem(Item i) {
+    public boolean UpdateItem(Item i) {
         try {
             itemsRepository.update(i);
             System.out.println("Updated item: " + i);
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
-    public void DeleteItem(int id) {
+    public boolean DeleteItem(int id) {
         try {
             itemsRepository.delete(id);
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
+
 }

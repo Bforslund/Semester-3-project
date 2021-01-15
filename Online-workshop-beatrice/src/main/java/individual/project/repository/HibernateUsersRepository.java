@@ -10,9 +10,17 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
 
-public class HibernateUsersRepository {
+public class HibernateUsersRepository implements IUsersRepository {
 
-
+// create constructor one emppty, one where i put hibernate in constructor
+    // empty one is going to call it with null
+    // in other one is null then we do this V
+    //if its not null then i use the one from the constructor
+    //parameters
+    // () means real one
+    //(registery) fake
+    // configure manually google
+    @Override
     public List<User> getUsers() throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -37,6 +45,7 @@ public class HibernateUsersRepository {
             throw new Exception("Cannot read items from the database", e);
         }
     }
+    @Override
     public User getUserById(int id) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
@@ -63,6 +72,7 @@ public class HibernateUsersRepository {
     }
 
 
+    @Override
     public void create(User user) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
@@ -95,6 +105,7 @@ public class HibernateUsersRepository {
         }
 
     }
+    @Override
     public void update(User u) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
@@ -126,6 +137,7 @@ public class HibernateUsersRepository {
         }
 
     }
+    @Override
     public void delete(int id) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();

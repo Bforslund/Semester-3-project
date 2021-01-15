@@ -1,8 +1,6 @@
 package individual.project.controllers;
 import individual.project.model.*;
 import individual.project.repository.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeController {

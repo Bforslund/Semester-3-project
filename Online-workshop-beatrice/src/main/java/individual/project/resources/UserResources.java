@@ -3,6 +3,7 @@ package individual.project.resources;
 import individual.project.controllers.ItemController;
 import individual.project.model.User;
 import individual.project.controllers.UserController;
+import individual.project.repository.HibernateUsersRepository;
 
 import javax.annotation.security.*;
 import javax.ws.rs.*;
@@ -16,11 +17,11 @@ import java.util.StringTokenizer;
 public class UserResources {
     @Context
     private UriInfo uriInfo;
-    public static final UserController userController = new UserController();
+    public  UserController userController = new UserController(new HibernateUsersRepository());
     @GET
     @RolesAllowed({"ADMIN"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllUsers(@QueryParam("users") String users) {
+    public Response getAllUsers() {
         List<User> UserList;
         UserList = userController.showAllUsers();
 
@@ -48,8 +49,8 @@ public class UserResources {
             String entity =  "user with email " + user.getEmail() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         } else {
-            String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the created item
-            URI uri = URI.create(url);
+           // String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the created item
+            URI uri = URI.create("Created");
             return Response.created(uri).build();
         }
     }

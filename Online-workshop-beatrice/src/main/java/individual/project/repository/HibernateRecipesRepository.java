@@ -35,7 +35,7 @@ public class HibernateRecipesRepository {
             throw new Exception("Cannot read items from the database", e);
         }
     }
-    public void create(Recipe i) throws Exception {
+    public boolean create(Recipe i) throws Exception {
         // loads configuration and mappings
         Configuration configuration = new Configuration().configure();
 
@@ -61,12 +61,17 @@ public class HibernateRecipesRepository {
             session.getTransaction().commit();
           //  session.close();
             sessionFactory.close();
+            return true;
         } catch (Exception e) {
             // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
             // so destroy it manually.
+
             StandardServiceRegistryBuilder.destroy(serviceRegistry);
+
             throw new Exception("Cannot create Recipe " + i, e);
+
         }
+
 
     }
 }

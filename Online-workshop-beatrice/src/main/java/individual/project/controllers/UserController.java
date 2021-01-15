@@ -2,6 +2,7 @@ package individual.project.controllers;
 
 import individual.project.model.User;
 import individual.project.repository.HibernateUsersRepository;
+import individual.project.repository.IUsersRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -18,7 +19,11 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 public class UserController {
-    HibernateUsersRepository usersRepository = new HibernateUsersRepository();
+    IUsersRepository usersRepository;
+
+    public UserController(IUsersRepository iUsersRepository){
+        this.usersRepository = iUsersRepository;
+    }
 
     public List<User> showAllUsers() {
       List<User> items;
@@ -87,11 +92,13 @@ public class UserController {
         }
         return null;
     }
-    public void deleteUser(int id) {
+    public boolean deleteUser(int id) {
         try {
             usersRepository.delete(id);
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
     public User getUserFromToken(String token) {

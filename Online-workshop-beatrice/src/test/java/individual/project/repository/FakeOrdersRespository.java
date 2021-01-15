@@ -1,10 +1,9 @@
-package individual.project.Repositories;
+package individual.project.repository;
 
 import individual.project.model.Item;
 import individual.project.model.Order;
 import individual.project.model.OrderItem;
 import individual.project.model.User;
-import individual.project.repository.IOrdersRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +57,8 @@ public class FakeOrdersRespository implements IOrdersRepository {
 
     @Override
     public List<OrderItem> getOrderItems(int nr){
-        return null;
+        Order o = getOrderById(nr);
+     return o.getOrderedItemsList();
     }
 
     @Override
@@ -79,7 +79,7 @@ public class FakeOrdersRespository implements IOrdersRepository {
 
     @Override
     public void create(Order o)  {
-
+        orderList.add(o);
     }
 
     @Override

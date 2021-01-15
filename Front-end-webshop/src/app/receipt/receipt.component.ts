@@ -12,8 +12,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./receipt.component.scss']
 })
 export class ReceiptComponent implements OnInit {
-order: Order = new Order(55, 3, "akdaksd", "jasdjs");
-user: User = new User(1, "test", "test2", "test3", 200, "test5", "adsas", "jasdjasj", "USER");
+order: Order = new Order(55, 3, "", "");
+user: User = new User(1, "", "", "", 200, "", "", "", "USER");
 orderItemsList: Array<OrderItem> = [];
 id: number;
   constructor(private service: OrdersService, private route: ActivatedRoute) { }

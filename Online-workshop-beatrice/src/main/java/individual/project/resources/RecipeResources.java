@@ -23,7 +23,7 @@ import javax.ws.rs.container.*;
 public class RecipeResources {
     @Context
     private UriInfo uriInfo;
-    public static final RecipeController controller = new RecipeController();
+    public RecipeController controller = new RecipeController();
 
     @GET
     @PermitAll
@@ -44,8 +44,8 @@ public class RecipeResources {
             String entity =  "Item with name " + recipe.getTitle() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         } else {
-            String url = uriInfo.getAbsolutePath() + "/" + recipe.getId(); // url of the created item
-            URI uri = URI.create(url);
+          //  String url = uriInfo.getAbsolutePath() + "/" + recipe.getId(); // url of the created item
+            URI uri = URI.create("created");
             return Response.created(uri).build();
         }
 

@@ -1,22 +1,13 @@
-package individual.project.ControllerTests;
-import individual.project.Repositories.FakeItemsRepository;
-import individual.project.Repositories.FakeOrdersRespository;
-import individual.project.controllers.ItemController;
-import individual.project.controllers.OrderController;
-import individual.project.controllers.StatisticsController;
-import individual.project.controllers.UserController;
+package individual.project.controllers;
+import individual.project.repository.FakeItemsRepository;
 import individual.project.model.*;
-import individual.project.repository.IOrdersRepository;
-import org.hibernate.stat.Statistics;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ItemTest {
+public class ItemControllerTest {
     FakeItemsRepository repository = new FakeItemsRepository();
     ItemController controller = new ItemController(repository);
     @Test

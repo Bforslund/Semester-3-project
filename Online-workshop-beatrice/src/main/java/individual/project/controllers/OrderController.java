@@ -3,14 +3,17 @@ package individual.project.controllers;
 import individual.project.model.Order;
 import individual.project.model.OrderItem;
 import individual.project.model.User;
-import individual.project.repository.HibernateOrdersRepository;
+import individual.project.repository.HibernateUsersRepository;
 import individual.project.repository.IOrdersRepository;
 
 import java.util.List;
 
 public class OrderController {
-    IOrdersRepository ordersRepository = new HibernateOrdersRepository();
-    UserController userController = new UserController();
+    IOrdersRepository ordersRepository;
+    public OrderController(IOrdersRepository iOrdersRepository){
+        this.ordersRepository = iOrdersRepository;
+    }
+    UserController userController = new UserController(new HibernateUsersRepository());
     public List<Order> showAllOrders() {
       List<Order> orders;
         try {
@@ -52,7 +55,7 @@ public class OrderController {
             order.setUserId(o.getUserId());
 
             for (OrderItem item: o.getOrderedItemsList()) {
-                order.AddItemToList(item);
+                order.addItemToList(item);
             }
             ordersRepository.create(order);
             System.out.println("Created order: " + o);
@@ -62,18 +65,18 @@ public class OrderController {
             return null;
         }
     }
-    public boolean addOrderItem(OrderItem o) {
-        try {
-            Order order = o.getOrder();
-            order.AddItemToList(o);
-            ordersRepository.update(order);
-            System.out.println("Created order: " + o);
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
+//    public boolean addOrderItem(OrderItem o) {
+//        try {
+//            Order order = o.getOrder();
+//            order.addItemToList(o);
+//            ordersRepository.update(order);
+//            System.out.println("Created order: " + o);
+//            return true;
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return false;
+//        }
+//    }
     public boolean updateOrder(Order o) {
         try {
             ordersRepository.update(o);
@@ -93,11 +96,13 @@ public class OrderController {
             return null;
         }
     }
-    public void deleteAll() {
+    public boolean deleteAll() {
         try {
             ordersRepository.delete();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
     public User getUserByOrder(int id) {
