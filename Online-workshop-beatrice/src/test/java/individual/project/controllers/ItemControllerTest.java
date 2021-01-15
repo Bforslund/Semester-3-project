@@ -1,4 +1,4 @@
-package individual.project;
+package individual.project.ControllerTests;
 import individual.project.Repositories.FakeItemsRepository;
 import individual.project.Repositories.FakeOrdersRespository;
 import individual.project.controllers.ItemController;
@@ -20,28 +20,28 @@ public class ItemTest {
     FakeItemsRepository repository = new FakeItemsRepository();
     ItemController controller = new ItemController(repository);
     @Test
-    public void testSearchItem()
+     void testSearchItem()
     {
        List<Item> foundItems = controller.search("c");
        int count = foundItems.size();
         assertEquals(count, 4);
     }
     @Test
-    public void testFilterByTypeItem()
+     void testFilterByTypeItem()
     {
         List<Item> foundItems = controller.filterByType(Item.TypeOfItem.COOKIE, 0);
         int count = foundItems.size();
         assertEquals(count, 1);
     }
     @Test
-    public void testFilterByPriceItem()
+   void testFilterByPriceItem()
     {
         List<Item> foundItems = controller.filterByType(null, 100);
         int count = foundItems.size();
         assertEquals(count, 5);
     }
     @Test
-    public void testFilterByTypeAndPriceItem()
+     void testFilterByTypeAndPriceItem()
     {
         List<Item> foundItems = controller.filterByType(Item.TypeOfItem.CUPCAKE, 100);
         int count = foundItems.size();

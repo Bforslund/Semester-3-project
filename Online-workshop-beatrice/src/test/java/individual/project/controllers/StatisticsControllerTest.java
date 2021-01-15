@@ -1,4 +1,4 @@
-package individual.project;
+package individual.project.ControllerTests;
 
 import individual.project.Repositories.FakeOrdersRespository;
 
@@ -26,27 +26,27 @@ public class StatisticsTest
 
 
     @Test
-    public void testAmountOfCakes() {
+    void testAmountOfCakes() {
        int total = scontroller.getTotalAmountOfCakesSold();
-        assertEquals(total, 3);
+        assertEquals(3, total);
     }
     @Test
-    public void testAmountOfCupcakes() {
+     void testAmountOfCupcakes() {
         int total = scontroller.getTotalAmountOfCupcakesSold();
-        assertEquals(total, 3);
+        assertEquals(3, total);
     }
     @Test
-    public void testAmountOfCookies() {
+     void testAmountOfCookies() {
         int total = scontroller.getTotalAmountOfCookiesSold();
-        assertEquals(total, 2);
+        assertEquals(2, total);
     }
     @Test
-    public void testAmountOfOther() {
+     void testAmountOfOther() {
         int total = scontroller.getTotalAmountOfOtherSold();
-        assertEquals(total, 4);
+        assertEquals(4, total);
     }
     @Test
-    public void testAmountOfOrdersofNow() {
+     void testAmountOfOrdersofNow() {
         LocalDate now = LocalDate.now();
         Month monthNow = now.getMonth();
 
@@ -58,12 +58,12 @@ public class StatisticsTest
             }
         }
         int total = sO.getTotalOrders();
-        assertEquals(total, 4);
+        assertEquals(4, total);
     }
     @Test
-    public void testGetTotalRevenue() {
+     void testGetTotalRevenue() {
         double total = scontroller.getTotalRevenue();
-        assertEquals(total, 600);
+        assertEquals(400,total);
     }
 
 

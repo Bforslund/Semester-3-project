@@ -19,10 +19,10 @@ public class FakeOrdersRespository implements IOrdersRepository {
         Item i4 = new Item("Cupcake", 50, 100,"Flour", Item.TypeOfItem.CUPCAKE);
 
 
-        Order o1 = new Order(1,0,1, "kuk", "Johanna Ubrig");
-        Order o2 = new Order(2,0,1,"Address 1", "Frida framstedt");
-        Order o3 = new Order(3,0,1,"Address 2", "Lina Lund");
-        Order o4 = new Order(4,0,1,"Address 3", "Amanda Kell");
+        Order o1 = new Order(1,100,1, "kuk", "Johanna Ubrig");
+        Order o2 = new Order(2,100,1,"Address 1", "Frida framstedt");
+        Order o3 = new Order(3,100,1,"Address 2", "Lina Lund");
+        Order o4 = new Order(4,100,1,"Address 3", "Amanda Kell");
 
         OrderItem oi1 = new OrderItem(i1, 2);
         OrderItem oi2 = new OrderItem(i2, 1);
@@ -31,12 +31,12 @@ public class FakeOrdersRespository implements IOrdersRepository {
         OrderItem oi5 = new OrderItem(i2, 1);
         OrderItem oi6 = new OrderItem(i1, 1);
 
-        o1.AddItemToList(oi1);
-        o2.AddItemToList(oi2);
-        o3.AddItemToList(oi3);
-        o4.AddItemToList(oi4);
-        o1.AddItemToList(oi5);
-        o2.AddItemToList(oi6);
+        o1.addItemToList(oi1);
+        o2.addItemToList(oi2);
+        o3.addItemToList(oi3);
+        o4.addItemToList(oi4);
+        o1.addItemToList(oi5);
+        o2.addItemToList(oi6);
 
         orderList.add(o1);
         orderList.add(o2);
